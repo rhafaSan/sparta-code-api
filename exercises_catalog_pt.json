@@ -1,0 +1,5083 @@
+{
+  "metadata": {
+    "title": "Catálogo amplo de exercícios para seed de app fitness",
+    "language": "pt-BR",
+    "generatedAt": "2026-09-14",
+    "exerciseCount": 232,
+    "scope": "Catálogo normalizado e curado para musculação/fitness; nomes e taxonomia de músculos/equipamentos baseados em fontes abertas pesquisadas.",
+    "importantNote": "Este arquivo é uma curadoria normalizada, não uma cópia integral de nenhum dataset de terceiros. Classificações musculares podem variar entre fontes e não substituem orientação profissional.",
+    "recommendedUpstream": {
+      "name": "Kinetic Exercises DB",
+      "license": "MIT",
+      "reportedExerciseCount": 899,
+      "muscleGroupCount": 17,
+      "equipmentTypeCount": 36,
+      "url": "https://github.com/kinetic-place/exercises-db"
+    },
+    "sourcesReviewed": [
+      {
+        "name": "Kinetic Exercises DB / JSON / API",
+        "url": "https://github.com/kinetic-place/exercises-db",
+        "license": "MIT",
+        "notes": "899 exercícios, 17 grupos musculares, 36 tipos de equipamento, classificação primary/secondary/tertiary."
+      },
+      {
+        "name": "Free Exercise DB",
+        "url": "https://github.com/yuhonas/free-exercise-db",
+        "license": "Unlicense / public domain",
+        "notes": "800+ exercícios, primaryMuscles/secondaryMuscles, equipamento, dificuldade, mecânica e categoria."
+      },
+      {
+        "name": "wger",
+        "url": "https://wger.de/api/v2/",
+        "license": "Creative Commons por entrada de exercício",
+        "notes": "API REST pública com exercícios, músculos e equipamentos; licenciamento deve ser verificado por entrada em uso redistribuído."
+      },
+      {
+        "name": "ExerciseDB / AscendAPI",
+        "url": "https://exercisedb.dev/",
+        "license": "Serviço/API; repositório público AGPL-3.0",
+        "notes": "Catálogo muito grande e rico em mídia; indicado para integração via API em vez de espelhamento indiscriminado."
+      },
+      {
+        "name": "RepDB Free Exercise Dataset",
+        "url": "https://github.com/RepDB/exercise-dataset",
+        "license": "Licença própria com atribuição; proíbe redistribuição como dataset",
+        "notes": "601 exercícios, imagens e conteúdo multilíngue; não usado como fonte redistribuída neste arquivo."
+      }
+    ],
+    "muscleTaxonomy": [
+      {
+        "slug": "abdominals",
+        "namePt": "Abdominais"
+      },
+      {
+        "slug": "abductors",
+        "namePt": "Abdutores"
+      },
+      {
+        "slug": "adductors",
+        "namePt": "Adutores"
+      },
+      {
+        "slug": "biceps",
+        "namePt": "Bíceps"
+      },
+      {
+        "slug": "calves",
+        "namePt": "Panturrilhas"
+      },
+      {
+        "slug": "chest",
+        "namePt": "Peitoral"
+      },
+      {
+        "slug": "forearms",
+        "namePt": "Antebraços"
+      },
+      {
+        "slug": "glutes",
+        "namePt": "Glúteos"
+      },
+      {
+        "slug": "hamstrings",
+        "namePt": "Posteriores de coxa"
+      },
+      {
+        "slug": "lats",
+        "namePt": "Latíssimos / dorsais"
+      },
+      {
+        "slug": "lower-back",
+        "namePt": "Lombar"
+      },
+      {
+        "slug": "middle-back",
+        "namePt": "Costas médias"
+      },
+      {
+        "slug": "neck",
+        "namePt": "Pescoço"
+      },
+      {
+        "slug": "quadriceps",
+        "namePt": "Quadríceps"
+      },
+      {
+        "slug": "shoulders",
+        "namePt": "Ombros"
+      },
+      {
+        "slug": "traps",
+        "namePt": "Trapézio"
+      },
+      {
+        "slug": "triceps",
+        "namePt": "Tríceps"
+      }
+    ]
+  },
+  "exercises": [
+    {
+      "id": "b432144f-419d-519e-8701-638ec63f3387",
+      "slug": "ab-wheel-rollout",
+      "namePt": "Ab wheel rollout",
+      "nameEn": "Ab Wheel Rollout",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "abdominals"
+      ],
+      "secondaryMuscles": [
+        "lats",
+        "shoulders"
+      ],
+      "equipment": [
+        "ab wheel"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "91f0e719-f3bd-5837-aa19-9c9cdef94db6",
+      "slug": "lying-leg-raise",
+      "namePt": "Abdominal infra",
+      "nameEn": "Lying Leg Raise",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "abdominals"
+      ],
+      "secondaryMuscles": [
+        "hip flexors"
+      ],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "dedbce79-02ed-5daa-bdcb-62f3e4e891d4",
+      "slug": "bicycle-crunch",
+      "namePt": "Bicycle crunch",
+      "nameEn": "Bicycle Crunch",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "abdominals"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "d3778bdf-026a-559e-b917-78795f15130e",
+      "slug": "bird-dog",
+      "namePt": "Bird dog",
+      "nameEn": "Bird Dog",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "static",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "abdominals"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "lower-back"
+      ],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "e8c07f78-10f8-5b73-b34d-269b7aa4cd50",
+      "slug": "crunch",
+      "namePt": "Crunch",
+      "nameEn": "Crunch",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "abdominals"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "d16bdeae-ded2-548e-9f57-818529ad4aad",
+      "slug": "machine-crunch",
+      "namePt": "Crunch máquina",
+      "nameEn": "Machine Crunch",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "abdominals"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "ab crunch machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "77115293-d5a6-5749-ad09-579c27da83c9",
+      "slug": "cable-crunch",
+      "namePt": "Crunch na polia",
+      "nameEn": "Cable Crunch",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "abdominals"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "cable",
+        "rope"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "f2a14e0b-1782-5ff2-a06a-c0d83af145fa",
+      "slug": "dead-bug",
+      "namePt": "Dead bug",
+      "nameEn": "Dead Bug",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "static",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "abdominals"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "b8e07e73-5cb5-51be-afcf-1f0e3f053735",
+      "slug": "dragon-flag",
+      "namePt": "Dragon flag",
+      "nameEn": "Dragon Flag",
+      "type": "reps",
+      "difficultyLevel": "expert",
+      "forceType": "static",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "abdominals"
+      ],
+      "secondaryMuscles": [
+        "lats"
+      ],
+      "equipment": [
+        "bench",
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "a260eacb-cbaf-5798-b414-f88c15df9b0c",
+      "slug": "hanging-knee-raise",
+      "namePt": "Elevação de joelhos suspenso",
+      "nameEn": "Hanging Knee Raise",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "abdominals"
+      ],
+      "secondaryMuscles": [
+        "forearms"
+      ],
+      "equipment": [
+        "pull-up bar"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "771e4ff9-6d0d-5428-a907-b3aae16dc93d",
+      "slug": "hanging-leg-raise",
+      "namePt": "Elevação de pernas suspenso",
+      "nameEn": "Hanging Leg Raise",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "abdominals"
+      ],
+      "secondaryMuscles": [
+        "forearms"
+      ],
+      "equipment": [
+        "pull-up bar"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "ed9ac84a-9d7e-5603-8dc8-5f0fbca8bf20",
+      "slug": "mountain-climber",
+      "namePt": "Mountain climber",
+      "nameEn": "Mountain Climber",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "dynamic",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "abdominals"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "quadriceps"
+      ],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "6a7a7785-5740-5c12-8467-f424fa1c66ff",
+      "slug": "pallof-press",
+      "namePt": "Pallof press",
+      "nameEn": "Pallof Press",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "static",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "abdominals"
+      ],
+      "secondaryMuscles": [
+        "shoulders"
+      ],
+      "equipment": [
+        "cable"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "410f10cb-6325-5029-9ba4-eb83a1389a59",
+      "slug": "plank",
+      "namePt": "Prancha frontal",
+      "nameEn": "Plank",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "static",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "abdominals"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "glutes"
+      ],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "67007a59-ceac-5717-9378-7010cfd35d59",
+      "slug": "side-plank",
+      "namePt": "Prancha lateral",
+      "nameEn": "Side Plank",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "static",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "abdominals"
+      ],
+      "secondaryMuscles": [
+        "abductors",
+        "shoulders"
+      ],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "e7503afd-642c-5a86-aece-dc3de98093eb",
+      "slug": "reverse-crunch",
+      "namePt": "Reverse crunch",
+      "nameEn": "Reverse Crunch",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "abdominals"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "4743da95-3aac-5775-942d-250c7556fb88",
+      "slug": "russian-twist",
+      "namePt": "Russian twist",
+      "nameEn": "Russian Twist",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "abdominals"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "6dc30796-a5a6-5b7b-b68f-e3a123516671",
+      "slug": "sit-up",
+      "namePt": "Sit-up",
+      "nameEn": "Sit-Up",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "abdominals"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "ffb1c703-e77f-562e-81a3-471560a228fa",
+      "slug": "toe-touch-crunch",
+      "namePt": "Toe touch",
+      "nameEn": "Toe Touch Crunch",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "abdominals"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "b2ee788a-0f5f-5310-af6c-5b12afc1223e",
+      "slug": "v-up",
+      "namePt": "V-up",
+      "nameEn": "V-Up",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "abdominals"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "db303b71-b2be-54d7-97b5-d57880859017",
+      "slug": "side-lying-hip-abduction",
+      "namePt": "Abdução lateral deitado",
+      "nameEn": "Side-Lying Hip Abduction",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "abductors"
+      ],
+      "secondaryMuscles": [
+        "glutes"
+      ],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "0318d45f-7abc-5962-925d-5297d6ba0a24",
+      "slug": "cable-hip-abduction",
+      "namePt": "Abdução na polia",
+      "nameEn": "Cable Hip Abduction",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "abductors"
+      ],
+      "secondaryMuscles": [
+        "glutes"
+      ],
+      "equipment": [
+        "cable"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "a038f0b0-51b6-54ba-844d-b7090c370273",
+      "slug": "hip-abduction-machine",
+      "namePt": "Cadeira abdutora",
+      "nameEn": "Hip Abduction Machine",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "abductors"
+      ],
+      "secondaryMuscles": [
+        "glutes"
+      ],
+      "equipment": [
+        "hip abduction machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "4f000c99-d2b5-5b50-a86c-bc53cb555f51",
+      "slug": "lateral-band-walk",
+      "namePt": "Caminhada lateral com miniband",
+      "nameEn": "Lateral Band Walk",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "abductors"
+      ],
+      "secondaryMuscles": [
+        "glutes"
+      ],
+      "equipment": [
+        "loop band"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "bcfadbe7-1a44-5dd6-9390-5486e0dc5e6c",
+      "slug": "clamshell",
+      "namePt": "Clamshell",
+      "nameEn": "Clamshell",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "abductors"
+      ],
+      "secondaryMuscles": [
+        "glutes"
+      ],
+      "equipment": [
+        "loop band"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "be36ed12-3ef9-57b6-b354-a8a5e61ef987",
+      "slug": "cable-hip-adduction",
+      "namePt": "Adução na polia",
+      "nameEn": "Cable Hip Adduction",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "adductors"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "cable"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "6b80a9d3-e7e1-511c-a2d3-34c86e27df11",
+      "slug": "hip-adduction-machine",
+      "namePt": "Cadeira adutora",
+      "nameEn": "Hip Adduction Machine",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "adductors"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "hip adduction machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "4570431b-9d20-5466-a117-af85056cef4e",
+      "slug": "copenhagen-plank",
+      "namePt": "Copenhagen plank",
+      "nameEn": "Copenhagen Plank",
+      "type": "reps",
+      "difficultyLevel": "expert",
+      "forceType": "static",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "adductors"
+      ],
+      "secondaryMuscles": [
+        "abdominals"
+      ],
+      "equipment": [
+        "body only",
+        "bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "5ea8c696-66ad-50d6-b209-238a47eba557",
+      "slug": "21s-barbell-curl",
+      "namePt": "Rosca 21",
+      "nameEn": "21s Barbell Curl",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "biceps"
+      ],
+      "secondaryMuscles": [
+        "forearms"
+      ],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "81671270-ecb4-5cbd-81af-75f5f48885f3",
+      "slug": "ez-bar-preacher-curl",
+      "namePt": "Rosca Scott com barra W",
+      "nameEn": "EZ-Bar Preacher Curl",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "biceps"
+      ],
+      "secondaryMuscles": [
+        "forearms"
+      ],
+      "equipment": [
+        "ez bar",
+        "preacher bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "a861f1d8-a42d-56fe-b046-2bb2cbcde328",
+      "slug": "machine-preacher-curl",
+      "namePt": "Rosca Scott máquina",
+      "nameEn": "Machine Preacher Curl",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "biceps"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "8636ae7f-8946-5f2f-853d-4a6c487334ed",
+      "slug": "zottman-curl",
+      "namePt": "Rosca Zottman",
+      "nameEn": "Zottman Curl",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "biceps"
+      ],
+      "secondaryMuscles": [
+        "forearms"
+      ],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "9362b758-529c-5a10-8ae0-557bdfedc5f8",
+      "slug": "alternating-dumbbell-curl",
+      "namePt": "Rosca alternada com halteres",
+      "nameEn": "Alternating Dumbbell Curl",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "biceps"
+      ],
+      "secondaryMuscles": [
+        "forearms"
+      ],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "9e7c7a93-b7e2-5285-a54a-d204c3869561",
+      "slug": "bayesian-cable-curl",
+      "namePt": "Rosca bayesian",
+      "nameEn": "Bayesian Cable Curl",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "biceps"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "cable"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "fd89cbf7-047f-5ee2-a460-f93d79031132",
+      "slug": "concentration-curl",
+      "namePt": "Rosca concentrada",
+      "nameEn": "Concentration Curl",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "biceps"
+      ],
+      "secondaryMuscles": [
+        "forearms"
+      ],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "9852b13c-d9e6-5563-9240-d9e9558fadf2",
+      "slug": "barbell-curl",
+      "namePt": "Rosca direta com barra",
+      "nameEn": "Barbell Curl",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "biceps"
+      ],
+      "secondaryMuscles": [
+        "forearms"
+      ],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "5d15553c-fc11-53fe-92d3-bea479c0748b",
+      "slug": "ez-bar-curl",
+      "namePt": "Rosca direta com barra W",
+      "nameEn": "EZ-Bar Curl",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "biceps"
+      ],
+      "secondaryMuscles": [
+        "forearms"
+      ],
+      "equipment": [
+        "ez bar"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "3e148866-aee6-5a1a-8dee-28262da12186",
+      "slug": "incline-dumbbell-curl",
+      "namePt": "Rosca inclinada com halteres",
+      "nameEn": "Incline Dumbbell Curl",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "biceps"
+      ],
+      "secondaryMuscles": [
+        "forearms"
+      ],
+      "equipment": [
+        "dumbbell",
+        "incline bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "0f71826f-02e6-54ee-b3c6-6cb142360aad",
+      "slug": "reverse-curl",
+      "namePt": "Rosca inversa",
+      "nameEn": "Reverse Curl",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "biceps"
+      ],
+      "secondaryMuscles": [
+        "forearms"
+      ],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "96e73f56-4d99-552d-a221-93d048c8aaca",
+      "slug": "hammer-curl",
+      "namePt": "Rosca martelo",
+      "nameEn": "Hammer Curl",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "biceps"
+      ],
+      "secondaryMuscles": [
+        "forearms"
+      ],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "bee7a771-d739-54dd-aad0-9574e3f6e76c",
+      "slug": "rope-hammer-curl",
+      "namePt": "Rosca martelo na corda",
+      "nameEn": "Rope Hammer Curl",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "biceps"
+      ],
+      "secondaryMuscles": [
+        "forearms"
+      ],
+      "equipment": [
+        "cable",
+        "rope"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "c438d7df-25dd-5a62-ac9a-7bb38eb024b7",
+      "slug": "cable-curl",
+      "namePt": "Rosca na polia baixa",
+      "nameEn": "Cable Curl",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "biceps"
+      ],
+      "secondaryMuscles": [
+        "forearms"
+      ],
+      "equipment": [
+        "cable"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "b6003add-9a34-5de2-afb2-6b05effd39bb",
+      "slug": "spider-curl",
+      "namePt": "Rosca spider",
+      "nameEn": "Spider Curl",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "biceps"
+      ],
+      "secondaryMuscles": [
+        "forearms"
+      ],
+      "equipment": [
+        "dumbbell",
+        "incline bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "a975f7d1-282b-551f-937e-a9df5598068c",
+      "slug": "donkey-calf-raise",
+      "namePt": "Donkey calf raise",
+      "nameEn": "Donkey Calf Raise",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "calves"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "donkey calf raise machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "c757f554-fea0-5143-ac61-c9fac534d0ee",
+      "slug": "jump-rope",
+      "namePt": "Jump rope",
+      "nameEn": "Jump Rope",
+      "type": "time",
+      "difficultyLevel": "beginner",
+      "forceType": "dynamic",
+      "mechanics": "compound",
+      "category": "cardio",
+      "primaryMuscles": [
+        "calves"
+      ],
+      "secondaryMuscles": [
+        "shoulders"
+      ],
+      "equipment": [
+        "jump rope"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "fb8d4922-199d-52a1-a616-b41d1f593297",
+      "slug": "dumbbell-calf-raise",
+      "namePt": "Panturrilha com halteres",
+      "nameEn": "Dumbbell Calf Raise",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "calves"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "95c85ea6-bcb9-5c5a-9208-430533d8e014",
+      "slug": "standing-calf-raise",
+      "namePt": "Panturrilha em pé máquina",
+      "nameEn": "Standing Calf Raise",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "calves"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "standing calf raise machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "93e50747-d608-554c-964c-d5efbde9a08a",
+      "slug": "smith-machine-calf-raise",
+      "namePt": "Panturrilha no Smith",
+      "nameEn": "Smith Machine Calf Raise",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "calves"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "smith machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "bd5b6469-35d2-5b3c-ae03-6f9a374dd16b",
+      "slug": "leg-press-calf-raise",
+      "namePt": "Panturrilha no leg press",
+      "nameEn": "Leg Press Calf Raise",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "calves"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "leg press"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "b95caf1d-e251-5279-9fa3-4af64fa30a2c",
+      "slug": "seated-calf-raise",
+      "namePt": "Panturrilha sentada",
+      "nameEn": "Seated Calf Raise",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "calves"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "seated calf raise machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "ab67eea4-4315-518e-a9e5-96b40f928411",
+      "slug": "single-leg-calf-raise",
+      "namePt": "Panturrilha unilateral em pé",
+      "nameEn": "Single-Leg Calf Raise",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "calves"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "fb9b0f9b-6d5b-556c-a202-9ee2c70a83e1",
+      "slug": "pogo-jumps",
+      "namePt": "Pogo jumps",
+      "nameEn": "Pogo Jumps",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "calves"
+      ],
+      "secondaryMuscles": [
+        "quadriceps"
+      ],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "76091279-4558-5729-9ed6-fc55819b8c9d",
+      "slug": "jumping-jack",
+      "namePt": "Polichinelo",
+      "nameEn": "Jumping Jack",
+      "type": "time",
+      "difficultyLevel": "beginner",
+      "forceType": "dynamic",
+      "mechanics": "compound",
+      "category": "cardio",
+      "primaryMuscles": [
+        "calves"
+      ],
+      "secondaryMuscles": [
+        "quadriceps",
+        "shoulders"
+      ],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "17a46275-1aed-5ef7-9969-2b5ccc8039f1",
+      "slug": "burpee",
+      "namePt": "Burpee",
+      "nameEn": "Burpee",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "dynamic",
+      "mechanics": "compound",
+      "category": "plyometrics",
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "triceps",
+        "quadriceps",
+        "glutes"
+      ],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "ce962d23-f1c3-5306-8512-b01a41b9cfc5",
+      "slug": "incline-machine-chest-press",
+      "namePt": "Chest press inclinado máquina",
+      "nameEn": "Incline Machine Chest Press",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "triceps"
+      ],
+      "equipment": [
+        "machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "91955dd4-bf69-5063-ba94-ebd0428d279f",
+      "slug": "machine-chest-press",
+      "namePt": "Chest press máquina",
+      "nameEn": "Machine Chest Press",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "triceps",
+        "shoulders"
+      ],
+      "equipment": [
+        "machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "c58cf447-c24b-53b6-964c-16e54fbc31d0",
+      "slug": "high-cable-crossover",
+      "namePt": "Crossover na polia alta",
+      "nameEn": "High Cable Crossover",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders"
+      ],
+      "equipment": [
+        "cable"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "187baa7a-c3ff-596a-a925-5be62726f7a3",
+      "slug": "low-cable-crossover",
+      "namePt": "Crossover na polia baixa",
+      "nameEn": "Low Cable Crossover",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders"
+      ],
+      "equipment": [
+        "cable"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "51e2d276-04fa-5cd2-8ccc-01090e75e869",
+      "slug": "cable-chest-fly",
+      "namePt": "Crossover na polia média",
+      "nameEn": "Cable Chest Fly",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders"
+      ],
+      "equipment": [
+        "cable"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "cddbacc2-060d-50f2-a545-5ae62911a70f",
+      "slug": "incline-dumbbell-fly",
+      "namePt": "Crucifixo inclinado com halteres",
+      "nameEn": "Incline Dumbbell Fly",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders"
+      ],
+      "equipment": [
+        "dumbbell",
+        "incline bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "56502de9-01ed-5c4c-bad9-21c0e122a3f5",
+      "slug": "dumbbell-fly",
+      "namePt": "Crucifixo reto com halteres",
+      "nameEn": "Dumbbell Fly",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders"
+      ],
+      "equipment": [
+        "dumbbell",
+        "flat bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "e2bb0f24-3125-538f-baef-768867d022f3",
+      "slug": "push-up",
+      "namePt": "Flexão de braços",
+      "nameEn": "Push-Up",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "triceps",
+        "shoulders",
+        "abdominals"
+      ],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "285bdcce-c75e-580a-b675-09d67eab7e3b",
+      "slug": "decline-push-up",
+      "namePt": "Flexão declinada",
+      "nameEn": "Decline Push-Up",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "triceps"
+      ],
+      "equipment": [
+        "body only",
+        "bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "9a458c2f-b3ee-5df5-98db-8392af21aad8",
+      "slug": "diamond-push-up",
+      "namePt": "Flexão diamante",
+      "nameEn": "Diamond Push-Up",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "triceps",
+        "shoulders"
+      ],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "4508fb5c-1f1a-5bde-aecc-d228feb85fc7",
+      "slug": "incline-push-up",
+      "namePt": "Flexão inclinada",
+      "nameEn": "Incline Push-Up",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "triceps",
+        "shoulders"
+      ],
+      "equipment": [
+        "body only",
+        "bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "0d3ae47c-8737-5248-be17-92678198a6d1",
+      "slug": "chest-dip",
+      "namePt": "Mergulho para peito",
+      "nameEn": "Chest Dip",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "triceps",
+        "shoulders"
+      ],
+      "equipment": [
+        "dip station"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "4860dd3c-b748-5bfb-bea3-35d7572f42ae",
+      "slug": "pec-deck-fly",
+      "namePt": "Peck deck",
+      "nameEn": "Pec Deck Fly",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "0fe2d946-3e3f-5579-a39d-2db31013f625",
+      "slug": "dumbbell-squeeze-press",
+      "namePt": "Squeeze press com halteres",
+      "nameEn": "Dumbbell Squeeze Press",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "triceps"
+      ],
+      "equipment": [
+        "dumbbell",
+        "flat bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "7c011e48-4ff1-5e37-bbf1-77342c2b75b1",
+      "slug": "decline-barbell-bench-press",
+      "namePt": "Supino declinado com barra",
+      "nameEn": "Decline Barbell Bench Press",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "triceps"
+      ],
+      "equipment": [
+        "barbell",
+        "decline bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "04c032c6-a4a7-51be-a0ef-c9d80701fb77",
+      "slug": "decline-dumbbell-bench-press",
+      "namePt": "Supino declinado com halteres",
+      "nameEn": "Decline Dumbbell Bench Press",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "triceps"
+      ],
+      "equipment": [
+        "dumbbell",
+        "decline bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "bf7d2eab-4005-5100-b8ff-246c522ae966",
+      "slug": "incline-barbell-bench-press",
+      "namePt": "Supino inclinado com barra",
+      "nameEn": "Incline Barbell Bench Press",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "triceps"
+      ],
+      "equipment": [
+        "barbell",
+        "incline bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "418be1ce-fc4f-5cc8-aa05-13ba0401b9c4",
+      "slug": "incline-dumbbell-bench-press",
+      "namePt": "Supino inclinado com halteres",
+      "nameEn": "Incline Dumbbell Bench Press",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "triceps"
+      ],
+      "equipment": [
+        "dumbbell",
+        "incline bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "6c28d317-c4c7-5eac-8deb-a36824e5d8aa",
+      "slug": "barbell-bench-press",
+      "namePt": "Supino reto com barra",
+      "nameEn": "Barbell Bench Press",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "triceps",
+        "shoulders"
+      ],
+      "equipment": [
+        "barbell",
+        "flat bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "b96b8188-c627-5910-8c6c-82a83db40f8f",
+      "slug": "dumbbell-bench-press",
+      "namePt": "Supino reto com halteres",
+      "nameEn": "Dumbbell Bench Press",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "chest"
+      ],
+      "secondaryMuscles": [
+        "triceps",
+        "shoulders"
+      ],
+      "equipment": [
+        "dumbbell",
+        "flat bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "720e84fb-4399-5ef5-b623-fb3987315c14",
+      "slug": "dead-hang",
+      "namePt": "Dead hang",
+      "nameEn": "Dead Hang",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "static",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "forearms"
+      ],
+      "secondaryMuscles": [
+        "lats",
+        "shoulders"
+      ],
+      "equipment": [
+        "pull-up bar"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "321e41dd-4998-5e51-a9b2-1e0eec1721b4",
+      "slug": "farmer-hold",
+      "namePt": "Farmer hold",
+      "nameEn": "Farmer Hold",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "static",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "forearms"
+      ],
+      "secondaryMuscles": [
+        "traps"
+      ],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "cf427bbf-d3c3-513c-a4a4-560c5ce1cfaf",
+      "slug": "plate-pinch",
+      "namePt": "Pinça de anilhas",
+      "nameEn": "Plate Pinch",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "static",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "forearms"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "plates"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "e389e708-2bea-575f-bc7c-4b292f00a111",
+      "slug": "barbell-wrist-curl",
+      "namePt": "Rosca de punho com barra",
+      "nameEn": "Barbell Wrist Curl",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "forearms"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "f1d9c477-1ce3-5cc3-adda-bae5becd8f28",
+      "slug": "dumbbell-wrist-curl",
+      "namePt": "Rosca de punho com halteres",
+      "nameEn": "Dumbbell Wrist Curl",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "forearms"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "b3cda8be-9ae3-5842-b4da-07264606183f",
+      "slug": "reverse-barbell-wrist-curl",
+      "namePt": "Rosca de punho reversa",
+      "nameEn": "Reverse Barbell Wrist Curl",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "forearms"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "8939fa4a-7265-55dd-9f89-7294097d8732",
+      "slug": "ez-bar-reverse-curl",
+      "namePt": "Rosca inversa com barra W",
+      "nameEn": "EZ-Bar Reverse Curl",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "forearms"
+      ],
+      "secondaryMuscles": [
+        "biceps"
+      ],
+      "equipment": [
+        "ez bar"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "0b0e8bca-1988-5fc4-9dfb-3e860028e5a3",
+      "slug": "wrist-roller",
+      "namePt": "Wrist roller",
+      "nameEn": "Wrist Roller",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "forearms"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "wrist roller"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "48b967bf-feb9-54aa-b099-55f18f846863",
+      "slug": "long-step-lunge",
+      "namePt": "Afundo longo",
+      "nameEn": "Long-Step Lunge",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "quadriceps"
+      ],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "feb341bc-4a6c-51cd-a6fe-e726db6d6c46",
+      "slug": "cable-hip-extension",
+      "namePt": "Cable hip extension",
+      "nameEn": "Cable Hip Extension",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings"
+      ],
+      "equipment": [
+        "cable"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "1ccb9114-ec7c-5c00-b693-70a4ddfc7b33",
+      "slug": "machine-glute-kickback",
+      "namePt": "Coice máquina",
+      "nameEn": "Machine Glute Kickback",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings"
+      ],
+      "equipment": [
+        "machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "8dd2e0f4-39a2-5d63-8f48-8f981e893685",
+      "slug": "cable-glute-kickback",
+      "namePt": "Coice na polia",
+      "nameEn": "Cable Glute Kickback",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings"
+      ],
+      "equipment": [
+        "cable"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "b4bc1ba3-9279-58b3-8441-46789c37bb25",
+      "slug": "frog-pump",
+      "namePt": "Frog pump",
+      "nameEn": "Frog Pump",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "662cd5ec-8ec8-5374-9860-5591e0c5bc29",
+      "slug": "barbell-hip-thrust",
+      "namePt": "Hip thrust com barra",
+      "nameEn": "Barbell Hip Thrust",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings"
+      ],
+      "equipment": [
+        "barbell",
+        "bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "f08135af-3f7f-5f91-819b-6eeede9805b7",
+      "slug": "dumbbell-hip-thrust",
+      "namePt": "Hip thrust com halter",
+      "nameEn": "Dumbbell Hip Thrust",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings"
+      ],
+      "equipment": [
+        "dumbbell",
+        "bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "26d4d4b3-ed7e-56e1-9622-350eadf4df66",
+      "slug": "machine-hip-thrust",
+      "namePt": "Hip thrust máquina",
+      "nameEn": "Machine Hip Thrust",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings"
+      ],
+      "equipment": [
+        "hip thrust machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "429885b6-7278-519c-ad2b-8a11f1674fcd",
+      "slug": "kettlebell-swing",
+      "namePt": "Kettlebell swing",
+      "nameEn": "Kettlebell Swing",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "lower-back",
+        "shoulders"
+      ],
+      "equipment": [
+        "kettlebell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "e4584535-f753-574e-ba0a-f81427286021",
+      "slug": "conventional-deadlift",
+      "namePt": "Levantamento terra convencional",
+      "nameEn": "Conventional Deadlift",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "lower-back",
+        "traps",
+        "forearms"
+      ],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "a5d2d42d-c04d-5799-8412-3b3f7bb7720f",
+      "slug": "sumo-deadlift",
+      "namePt": "Levantamento terra sumô",
+      "nameEn": "Sumo Deadlift",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "adductors",
+        "lower-back"
+      ],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "dfa0c2d2-e31b-5ba7-8530-806f19f91810",
+      "slug": "glute-bridge",
+      "namePt": "Ponte de glúteos",
+      "nameEn": "Glute Bridge",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings"
+      ],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "ae3c1753-614c-52de-8f3b-fc04b3008973",
+      "slug": "single-leg-glute-bridge",
+      "namePt": "Ponte unilateral",
+      "nameEn": "Single-Leg Glute Bridge",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "abdominals"
+      ],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "5e784187-4000-517f-a4a0-230b65d1a938",
+      "slug": "cable-glute-pull-through",
+      "namePt": "Pull-through na polia",
+      "nameEn": "Cable Glute Pull-Through",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "lower-back"
+      ],
+      "equipment": [
+        "cable",
+        "rope"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "a317dd51-c4ed-50c1-9df1-1d134be04f28",
+      "slug": "reverse-hyperextension",
+      "namePt": "Reverse hyperextension",
+      "nameEn": "Reverse Hyperextension",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "lower-back"
+      ],
+      "equipment": [
+        "machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "baf1943d-a741-56de-9c1f-bca3dec96f80",
+      "slug": "high-step-up",
+      "namePt": "Step-up alto",
+      "nameEn": "High Step-Up",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "quadriceps",
+        "hamstrings"
+      ],
+      "equipment": [
+        "plyo box",
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "31f3089c-ef5d-5c55-8d33-984018e8edaa",
+      "slug": "sumo-squat",
+      "namePt": "Sumo squat",
+      "nameEn": "Sumo Squat",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "glutes"
+      ],
+      "secondaryMuscles": [
+        "quadriceps",
+        "adductors"
+      ],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "ce4154bb-9189-5ef6-9a44-b670e57e8ba7",
+      "slug": "cable-pull-through",
+      "namePt": "Cable pull-through",
+      "nameEn": "Cable Pull-Through",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "hamstrings"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "lower-back"
+      ],
+      "equipment": [
+        "cable",
+        "rope"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "2a76350b-fd18-5a2c-b094-24a780aa82b6",
+      "slug": "seated-leg-curl",
+      "namePt": "Cadeira flexora",
+      "nameEn": "Seated Leg Curl",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "hamstrings"
+      ],
+      "secondaryMuscles": [
+        "calves"
+      ],
+      "equipment": [
+        "leg curl"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "349e45a1-f70d-546f-b204-fcbebef6582a",
+      "slug": "standing-single-leg-curl",
+      "namePt": "Flexora unilateral em pé",
+      "nameEn": "Standing Single-Leg Curl",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "hamstrings"
+      ],
+      "secondaryMuscles": [
+        "calves"
+      ],
+      "equipment": [
+        "machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "a73e5aaa-179e-54b3-a5f5-e93bccc08cf5",
+      "slug": "glute-ham-raise",
+      "namePt": "Glute-ham raise",
+      "nameEn": "Glute Ham Raise",
+      "type": "reps",
+      "difficultyLevel": "expert",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "hamstrings"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "lower-back"
+      ],
+      "equipment": [
+        "glute ham developer"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "57391455-8eb2-56d1-8912-e4639b299514",
+      "slug": "good-morning",
+      "namePt": "Good morning",
+      "nameEn": "Good Morning",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "hamstrings"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "lower-back"
+      ],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "946dfc16-cecf-53f0-9a57-094f9f312d6e",
+      "slug": "romanian-deadlift",
+      "namePt": "Levantamento terra romeno",
+      "nameEn": "Romanian Deadlift",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "hamstrings"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "lower-back"
+      ],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "6c5e15de-aab5-5756-a37b-d264897f368c",
+      "slug": "lying-leg-curl",
+      "namePt": "Mesa flexora",
+      "nameEn": "Lying Leg Curl",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "hamstrings"
+      ],
+      "secondaryMuscles": [
+        "calves"
+      ],
+      "equipment": [
+        "leg curl"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "18c582bf-482c-547a-8a34-d5316cf534c7",
+      "slug": "nordic-hamstring-curl",
+      "namePt": "Nordic curl",
+      "nameEn": "Nordic Hamstring Curl",
+      "type": "reps",
+      "difficultyLevel": "expert",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "hamstrings"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "calves"
+      ],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "c325c701-5d7f-5214-afc5-8e736685fa2c",
+      "slug": "single-leg-romanian-deadlift",
+      "namePt": "Single-leg Romanian deadlift",
+      "nameEn": "Single-Leg Romanian Deadlift",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "hamstrings"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "abdominals"
+      ],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "435cc755-35d3-5bb6-84ab-a26f3932e5e5",
+      "slug": "sliding-leg-curl",
+      "namePt": "Sliding leg curl",
+      "nameEn": "Sliding Leg Curl",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "hamstrings"
+      ],
+      "secondaryMuscles": [
+        "glutes"
+      ],
+      "equipment": [
+        "body only",
+        "sliders"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "ea37e8ba-3c7d-58f8-8a82-5779a964b254",
+      "slug": "barbell-stiff-leg-deadlift",
+      "namePt": "Stiff com barra",
+      "nameEn": "Barbell Stiff-Leg Deadlift",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "hamstrings"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "lower-back"
+      ],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "924af403-40d9-553a-9ad5-ed9d30c59c30",
+      "slug": "dumbbell-romanian-deadlift",
+      "namePt": "Terra romeno com halteres",
+      "nameEn": "Dumbbell Romanian Deadlift",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "hamstrings"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "lower-back"
+      ],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "7b94e544-91a6-52d6-bd6e-91882817d96f",
+      "slug": "pull-up",
+      "namePt": "Barra fixa pronada",
+      "nameEn": "Pull-Up",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "lats"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "middle-back"
+      ],
+      "equipment": [
+        "pull-up bar"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "e77ad721-1332-5df8-a166-46ab0d9f6a11",
+      "slug": "chin-up",
+      "namePt": "Barra fixa supinada",
+      "nameEn": "Chin-Up",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "lats"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "middle-back"
+      ],
+      "equipment": [
+        "pull-up bar"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "8bee24e5-c6bb-588c-917e-f13fd5e68ec4",
+      "slug": "straight-arm-pulldown",
+      "namePt": "Pulldown com braços retos",
+      "nameEn": "Straight-Arm Pulldown",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "lats"
+      ],
+      "secondaryMuscles": [
+        "triceps"
+      ],
+      "equipment": [
+        "cable"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "02cf6663-de36-5ed7-8965-e445fe3933e6",
+      "slug": "dumbbell-pullover",
+      "namePt": "Pullover com halter",
+      "nameEn": "Dumbbell Pullover",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "lats"
+      ],
+      "secondaryMuscles": [
+        "chest",
+        "triceps"
+      ],
+      "equipment": [
+        "dumbbell",
+        "bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "95302b94-b6a3-51fe-b639-0be09630639b",
+      "slug": "cable-pullover",
+      "namePt": "Pullover na polia",
+      "nameEn": "Cable Pullover",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "lats"
+      ],
+      "secondaryMuscles": [
+        "triceps"
+      ],
+      "equipment": [
+        "cable"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "7c20dc0d-78e5-573d-828d-f2e55c196313",
+      "slug": "wide-grip-lat-pulldown",
+      "namePt": "Puxada frontal aberta",
+      "nameEn": "Wide-Grip Lat Pulldown",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "lats"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "middle-back"
+      ],
+      "equipment": [
+        "lat pulldown machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "7d3710ac-14a6-5230-993f-b404894aae8b",
+      "slug": "close-grip-lat-pulldown",
+      "namePt": "Puxada frontal fechada",
+      "nameEn": "Close-Grip Lat Pulldown",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "lats"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "middle-back"
+      ],
+      "equipment": [
+        "lat pulldown machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "8ed260dc-f7a3-5834-b687-9fa8cb215d69",
+      "slug": "neutral-grip-lat-pulldown",
+      "namePt": "Puxada neutra",
+      "nameEn": "Neutral-Grip Lat Pulldown",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "lats"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "middle-back"
+      ],
+      "equipment": [
+        "lat pulldown machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "5ab5e7a9-c2c3-5620-8111-b7697c5f51a2",
+      "slug": "single-arm-lat-pulldown",
+      "namePt": "Puxada unilateral na polia",
+      "nameEn": "Single-Arm Lat Pulldown",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "lats"
+      ],
+      "secondaryMuscles": [
+        "biceps"
+      ],
+      "equipment": [
+        "cable"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "f0edbe9e-aa67-5711-b4cc-fe86c7b898e4",
+      "slug": "kroc-row",
+      "namePt": "Remada Kroc",
+      "nameEn": "Kroc Row",
+      "type": "reps",
+      "difficultyLevel": "expert",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "lats"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "forearms",
+        "middle-back"
+      ],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "60c4b5da-8596-5870-b3a2-0dbab77ff31c",
+      "slug": "pendlay-row",
+      "namePt": "Remada Pendlay",
+      "nameEn": "Pendlay Row",
+      "type": "reps",
+      "difficultyLevel": "expert",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "lats"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "middle-back",
+        "lower-back"
+      ],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "12927cf6-01de-50ef-86a9-a8ec48755b39",
+      "slug": "seated-cable-row",
+      "namePt": "Remada baixa sentada",
+      "nameEn": "Seated Cable Row",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "lats"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "middle-back"
+      ],
+      "equipment": [
+        "cable"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "0665d0c4-3d42-5898-be63-8d5238c36080",
+      "slug": "t-bar-row",
+      "namePt": "Remada cavalinho",
+      "nameEn": "T-Bar Row",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "lats"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "middle-back"
+      ],
+      "equipment": [
+        "t-bar row machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "edb8209f-a5f6-5003-9a06-bcf0fe0c05a8",
+      "slug": "bent-over-barbell-row",
+      "namePt": "Remada curvada com barra",
+      "nameEn": "Bent-Over Barbell Row",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "lats"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "middle-back",
+        "lower-back"
+      ],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "b3a382b2-18b3-5847-9b98-9ff144b2dcac",
+      "slug": "single-arm-machine-row",
+      "namePt": "Remada máquina unilateral",
+      "nameEn": "Single-Arm Machine Row",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "lats"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "middle-back"
+      ],
+      "equipment": [
+        "machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "e8d867bd-2c6d-518b-bc9f-3683dd76b14a",
+      "slug": "dumbbell-row",
+      "namePt": "Remada serrote",
+      "nameEn": "Dumbbell Row",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "lats"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "middle-back"
+      ],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "3d395ff8-e8fd-501d-8b1d-60a525ae3eea",
+      "slug": "one-arm-dumbbell-row",
+      "namePt": "Remada unilateral com halter",
+      "nameEn": "One-Arm Dumbbell Row",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "lats"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "middle-back"
+      ],
+      "equipment": [
+        "dumbbell",
+        "bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "7baba68a-d6ca-576f-9711-1ffd13c9eb72",
+      "slug": "single-arm-cable-row",
+      "namePt": "Remada unilateral na polia",
+      "nameEn": "Single-Arm Cable Row",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "lats"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "middle-back"
+      ],
+      "equipment": [
+        "cable"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "53b50a0c-c467-5132-982f-2094895ac55e",
+      "slug": "bird-dog-back-extension",
+      "namePt": "Bird dog para lombar",
+      "nameEn": "Bird Dog Back Extension",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "static",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "lower-back"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "abdominals"
+      ],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "c2cb9f4d-fbea-57e4-9e03-bdeed5481b7c",
+      "slug": "45-degree-back-extension",
+      "namePt": "Extensão lombar 45°",
+      "nameEn": "45-Degree Back Extension",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "lower-back"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings"
+      ],
+      "equipment": [
+        "back extension machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "4903134d-507c-53bb-a17a-fe3f662d7f83",
+      "slug": "seated-good-morning",
+      "namePt": "Good morning sentado",
+      "nameEn": "Seated Good Morning",
+      "type": "reps",
+      "difficultyLevel": "expert",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "lower-back"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "glutes"
+      ],
+      "equipment": [
+        "barbell",
+        "bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "f8bdc2aa-1ed6-51ac-b6c8-2be30764e303",
+      "slug": "roman-chair-back-extension",
+      "namePt": "Hiperextensão no banco romano",
+      "nameEn": "Roman Chair Back Extension",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "lower-back"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings"
+      ],
+      "equipment": [
+        "roman chair"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "b457767c-ba06-5d00-8e6a-2e7b169d388b",
+      "slug": "jefferson-curl",
+      "namePt": "Jefferson curl",
+      "nameEn": "Jefferson Curl",
+      "type": "reps",
+      "difficultyLevel": "expert",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "lower-back"
+      ],
+      "secondaryMuscles": [
+        "hamstrings"
+      ],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "4d75a340-8b75-59a1-8522-43a83cce91d4",
+      "slug": "rack-pull",
+      "namePt": "Rack pull",
+      "nameEn": "Rack Pull",
+      "type": "reps",
+      "difficultyLevel": "expert",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "lower-back"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "traps"
+      ],
+      "equipment": [
+        "barbell",
+        "rack"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "ad47075f-3d8e-5f89-b229-288e2b0cd010",
+      "slug": "reverse-hyper",
+      "namePt": "Reverse hyper",
+      "nameEn": "Reverse Hyper",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "lower-back"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings"
+      ],
+      "equipment": [
+        "reverse hyper machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "c9a2a2d6-1912-5e77-bd78-3f44ce7842b4",
+      "slug": "superman",
+      "namePt": "Superman",
+      "nameEn": "Superman",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "lower-back"
+      ],
+      "secondaryMuscles": [
+        "glutes"
+      ],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "903497a6-9b7a-5957-9434-91142ac4f592",
+      "slug": "meadows-row",
+      "namePt": "Remada Meadows",
+      "nameEn": "Meadows Row",
+      "type": "reps",
+      "difficultyLevel": "expert",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "middle-back"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "lats"
+      ],
+      "equipment": [
+        "barbell",
+        "landmine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "772814de-5625-5018-833d-f7dc62738985",
+      "slug": "high-cable-row",
+      "namePt": "Remada alta no cabo para costas",
+      "nameEn": "High Cable Row",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "middle-back"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "rear shoulders"
+      ],
+      "equipment": [
+        "cable"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "084f3abb-ed98-5504-8f12-4e71f007ec52",
+      "slug": "wide-grip-seated-cable-row",
+      "namePt": "Remada baixa pegada aberta",
+      "nameEn": "Wide-Grip Seated Cable Row",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "middle-back"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "middle-back",
+        "rear shoulders"
+      ],
+      "equipment": [
+        "cable"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "797d8e21-6cc7-5b70-b65b-644b56ec15a4",
+      "slug": "chest-supported-dumbbell-row",
+      "namePt": "Remada com halteres apoiada",
+      "nameEn": "Chest-Supported Dumbbell Row",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "middle-back"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "lats"
+      ],
+      "equipment": [
+        "dumbbell",
+        "incline bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "178ebd42-c107-557e-a8e0-8d9001ff0001",
+      "slug": "inverted-row",
+      "namePt": "Remada invertida",
+      "nameEn": "Inverted Row",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "middle-back"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "lats"
+      ],
+      "equipment": [
+        "bar",
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "8efe54df-f4bb-52f1-bb3a-40b247600d89",
+      "slug": "plate-loaded-row",
+      "namePt": "Remada máquina articulada",
+      "nameEn": "Plate-Loaded Row",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "middle-back"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "lats"
+      ],
+      "equipment": [
+        "machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "544caec1-7134-514a-964c-29ebefbbcbd3",
+      "slug": "chest-supported-machine-row",
+      "namePt": "Remada máquina com apoio no peito",
+      "nameEn": "Chest-Supported Machine Row",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "middle-back"
+      ],
+      "secondaryMuscles": [
+        "biceps",
+        "lats"
+      ],
+      "equipment": [
+        "machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "8fc582f3-4fca-5c1e-967d-a6bb9e17c193",
+      "slug": "rowing-machine",
+      "namePt": "Remo ergométrico",
+      "nameEn": "Rowing Machine",
+      "type": "time",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "cardio",
+      "primaryMuscles": [
+        "middle-back"
+      ],
+      "secondaryMuscles": [
+        "lats",
+        "biceps",
+        "quadriceps",
+        "glutes"
+      ],
+      "equipment": [
+        "rower"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "c4884f24-ae3c-54fe-9ccd-47702a5ef157",
+      "slug": "lying-neck-extension",
+      "namePt": "Extensão cervical deitado",
+      "nameEn": "Lying Neck Extension",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "neck"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "f2702909-a615-5d2c-ba59-1bbe2b446b8b",
+      "slug": "lying-neck-flexion",
+      "namePt": "Flexão cervical deitado",
+      "nameEn": "Lying Neck Flexion",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "neck"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "8b7367b4-f466-5b8c-9ffe-6fbe6977ab8a",
+      "slug": "lateral-neck-flexion",
+      "namePt": "Flexão lateral cervical",
+      "nameEn": "Lateral Neck Flexion",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "neck"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "62290fd9-b531-51e5-ac4e-8e1fa0eecea6",
+      "slug": "neck-harness-extension",
+      "namePt": "Neck harness extension",
+      "nameEn": "Neck Harness Extension",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "neck"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "neck harness"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "84d8945b-2e0e-55ce-9066-e1622e1adc5c",
+      "slug": "bulgarian-split-squat",
+      "namePt": "Afundo búlgaro",
+      "nameEn": "Bulgarian Split Squat",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings"
+      ],
+      "equipment": [
+        "dumbbell",
+        "bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "a4ae7c2b-b330-50ad-aca4-fc3614ff6132",
+      "slug": "dumbbell-lunge",
+      "namePt": "Afundo com halteres",
+      "nameEn": "Dumbbell Lunge",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings"
+      ],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "49f4ba69-a518-5767-b48a-465b13444b86",
+      "slug": "reverse-lunge",
+      "namePt": "Afundo reverso",
+      "nameEn": "Reverse Lunge",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings"
+      ],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "0ddb3093-645e-51c1-9eb0-c2dcae7444b9",
+      "slug": "smith-machine-squat",
+      "namePt": "Agachamento Smith",
+      "nameEn": "Smith Machine Squat",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings"
+      ],
+      "equipment": [
+        "smith machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "f9106c69-6bdc-5e43-a474-5672e5a0c410",
+      "slug": "front-squat",
+      "namePt": "Agachamento frontal",
+      "nameEn": "Front Squat",
+      "type": "reps",
+      "difficultyLevel": "expert",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "abdominals"
+      ],
+      "equipment": [
+        "barbell",
+        "squat rack"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "c990034d-f77a-526f-b506-3d996d89aad4",
+      "slug": "goblet-squat",
+      "namePt": "Agachamento goblet",
+      "nameEn": "Goblet Squat",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "abdominals"
+      ],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "13e9b43c-b1a1-5b07-87cd-46cad2ecefcd",
+      "slug": "hack-squat",
+      "namePt": "Agachamento hack",
+      "nameEn": "Hack Squat",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings"
+      ],
+      "equipment": [
+        "hack squat machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "e039fb22-d1e0-54c7-a610-b65f64a0ab2f",
+      "slug": "barbell-back-squat",
+      "namePt": "Agachamento livre com barra",
+      "nameEn": "Barbell Back Squat",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "abdominals"
+      ],
+      "equipment": [
+        "barbell",
+        "squat rack"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "ffff89e2-be2d-50f1-aeb6-693de03246f0",
+      "slug": "air-bike",
+      "namePt": "Air bike",
+      "nameEn": "Air Bike",
+      "type": "time",
+      "difficultyLevel": "intermediate",
+      "forceType": "dynamic",
+      "mechanics": "compound",
+      "category": "cardio",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "shoulders",
+        "triceps",
+        "hamstrings",
+        "glutes"
+      ],
+      "equipment": [
+        "air bike"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "1b28a5e1-ccf7-541b-b602-d7ec0218ea84",
+      "slug": "stationary-bike",
+      "namePt": "Bicicleta ergométrica",
+      "nameEn": "Stationary Bike",
+      "type": "time",
+      "difficultyLevel": "beginner",
+      "forceType": "dynamic",
+      "mechanics": "compound",
+      "category": "cardio",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "calves"
+      ],
+      "equipment": [
+        "stationary bike"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "0e33f166-ca6d-5ac5-becd-ad8d88ba077b",
+      "slug": "box-jump",
+      "namePt": "Box jump",
+      "nameEn": "Box Jump",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "plyometrics",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "calves"
+      ],
+      "equipment": [
+        "plyo box"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "0e0f7e05-d037-5d76-aa2d-32673313f782",
+      "slug": "leg-extension",
+      "namePt": "Cadeira extensora",
+      "nameEn": "Leg Extension",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "leg extension"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "db0d9b7e-1daa-56df-9b00-ea55a9084220",
+      "slug": "treadmill-walking",
+      "namePt": "Caminhada na esteira",
+      "nameEn": "Treadmill Walking",
+      "type": "distance",
+      "difficultyLevel": "beginner",
+      "forceType": "dynamic",
+      "mechanics": "compound",
+      "category": "cardio",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "glutes",
+        "calves"
+      ],
+      "equipment": [
+        "treadmill"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "1d97b8f0-f45d-5478-917a-0951736cd0fd",
+      "slug": "clean",
+      "namePt": "Clean",
+      "nameEn": "Clean",
+      "type": "reps",
+      "difficultyLevel": "expert",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "olympicWeightlifting",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "traps",
+        "shoulders"
+      ],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "2437f46d-2906-52a0-89f1-689a67aee0bf",
+      "slug": "clean-and-jerk",
+      "namePt": "Clean and jerk",
+      "nameEn": "Clean and Jerk",
+      "type": "reps",
+      "difficultyLevel": "expert",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "olympicWeightlifting",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "shoulders",
+        "triceps"
+      ],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "1abbb236-5010-5077-a74a-83a36f49a83a",
+      "slug": "treadmill-running",
+      "namePt": "Corrida na esteira",
+      "nameEn": "Treadmill Running",
+      "type": "distance",
+      "difficultyLevel": "beginner",
+      "forceType": "dynamic",
+      "mechanics": "compound",
+      "category": "cardio",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "hamstrings",
+        "glutes",
+        "calves"
+      ],
+      "equipment": [
+        "treadmill"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "7581043f-35ff-5763-ae37-0779ffea4354",
+      "slug": "cyclist-squat",
+      "namePt": "Cyclist squat",
+      "nameEn": "Cyclist Squat",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes"
+      ],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "8baa5d4d-b181-554d-a0b9-702f2a167af8",
+      "slug": "dumbbell-thruster",
+      "namePt": "Dumbbell thruster",
+      "nameEn": "Dumbbell Thruster",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "shoulders",
+        "triceps"
+      ],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "b3b6e914-b7d9-5571-a9d4-fb65147b15a7",
+      "slug": "elliptical-trainer",
+      "namePt": "Elíptico",
+      "nameEn": "Elliptical Trainer",
+      "type": "time",
+      "difficultyLevel": "beginner",
+      "forceType": "dynamic",
+      "mechanics": "compound",
+      "category": "cardio",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "calves"
+      ],
+      "equipment": [
+        "elliptical"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "9776d203-c5b0-522d-9bb1-8ad1cfb401c6",
+      "slug": "stair-climber",
+      "namePt": "Escada ergométrica",
+      "nameEn": "Stair Climber",
+      "type": "time",
+      "difficultyLevel": "beginner",
+      "forceType": "dynamic",
+      "mechanics": "compound",
+      "category": "cardio",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "calves"
+      ],
+      "equipment": [
+        "stair climber"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "36a6eef3-5ca7-50e6-924b-7e17685d3623",
+      "slug": "hang-clean",
+      "namePt": "Hang clean",
+      "nameEn": "Hang Clean",
+      "type": "reps",
+      "difficultyLevel": "expert",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "olympicWeightlifting",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "traps",
+        "shoulders"
+      ],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "2c9d2870-9fa0-5a1d-85d6-a414e963f0d5",
+      "slug": "high-knees",
+      "namePt": "High knees",
+      "nameEn": "High Knees",
+      "type": "time",
+      "difficultyLevel": "beginner",
+      "forceType": "dynamic",
+      "mechanics": "compound",
+      "category": "cardio",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "calves",
+        "abdominals"
+      ],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "5999944c-fa14-5600-a4eb-e34a16be0d14",
+      "slug": "jump-squat",
+      "namePt": "Jump squat",
+      "nameEn": "Jump Squat",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "plyometrics",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "calves"
+      ],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "0d6629e6-8285-5198-9eb0-bb743a5b2604",
+      "slug": "45-degree-leg-press",
+      "namePt": "Leg press 45°",
+      "nameEn": "45-Degree Leg Press",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings"
+      ],
+      "equipment": [
+        "leg press"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "71f2a572-cacd-53f4-b7ae-acdcab8fe039",
+      "slug": "horizontal-leg-press",
+      "namePt": "Leg press horizontal",
+      "nameEn": "Horizontal Leg Press",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings"
+      ],
+      "equipment": [
+        "leg press"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "0eaf4175-6bca-5374-9424-1db0095d1000",
+      "slug": "pistol-squat",
+      "namePt": "Pistol squat",
+      "nameEn": "Pistol Squat",
+      "type": "reps",
+      "difficultyLevel": "expert",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "abdominals"
+      ],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "cfcf9f12-5840-5aaf-9af7-9235f17ccc83",
+      "slug": "power-clean",
+      "namePt": "Power clean",
+      "nameEn": "Power Clean",
+      "type": "reps",
+      "difficultyLevel": "expert",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "olympicWeightlifting",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "traps",
+        "shoulders"
+      ],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "0d8de5ef-23ff-5e21-b345-053917bcfb6c",
+      "slug": "power-snatch",
+      "namePt": "Power snatch",
+      "nameEn": "Power Snatch",
+      "type": "reps",
+      "difficultyLevel": "expert",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "olympicWeightlifting",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "traps",
+        "shoulders"
+      ],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "11eaca03-28b3-5a44-8828-dc976a7db439",
+      "slug": "sissy-squat",
+      "namePt": "Sissy squat",
+      "nameEn": "Sissy Squat",
+      "type": "reps",
+      "difficultyLevel": "expert",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "11c30b86-a745-5fd2-83bd-3ce62b685b35",
+      "slug": "sled-pull",
+      "namePt": "Sled pull",
+      "nameEn": "Sled Pull",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strongman",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "back"
+      ],
+      "equipment": [
+        "sled"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "f95a9396-aca3-524b-bb39-2951eb4bceed",
+      "slug": "sled-push",
+      "namePt": "Sled push",
+      "nameEn": "Sled Push",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strongman",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "calves",
+        "shoulders"
+      ],
+      "equipment": [
+        "sled"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "da26eaf9-d2d2-5ce1-bc56-afe4ea195609",
+      "slug": "snatch",
+      "namePt": "Snatch",
+      "nameEn": "Snatch",
+      "type": "reps",
+      "difficultyLevel": "expert",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "olympicWeightlifting",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "traps",
+        "shoulders"
+      ],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "ba325a85-071a-5d16-8ef4-74361dda6b83",
+      "slug": "spanish-squat",
+      "namePt": "Spanish squat",
+      "nameEn": "Spanish Squat",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "resistance band"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "6616d298-6b44-579d-81af-160e7e776c58",
+      "slug": "step-up",
+      "namePt": "Step-up",
+      "nameEn": "Step-Up",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings"
+      ],
+      "equipment": [
+        "dumbbell",
+        "plyo box"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "3ff510fb-2d4e-527a-9d07-e087bb12a317",
+      "slug": "barbell-thruster",
+      "namePt": "Thruster",
+      "nameEn": "Barbell Thruster",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "shoulders",
+        "triceps"
+      ],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "bffdeb15-9905-5d03-99be-7f478e8888ff",
+      "slug": "trap-bar-deadlift",
+      "namePt": "Trap bar deadlift",
+      "nameEn": "Trap Bar Deadlift",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings",
+        "traps"
+      ],
+      "equipment": [
+        "trap bar"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "1d598eac-efca-5e48-ac51-d25abfd42833",
+      "slug": "walking-lunge",
+      "namePt": "Walking lunge",
+      "nameEn": "Walking Lunge",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "quadriceps"
+      ],
+      "secondaryMuscles": [
+        "glutes",
+        "hamstrings"
+      ],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "fae371f9-dcd9-536b-89a8-65943921f796",
+      "slug": "battle-rope-waves",
+      "namePt": "Battle rope waves",
+      "nameEn": "Battle Rope Waves",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "dynamic",
+      "mechanics": "compound",
+      "category": "cardio",
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "forearms",
+        "abdominals"
+      ],
+      "equipment": [
+        "battle rope"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "b185a0d1-a592-54c2-817a-e5c49680433c",
+      "slug": "bear-crawl",
+      "namePt": "Bear crawl",
+      "nameEn": "Bear Crawl",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "dynamic",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "abdominals",
+        "quadriceps"
+      ],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "7cc7f966-b2aa-5930-b9b2-6f6304209eee",
+      "slug": "dumbbell-reverse-fly",
+      "namePt": "Crucifixo inverso com halteres",
+      "nameEn": "Dumbbell Reverse Fly",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "middle-back"
+      ],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "f77bb0f1-b8e8-5a53-b50e-e731baac077d",
+      "slug": "reverse-pec-deck",
+      "namePt": "Crucifixo inverso máquina",
+      "nameEn": "Reverse Pec Deck",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "middle-back"
+      ],
+      "equipment": [
+        "machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "b6210b3c-a7e7-569d-8ea6-10d045f9eabc",
+      "slug": "cable-reverse-fly",
+      "namePt": "Crucifixo inverso na polia",
+      "nameEn": "Cable Reverse Fly",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "middle-back"
+      ],
+      "equipment": [
+        "cable"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "091003a2-e93e-547b-8cd9-3223b957359d",
+      "slug": "arnold-press",
+      "namePt": "Desenvolvimento Arnold",
+      "nameEn": "Arnold Press",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "triceps"
+      ],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "82277676-5bce-5e0b-b61b-f4797719a02b",
+      "slug": "dumbbell-shoulder-press",
+      "namePt": "Desenvolvimento com halteres",
+      "nameEn": "Dumbbell Shoulder Press",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "triceps"
+      ],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "fe17374b-8f99-5095-935e-d3b669956954",
+      "slug": "barbell-overhead-press",
+      "namePt": "Desenvolvimento militar com barra",
+      "nameEn": "Barbell Overhead Press",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "triceps",
+        "traps"
+      ],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "03198bb8-8fd7-5826-af52-c202c4e1d02d",
+      "slug": "machine-shoulder-press",
+      "namePt": "Desenvolvimento máquina",
+      "nameEn": "Machine Shoulder Press",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "triceps"
+      ],
+      "equipment": [
+        "machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "f697c875-5502-5304-a057-11f091d2843f",
+      "slug": "barbell-front-raise",
+      "namePt": "Elevação frontal com barra",
+      "nameEn": "Barbell Front Raise",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "d5e85662-3564-59b0-ad91-232771f1d456",
+      "slug": "dumbbell-front-raise",
+      "namePt": "Elevação frontal com halteres",
+      "nameEn": "Dumbbell Front Raise",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "f2ec804d-eec6-5ff9-a667-2ec9dec33c7d",
+      "slug": "cable-front-raise",
+      "namePt": "Elevação frontal na polia",
+      "nameEn": "Cable Front Raise",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "cable"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "77c0efca-03cb-5b37-9f11-4ac34ab24d10",
+      "slug": "dumbbell-lateral-raise",
+      "namePt": "Elevação lateral com halteres",
+      "nameEn": "Dumbbell Lateral Raise",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "279ee7b8-6533-5f92-9f0b-7af71ab126be",
+      "slug": "leaning-dumbbell-lateral-raise",
+      "namePt": "Elevação lateral inclinada",
+      "nameEn": "Leaning Dumbbell Lateral Raise",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "ae0209b5-9d39-5bf1-9609-dfa8523ad604",
+      "slug": "machine-lateral-raise",
+      "namePt": "Elevação lateral máquina",
+      "nameEn": "Machine Lateral Raise",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "cc0975d5-4d2b-5906-b47a-96b1cc7016e1",
+      "slug": "cable-lateral-raise",
+      "namePt": "Elevação lateral na polia",
+      "nameEn": "Cable Lateral Raise",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "cable"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "3f7a35cb-6654-57f5-9761-b3313a1fde58",
+      "slug": "face-pull",
+      "namePt": "Face pull",
+      "nameEn": "Face Pull",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "traps",
+        "middle-back"
+      ],
+      "equipment": [
+        "cable",
+        "rope"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "f85128fd-4e11-55f3-9bd7-c1135a968867",
+      "slug": "single-arm-landmine-press",
+      "namePt": "Landmine press unilateral",
+      "nameEn": "Single-Arm Landmine Press",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "triceps",
+        "chest"
+      ],
+      "equipment": [
+        "barbell",
+        "landmine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "6f8a9794-f679-542e-bbfa-9de6670466bb",
+      "slug": "push-press",
+      "namePt": "Push press",
+      "nameEn": "Push Press",
+      "type": "reps",
+      "difficultyLevel": "expert",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "triceps",
+        "quadriceps"
+      ],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "632698b0-f7bc-55da-b249-42dbf1cc3289",
+      "slug": "upright-row",
+      "namePt": "Remada alta com barra",
+      "nameEn": "Upright Row",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "traps"
+      ],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "977ebd78-a711-506d-aa39-944800431223",
+      "slug": "cable-upright-row",
+      "namePt": "Remada alta na polia",
+      "nameEn": "Cable Upright Row",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "traps"
+      ],
+      "equipment": [
+        "cable"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "4860b83b-f450-5888-a2ea-0825112629ab",
+      "slug": "turkish-get-up",
+      "namePt": "Turkish get-up",
+      "nameEn": "Turkish Get-Up",
+      "type": "reps",
+      "difficultyLevel": "expert",
+      "forceType": "static",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "abdominals",
+        "glutes",
+        "quadriceps"
+      ],
+      "equipment": [
+        "kettlebell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "089d8ace-9251-5a25-84dc-3732505deec0",
+      "slug": "incline-y-raise",
+      "namePt": "Y raise inclinado",
+      "nameEn": "Incline Y Raise",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "shoulders"
+      ],
+      "secondaryMuscles": [
+        "traps"
+      ],
+      "equipment": [
+        "dumbbell",
+        "incline bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "9b1ba458-9d82-5ace-863a-a655157a716d",
+      "slug": "behind-the-back-barbell-shrug",
+      "namePt": "Encolhimento atrás do corpo",
+      "nameEn": "Behind-the-Back Barbell Shrug",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "traps"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "d607ef26-d975-5833-ab6d-64f7adfb7b15",
+      "slug": "barbell-shrug",
+      "namePt": "Encolhimento com barra",
+      "nameEn": "Barbell Shrug",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "traps"
+      ],
+      "secondaryMuscles": [
+        "forearms"
+      ],
+      "equipment": [
+        "barbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "92ff291c-fe21-53ce-a4c7-91b5c8897d44",
+      "slug": "dumbbell-shrug",
+      "namePt": "Encolhimento com halteres",
+      "nameEn": "Dumbbell Shrug",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "traps"
+      ],
+      "secondaryMuscles": [
+        "forearms"
+      ],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "d4089d24-1136-56a7-ac0f-fb3e9e5dd547",
+      "slug": "machine-shrug",
+      "namePt": "Encolhimento máquina",
+      "nameEn": "Machine Shrug",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "traps"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "7bd51608-81d2-5ad2-b6de-eab0ace97f62",
+      "slug": "farmer-s-walk",
+      "namePt": "Farmer walk",
+      "nameEn": "Farmer's Walk",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "static",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "traps"
+      ],
+      "secondaryMuscles": [
+        "forearms",
+        "abdominals",
+        "calves"
+      ],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "dc1bce5c-192a-53fc-9c2b-a275fbb5a8f7",
+      "slug": "prone-trap-raise",
+      "namePt": "Prone trap raise",
+      "nameEn": "Prone Trap Raise",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "traps"
+      ],
+      "secondaryMuscles": [
+        "shoulders"
+      ],
+      "equipment": [
+        "dumbbell",
+        "incline bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "10ad8924-475f-5514-97dc-6671f4171b07",
+      "slug": "scapular-pull-up",
+      "namePt": "Scapular pull-up",
+      "nameEn": "Scapular Pull-Up",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "pull",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "traps"
+      ],
+      "secondaryMuscles": [
+        "lats"
+      ],
+      "equipment": [
+        "pull-up bar"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "3c56e184-8c8b-5665-862e-8e320596e1e3",
+      "slug": "trap-bar-carry",
+      "namePt": "Trap bar carry",
+      "nameEn": "Trap Bar Carry",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "static",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "traps"
+      ],
+      "secondaryMuscles": [
+        "forearms",
+        "abdominals"
+      ],
+      "equipment": [
+        "trap bar"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "2e235f76-396c-5bda-b1c5-192d473e1490",
+      "slug": "cable-overhead-triceps-extension",
+      "namePt": "Extensão acima da cabeça na polia",
+      "nameEn": "Cable Overhead Triceps Extension",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "cable",
+        "rope"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "ca612f55-7b54-515a-9819-449d7968e26d",
+      "slug": "machine-triceps-extension",
+      "namePt": "Extensão de tríceps máquina",
+      "nameEn": "Machine Triceps Extension",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "machine"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "e8858ef5-5bc1-5a34-a010-501323fcd34e",
+      "slug": "triceps-push-up",
+      "namePt": "Flexão diamante para tríceps",
+      "nameEn": "Triceps Push-Up",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [
+        "chest",
+        "shoulders"
+      ],
+      "equipment": [
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "3afc90f5-df5e-5c8c-baf3-bac2439e77f3",
+      "slug": "jm-press",
+      "namePt": "JM press",
+      "nameEn": "JM Press",
+      "type": "reps",
+      "difficultyLevel": "expert",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [
+        "chest"
+      ],
+      "equipment": [
+        "barbell",
+        "flat bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "b38fc77b-deed-5d71-94ba-00ed97098d7b",
+      "slug": "parallel-bar-dip",
+      "namePt": "Mergulho em paralelas",
+      "nameEn": "Parallel Bar Dip",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [
+        "chest",
+        "shoulders"
+      ],
+      "equipment": [
+        "dip station"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "59f8deed-973f-513d-a4f7-aa50a5fa141e",
+      "slug": "bench-dip",
+      "namePt": "Mergulho no banco",
+      "nameEn": "Bench Dip",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [
+        "chest",
+        "shoulders"
+      ],
+      "equipment": [
+        "bench",
+        "body only"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "1fd1da4c-161b-5021-8a05-0b175d5e55ad",
+      "slug": "close-grip-bench-press",
+      "namePt": "Supino fechado",
+      "nameEn": "Close-Grip Bench Press",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "compound",
+      "category": "strength",
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [
+        "chest",
+        "shoulders"
+      ],
+      "equipment": [
+        "barbell",
+        "flat bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "4a74e210-4256-5c6f-a912-a54e02695fc0",
+      "slug": "dumbbell-kickback",
+      "namePt": "Tríceps coice",
+      "nameEn": "Dumbbell Kickback",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "27149305-5250-5707-a57a-877ec7cfb788",
+      "slug": "rope-triceps-pushdown",
+      "namePt": "Tríceps corda",
+      "nameEn": "Rope Triceps Pushdown",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "cable",
+        "rope"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "1031a9ed-c325-5432-bf78-e7b97bde4ccd",
+      "slug": "two-hand-dumbbell-overhead-extension",
+      "namePt": "Tríceps francês bilateral",
+      "nameEn": "Two-Hand Dumbbell Overhead Extension",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "2cd80a15-c9e6-5063-913b-5b44148f82a3",
+      "slug": "single-arm-overhead-dumbbell-extension",
+      "namePt": "Tríceps francês unilateral",
+      "nameEn": "Single-Arm Overhead Dumbbell Extension",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "dumbbell"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "339a8252-308b-5bd5-83a5-61e7e8dd5bea",
+      "slug": "cable-triceps-pushdown",
+      "namePt": "Tríceps pulley barra reta",
+      "nameEn": "Cable Triceps Pushdown",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "cable"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "788a2edb-8e61-58cc-973d-ba2e76a2f406",
+      "slug": "ez-bar-skull-crusher",
+      "namePt": "Tríceps testa com barra W",
+      "nameEn": "EZ-Bar Skull Crusher",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "ez bar",
+        "bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "939df495-3021-5939-8e88-affd5729a574",
+      "slug": "dumbbell-skull-crusher",
+      "namePt": "Tríceps testa com halteres",
+      "nameEn": "Dumbbell Skull Crusher",
+      "type": "reps",
+      "difficultyLevel": "intermediate",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "dumbbell",
+        "bench"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "aa02dde3-ed35-5bd5-a053-2247fd472202",
+      "slug": "single-arm-cable-pushdown",
+      "namePt": "Tríceps unilateral na polia",
+      "nameEn": "Single-Arm Cable Pushdown",
+      "type": "reps",
+      "difficultyLevel": "beginner",
+      "forceType": "push",
+      "mechanics": "isolation",
+      "category": "strength",
+      "primaryMuscles": [
+        "triceps"
+      ],
+      "secondaryMuscles": [],
+      "equipment": [
+        "cable"
+      ],
+      "isActive": true
+    }
+  ]
+}

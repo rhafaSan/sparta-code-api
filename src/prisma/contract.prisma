@@ -1,0 +1,281 @@
+// use prisma-next
+
+model User {
+  id   Uuid   @id @default(uuid())
+  name String
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  workouts        Workout[]
+  workoutSessions WorkoutSession[]
+
+  @@map("users")
+}
+
+model Exercise {
+  id          Uuid    @id @default(uuid())
+  name        String
+  description String?
+
+  muscleGroup String?
+    @map("muscle_group")
+
+  isActive Boolean
+    @default(true)
+    @map("is_active")
+
+  createdAt DateTime
+    @default(now())
+    @map("created_at")
+
+  workoutExercises WorkoutExercise[]
+
+  @@index([name])
+
+  @@map("exercises")
+}
+
+model Workout {
+  id Uuid
+    @id
+    @default(uuid())
+
+  userId Uuid
+    @map("user_id")
+
+  name  String
+  notes String?
+
+  isActive Boolean
+    @default(true)
+    @map("is_active")
+
+  createdAt DateTime
+    @default(now())
+    @map("created_at")
+
+  // DELETE: RESTRICT
+  // Não queremos apagar um usuário automaticamente
+  // quando um Workout existir.
+  user User @relation(
+    fields: [userId],
+    references: [id]
+  )
+
+  workoutExercises WorkoutExercise[]
+  workoutSessions  WorkoutSession[]
+
+  @@index([userId])
+  @@index([userId, isActive])
+
+  @@map("workouts")
+}
+
+model WorkoutExercise {
+  id Uuid
+    @id
+    @default(uuid())
+
+  workoutId Uuid
+    @map("workout_id")
+
+  exerciseId Uuid
+    @map("exercise_id")
+
+  exerciseOrder Int
+    @map("exercise_order")
+
+  plannedSets Int
+    @map("planned_sets")
+
+  plannedReps Int
+    @map("planned_reps")
+
+  restSeconds Int?
+    @map("rest_seconds")
+
+  notes String?
+
+  isActive Boolean
+    @default(true)
+    @map("is_active")
+
+  createdAt DateTime
+    @default(now())
+    @map("created_at")
+
+  // DELETE desejado: CASCADE
+  //
+  // Se um Workout for realmente apagado e não possuir
+  // histórico, seus WorkoutExercise também podem ser apagados.
+  workout Workout @relation(
+    fields: [workoutId],
+    references: [id]
+  )
+
+  // DELETE: RESTRICT
+  //
+  // Não queremos apagar o vínculo/histórico automaticamente
+  // se um Exercise for removido.
+  exercise Exercise @relation(
+    fields: [exerciseId],
+    references: [id]
+  )
+
+  exerciseSessions ExerciseSession[]
+
+  @@unique([workoutId, exerciseOrder])
+
+  @@index([workoutId])
+  @@index([exerciseId])
+  @@index([workoutId, isActive])
+
+  @@map("workout_exercises")
+}
+
+model WorkoutSession {
+  id Uuid
+    @id
+    @default(uuid())
+
+  userId Uuid
+    @map("user_id")
+
+  workoutId Uuid
+    @map("workout_id")
+
+  startedAt DateTime
+    @default(now())
+    @map("started_at")
+
+  finishedAt DateTime?
+    @map("finished_at")
+
+  notes String?
+
+  createdAt DateTime
+    @default(now())
+    @map("created_at")
+
+  // DELETE: RESTRICT
+  //
+  // Histórico de treino impede remoção do usuário.
+  user User @relation(
+    fields: [userId],
+    references: [id]
+  )
+
+  // DELETE: RESTRICT
+  //
+  // Workout com histórico não deve ser apagado.
+  workout Workout @relation(
+    fields: [workoutId],
+    references: [id]
+  )
+
+  exerciseSessions ExerciseSession[]
+
+  @@index([userId])
+  @@index([workoutId])
+  @@index([startedAt])
+  @@index([userId, startedAt])
+
+  @@map("workout_sessions")
+}
+
+model ExerciseSession {
+  id Uuid
+    @id
+    @default(uuid())
+
+  workoutSessionId Uuid
+    @map("workout_session_id")
+
+  workoutExerciseId Uuid
+    @map("workout_exercise_id")
+
+  exerciseOrder Int
+    @map("exercise_order")
+
+  plannedSets Int
+    @map("planned_sets")
+
+  plannedReps Int
+    @map("planned_reps")
+
+  restSeconds Int?
+    @map("rest_seconds")
+
+  completed Boolean
+    @default(false)
+
+  notes String?
+
+  createdAt DateTime
+    @default(now())
+    @map("created_at")
+
+  // DELETE desejado: CASCADE
+  //
+  // Se deliberadamente apagarmos uma WorkoutSession,
+  // suas ExerciseSession também devem desaparecer.
+  workoutSession WorkoutSession @relation(
+    fields: [workoutSessionId],
+    references: [id]
+  )
+
+  // DELETE: RESTRICT
+  //
+  // Mantemos o WorkoutExercise porque a sessão histórica
+  // referencia exatamente aquela configuração de exercício.
+  workoutExercise WorkoutExercise @relation(
+    fields: [workoutExerciseId],
+    references: [id]
+  )
+
+  sets ExerciseSet[]
+
+  @@unique([workoutSessionId, workoutExerciseId])
+
+  @@index([workoutSessionId])
+  @@index([workoutExerciseId])
+
+  @@map("exercise_sessions")
+}
+
+model ExerciseSet {
+  id Uuid
+    @id
+    @default(uuid())
+
+  exerciseSessionId Uuid
+    @map("exercise_session_id")
+
+  setNumber Int
+    @map("set_number")
+
+  weight Decimal?
+  reps   Int?
+
+  completed Boolean
+    @default(false)
+
+  createdAt DateTime
+    @default(now())
+    @map("created_at")
+
+  // DELETE desejado: CASCADE
+  //
+  // Se uma ExerciseSession for apagada,
+  // suas séries também devem ser apagadas.
+  exerciseSession ExerciseSession @relation(
+    fields: [exerciseSessionId],
+    references: [id]
+  )
+
+  @@unique([exerciseSessionId, setNumber])
+
+  @@index([exerciseSessionId])
+
+  @@map("exercise_sets")
+}

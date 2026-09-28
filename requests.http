@@ -1,0 +1,94 @@
+@baseUrl = http://localhost:3000
+@userId = REPLACE_WITH_USER_UUID
+@exerciseId = REPLACE_WITH_EXERCISE_UUID
+@workoutId = REPLACE_WITH_WORKOUT_UUID
+@workoutExerciseId = REPLACE_WITH_WORKOUT_EXERCISE_UUID
+@sessionId = REPLACE_WITH_SESSION_UUID
+@exerciseSessionId = REPLACE_WITH_EXERCISE_SESSION_UUID
+
+### 1. Create user; copy response id to userId
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{ "name": "Rafael" }
+
+### 2. Create exercise; copy response id to exerciseId
+POST {{baseUrl}}/exercises
+Content-Type: application/json
+
+{ "name": "Supino reto", "muscleGroup": "Peito" }
+
+### 3. Create template; copy response id to workoutId
+POST {{baseUrl}}/workouts
+Content-Type: application/json
+
+{ "userId": "{{userId}}", "name": "Treino de Peito" }
+
+### 4. Add exercise; copy response id to workoutExerciseId
+POST {{baseUrl}}/workouts/{{workoutId}}/exercises
+Content-Type: application/json
+
+{ "exerciseId": "{{exerciseId}}", "exerciseOrder": 1, "plannedSets": 4, "plannedReps": 10, "restSeconds": 90 }
+
+### 5. Start; copy id to sessionId and exerciseSessions[0].id to exerciseSessionId
+POST {{baseUrl}}/workout-sessions/start
+Content-Type: application/json
+
+{ "userId": "{{userId}}", "workoutId": "{{workoutId}}" }
+
+### 6. Record or update the first set
+PUT {{baseUrl}}/workout-sessions/{{sessionId}}/exercises/{{exerciseSessionId}}/sets
+Content-Type: application/json
+
+{ "setNumber": 1, "weight": "80.25", "reps": 10, "completed": true }
+
+### Adjust rest during the ongoing workout (seconds; null clears it)
+PATCH {{baseUrl}}/workout-sessions/{{sessionId}}/exercises/{{exerciseSessionId}}
+Content-Type: application/json
+
+{ "restSeconds": 60 }
+
+### Configure rest for future workouts
+PATCH {{baseUrl}}/workouts/{{workoutId}}/exercises/{{workoutExerciseId}}
+Content-Type: application/json
+
+{ "restSeconds": 120 }
+
+### 7. Mark exercise complete
+PATCH {{baseUrl}}/workout-sessions/{{sessionId}}/exercises/{{exerciseSessionId}}
+Content-Type: application/json
+
+{ "completed": true }
+
+### 8. Finish workout
+POST {{baseUrl}}/workout-sessions/{{sessionId}}/finish
+Content-Type: application/json
+
+{ "notes": "Treino concluído" }
+
+### 9. Session details, snapshots, sets and calculated duration
+GET {{baseUrl}}/workout-sessions/{{sessionId}}
+
+### History
+GET {{baseUrl}}/workout-sessions?userId={{userId}}&limit=20&offset=0
+
+### Previous exercise performance
+GET {{baseUrl}}/workout-sessions/exercises/{{exerciseId}}/performance?userId={{userId}}&limit=1
+
+### Exercise statistics
+GET {{baseUrl}}/workout-sessions/exercises/{{exerciseId}}/statistics?userId={{userId}}
+
+### Archive a template entry, preserving history
+DELETE {{baseUrl}}/workouts/{{workoutId}}/exercises/{{workoutExerciseId}}
+
+### List archived and active templates
+GET {{baseUrl}}/workouts?userId={{userId}}&includeArchived=true
+
+### Generate and persist a workout with Gemini (configure GEMINI_API_KEY first)
+POST {{baseUrl}}/workouts/generate
+Content-Type: application/json
+
+{
+  "userId": "{{userId}}",
+  "prompt": "Treino de pernas para iniciante, com máquinas, em 45 minutos."
+}
