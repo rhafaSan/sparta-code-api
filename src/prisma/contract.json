@@ -4,6 +4,10 @@
   "target": "postgres",
   "profileHash": "3916f444a8a17ad749191acf9e08dad97d1a327b88c2f1d45d12f240296aa8b2",
   "roots": {
+    "exercise_muscles": {
+      "model": "ExerciseMuscle",
+      "namespace": "public"
+    },
     "exercise_sessions": {
       "model": "ExerciseSession",
       "namespace": "public"
@@ -14,6 +18,10 @@
     },
     "exercises": {
       "model": "Exercise",
+      "namespace": "public"
+    },
+    "muscle_groups": {
+      "model": "MuscleGroup",
       "namespace": "public"
     },
     "users": {
@@ -83,6 +91,21 @@
               }
             },
             "relations": {
+              "muscles": {
+                "cardinality": "1:N",
+                "on": {
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "exerciseId"
+                  ]
+                },
+                "to": {
+                  "model": "ExerciseMuscle",
+                  "namespace": "public"
+                }
+              },
               "workoutExercises": {
                 "cardinality": "1:N",
                 "on": {
@@ -122,6 +145,98 @@
               },
               "namespaceId": "public",
               "table": "exercises"
+            }
+          },
+          "ExerciseMuscle": {
+            "fields": {
+              "createdAt": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/timestamptz-temporal@1",
+                  "kind": "scalar"
+                }
+              },
+              "exerciseId": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/uuid@1",
+                  "kind": "scalar"
+                }
+              },
+              "id": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/uuid@1",
+                  "kind": "scalar"
+                }
+              },
+              "muscleGroupId": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/uuid@1",
+                  "kind": "scalar"
+                }
+              },
+              "role": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              }
+            },
+            "relations": {
+              "exercise": {
+                "cardinality": "N:1",
+                "on": {
+                  "localFields": [
+                    "exerciseId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
+                },
+                "to": {
+                  "model": "Exercise",
+                  "namespace": "public"
+                }
+              },
+              "muscleGroup": {
+                "cardinality": "N:1",
+                "on": {
+                  "localFields": [
+                    "muscleGroupId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
+                },
+                "to": {
+                  "model": "MuscleGroup",
+                  "namespace": "public"
+                }
+              }
+            },
+            "storage": {
+              "fields": {
+                "createdAt": {
+                  "column": "created_at"
+                },
+                "exerciseId": {
+                  "column": "exercise_id"
+                },
+                "id": {
+                  "column": "id"
+                },
+                "muscleGroupId": {
+                  "column": "muscle_group_id"
+                },
+                "role": {
+                  "column": "role"
+                }
+              },
+              "namespaceId": "public",
+              "table": "exercise_muscles"
             }
           },
           "ExerciseSession": {
@@ -376,6 +491,93 @@
               },
               "namespaceId": "public",
               "table": "exercise_sets"
+            }
+          },
+          "MuscleGroup": {
+            "fields": {
+              "createdAt": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/timestamptz-temporal@1",
+                  "kind": "scalar"
+                }
+              },
+              "id": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/uuid@1",
+                  "kind": "scalar"
+                }
+              },
+              "isActive": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/bool@1",
+                  "kind": "scalar"
+                }
+              },
+              "name": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "slug": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "view": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              }
+            },
+            "relations": {
+              "exercises": {
+                "cardinality": "1:N",
+                "on": {
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "muscleGroupId"
+                  ]
+                },
+                "to": {
+                  "model": "ExerciseMuscle",
+                  "namespace": "public"
+                }
+              }
+            },
+            "storage": {
+              "fields": {
+                "createdAt": {
+                  "column": "created_at"
+                },
+                "id": {
+                  "column": "id"
+                },
+                "isActive": {
+                  "column": "is_active"
+                },
+                "name": {
+                  "column": "name"
+                },
+                "slug": {
+                  "column": "slug"
+                },
+                "view": {
+                  "column": "view"
+                }
+              },
+              "namespaceId": "public",
+              "table": "muscle_groups"
             }
           },
           "User": {
@@ -860,6 +1062,104 @@
       "public": {
         "entries": {
           "table": {
+            "exercise_muscles": {
+              "columns": {
+                "created_at": {
+                  "codecId": "pg/timestamptz-temporal@1",
+                  "default": {
+                    "expression": "now()",
+                    "kind": "function"
+                  },
+                  "nativeType": "timestamptz",
+                  "nullable": false
+                },
+                "exercise_id": {
+                  "codecId": "pg/uuid@1",
+                  "nativeType": "uuid",
+                  "nullable": false
+                },
+                "id": {
+                  "codecId": "pg/uuid@1",
+                  "nativeType": "uuid",
+                  "nullable": false
+                },
+                "muscle_group_id": {
+                  "codecId": "pg/uuid@1",
+                  "nativeType": "uuid",
+                  "nullable": false
+                },
+                "role": {
+                  "codecId": "pg/text@1",
+                  "nativeType": "text",
+                  "nullable": false
+                }
+              },
+              "foreignKeys": [
+                {
+                  "source": {
+                    "columns": [
+                      "exercise_id"
+                    ],
+                    "namespaceId": "public",
+                    "tableName": "exercise_muscles"
+                  },
+                  "target": {
+                    "columns": [
+                      "id"
+                    ],
+                    "namespaceId": "public",
+                    "tableName": "exercises"
+                  }
+                },
+                {
+                  "source": {
+                    "columns": [
+                      "muscle_group_id"
+                    ],
+                    "namespaceId": "public",
+                    "tableName": "exercise_muscles"
+                  },
+                  "target": {
+                    "columns": [
+                      "id"
+                    ],
+                    "namespaceId": "public",
+                    "tableName": "muscle_groups"
+                  }
+                }
+              ],
+              "indexes": [
+                {
+                  "columns": [
+                    "exercise_id"
+                  ],
+                  "name": "exercise_muscles_exercise_id_idx_b01d81a7",
+                  "prefix": "exercise_muscles_exercise_id_idx",
+                  "unique": false
+                },
+                {
+                  "columns": [
+                    "muscle_group_id"
+                  ],
+                  "name": "exercise_muscles_muscle_group_id_idx_317bd837",
+                  "prefix": "exercise_muscles_muscle_group_id_idx",
+                  "unique": false
+                }
+              ],
+              "primaryKey": {
+                "columns": [
+                  "id"
+                ]
+              },
+              "uniques": [
+                {
+                  "columns": [
+                    "exercise_id",
+                    "muscle_group_id"
+                  ]
+                }
+              ]
+            },
             "exercise_sessions": {
               "columns": {
                 "completed": {
@@ -1133,6 +1433,62 @@
                 ]
               },
               "uniques": []
+            },
+            "muscle_groups": {
+              "columns": {
+                "created_at": {
+                  "codecId": "pg/timestamptz-temporal@1",
+                  "default": {
+                    "expression": "now()",
+                    "kind": "function"
+                  },
+                  "nativeType": "timestamptz",
+                  "nullable": false
+                },
+                "id": {
+                  "codecId": "pg/uuid@1",
+                  "nativeType": "uuid",
+                  "nullable": false
+                },
+                "is_active": {
+                  "codecId": "pg/bool@1",
+                  "default": {
+                    "kind": "literal",
+                    "value": true
+                  },
+                  "nativeType": "bool",
+                  "nullable": false
+                },
+                "name": {
+                  "codecId": "pg/text@1",
+                  "nativeType": "text",
+                  "nullable": false
+                },
+                "slug": {
+                  "codecId": "pg/text@1",
+                  "nativeType": "text",
+                  "nullable": false
+                },
+                "view": {
+                  "codecId": "pg/text@1",
+                  "nativeType": "text",
+                  "nullable": false
+                }
+              },
+              "foreignKeys": [],
+              "indexes": [],
+              "primaryKey": {
+                "columns": [
+                  "id"
+                ]
+              },
+              "uniques": [
+                {
+                  "columns": [
+                    "slug"
+                  ]
+                }
+              ]
             },
             "users": {
               "columns": {
@@ -1514,12 +1870,23 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "2d78ab1c4c32e92d53902b6cab52348af0dc644c2b12350d1836d016064b2225"
+    "storageHash": "66b3dd2be95bc5ea572d8ea2d4477753255bb7901e12bfb67143326f0f353007"
   },
   "execution": {
-    "executionHash": "9082aa9b0c758815136b47daca45378fd56fbb42f9eb054c50e7ec97e69e2edd",
+    "executionHash": "2d353f0a6f7a89eefdb9c7dfff9686beb655b197deb970b3f95890ed800d846f",
     "mutations": {
       "defaults": [
+        {
+          "onCreate": {
+            "id": "uuidv4",
+            "kind": "generator"
+          },
+          "ref": {
+            "column": "id",
+            "namespace": "public",
+            "table": "exercise_muscles"
+          }
+        },
         {
           "onCreate": {
             "id": "uuidv4",
@@ -1551,6 +1918,17 @@
             "column": "id",
             "namespace": "public",
             "table": "exercises"
+          }
+        },
+        {
+          "onCreate": {
+            "id": "uuidv4",
+            "kind": "generator"
+          },
+          "ref": {
+            "column": "id",
+            "namespace": "public",
+            "table": "muscle_groups"
           }
         },
         {

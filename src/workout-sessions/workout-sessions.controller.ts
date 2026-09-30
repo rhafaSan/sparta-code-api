@@ -12,6 +12,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { WorkoutSessionsService } from './workout-sessions.service.js';
+import { WorkoutShareSummary } from './dto/workout-share-summary.dto.js';
 import { HistoryQueryDto } from '../common/dto/list-query.dto.js';
 import {
   FinishWorkoutSessionDto,
@@ -24,6 +25,19 @@ import {
 @Controller('workout-sessions')
 export class WorkoutSessionsController {
   constructor(private readonly sessions: WorkoutSessionsService) {}
+
+  @ApiOperation({ summary: 'Resumo muscular de uma sessão concluída' })
+  @ApiResponse({ status: 200, type: WorkoutShareSummary })
+  @ApiResponse({ status: 400, description: 'Sessão ainda não finalizada.' })
+  @ApiResponse({
+    status: 404,
+    description: 'Sessão não encontrada ou ID inválido.',
+  })
+  @ApiParam({ name: 'id', type: String, format: 'uuid' })
+  @Get(':id/share-summary')
+  shareSummary(@Param('id') id: string): Promise<WorkoutShareSummary> {
+    return this.sessions.shareSummary(id);
+  }
   @ApiOperation({ summary: 'Iniciar sessão com snapshots do plano' })
   @ApiResponse({
     status: 201,

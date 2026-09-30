@@ -29,10 +29,39 @@ model Exercise {
     @map("created_at")
 
   workoutExercises WorkoutExercise[]
+  muscles ExerciseMuscle[]
 
   @@index([name])
 
   @@map("exercises")
+}
+
+model MuscleGroup {
+  id Uuid @id @default(uuid())
+  slug String @unique
+  name String
+  view String
+  isActive Boolean @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  exercises ExerciseMuscle[]
+
+  @@map("muscle_groups")
+}
+
+model ExerciseMuscle {
+  id Uuid @id @default(uuid())
+  exerciseId Uuid @map("exercise_id")
+  muscleGroupId Uuid @map("muscle_group_id")
+  role String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  exercise Exercise @relation(fields: [exerciseId], references: [id])
+  muscleGroup MuscleGroup @relation(fields: [muscleGroupId], references: [id])
+
+  @@unique([exerciseId, muscleGroupId])
+  @@index([muscleGroupId])
+  @@map("exercise_muscles")
 }
 
 model Workout {

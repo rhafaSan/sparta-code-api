@@ -25,7 +25,8 @@
     "postinstall": "prisma skills sync || exit 0",
     "contract:emit": "prisma contract emit",
     "db:verify": "prisma db verify",
-    "seed": "yarn build && node dist/prisma/seed.js"
+    "seed": "yarn build && node dist/prisma/seed.js",
+    "seed:muscles": "yarn build && node dist/prisma/seed-muscles-cli.js"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",

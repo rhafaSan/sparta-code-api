@@ -200,6 +200,7 @@ describe('Workout generation with PostgreSQL and a stubbed AI', () => {
               orm: {
                 ...tx.orm,
                 public: {
+                  ...tx.orm.public,
                   User: tx.orm.public.User,
                   Exercise: tx.orm.public.Exercise,
                   Workout: tx.orm.public.Workout,

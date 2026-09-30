@@ -1,0 +1,1261 @@
+[
+  {
+    "id": "schema.public",
+    "label": "Create schema \"public\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres"
+    },
+    "precheck": [],
+    "execute": [
+      {
+        "description": "Create schema \"public\"",
+        "sql": "CREATE SCHEMA IF NOT EXISTS \"public\"",
+        "params": []
+      }
+    ],
+    "postcheck": []
+  },
+  {
+    "id": "table.exercise_sessions",
+    "label": "Create table \"exercise_sessions\"",
+    "summary": "Creates table \"exercise_sessions\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "exercise_sessions"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"exercise_sessions\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"exercise_sessions\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"exercise_sessions\"",
+        "sql": "CREATE TABLE \"public\".\"exercise_sessions\" (\n  \"completed\" bool DEFAULT false NOT NULL,\n  \"created_at\" timestamptz DEFAULT (now()) NOT NULL,\n  \"exercise_order\" int4 NOT NULL,\n  \"id\" uuid NOT NULL,\n  \"notes\" text,\n  \"planned_reps\" int4 NOT NULL,\n  \"planned_sets\" int4 NOT NULL,\n  \"rest_seconds\" int4,\n  \"workout_exercise_id\" uuid NOT NULL,\n  \"workout_session_id\" uuid NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"exercise_sessions\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"exercise_sessions\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.exercise_sets",
+    "label": "Create table \"exercise_sets\"",
+    "summary": "Creates table \"exercise_sets\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "exercise_sets"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"exercise_sets\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"exercise_sets\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"exercise_sets\"",
+        "sql": "CREATE TABLE \"public\".\"exercise_sets\" (\n  \"completed\" bool DEFAULT false NOT NULL,\n  \"created_at\" timestamptz DEFAULT (now()) NOT NULL,\n  \"exercise_session_id\" uuid NOT NULL,\n  \"id\" uuid NOT NULL,\n  \"reps\" int4,\n  \"set_number\" int4 NOT NULL,\n  \"weight\" numeric,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"exercise_sets\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"exercise_sets\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.exercises",
+    "label": "Create table \"exercises\"",
+    "summary": "Creates table \"exercises\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "exercises"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"exercises\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"exercises\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"exercises\"",
+        "sql": "CREATE TABLE \"public\".\"exercises\" (\n  \"created_at\" timestamptz DEFAULT (now()) NOT NULL,\n  \"description\" text,\n  \"id\" uuid NOT NULL,\n  \"is_active\" bool DEFAULT true NOT NULL,\n  \"muscle_group\" text,\n  \"name\" text NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"exercises\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"exercises\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.users",
+    "label": "Create table \"users\"",
+    "summary": "Creates table \"users\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "users"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"users\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"users\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"users\"",
+        "sql": "CREATE TABLE \"public\".\"users\" (\n  \"created_at\" timestamptz DEFAULT (now()) NOT NULL,\n  \"id\" uuid NOT NULL,\n  \"name\" text NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"users\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"users\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.workout_exercises",
+    "label": "Create table \"workout_exercises\"",
+    "summary": "Creates table \"workout_exercises\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "workout_exercises"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"workout_exercises\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_exercises\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"workout_exercises\"",
+        "sql": "CREATE TABLE \"public\".\"workout_exercises\" (\n  \"created_at\" timestamptz DEFAULT (now()) NOT NULL,\n  \"exercise_id\" uuid NOT NULL,\n  \"exercise_order\" int4 NOT NULL,\n  \"id\" uuid NOT NULL,\n  \"is_active\" bool DEFAULT true NOT NULL,\n  \"notes\" text,\n  \"planned_reps\" int4 NOT NULL,\n  \"planned_sets\" int4 NOT NULL,\n  \"rest_seconds\" int4,\n  \"workout_id\" uuid NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"workout_exercises\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_exercises\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.workout_sessions",
+    "label": "Create table \"workout_sessions\"",
+    "summary": "Creates table \"workout_sessions\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "workout_sessions"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"workout_sessions\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_sessions\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"workout_sessions\"",
+        "sql": "CREATE TABLE \"public\".\"workout_sessions\" (\n  \"created_at\" timestamptz DEFAULT (now()) NOT NULL,\n  \"finished_at\" timestamptz,\n  \"id\" uuid NOT NULL,\n  \"notes\" text,\n  \"started_at\" timestamptz DEFAULT (now()) NOT NULL,\n  \"user_id\" uuid NOT NULL,\n  \"workout_id\" uuid NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"workout_sessions\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_sessions\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.workouts",
+    "label": "Create table \"workouts\"",
+    "summary": "Creates table \"workouts\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "workouts"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"workouts\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workouts\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"workouts\"",
+        "sql": "CREATE TABLE \"public\".\"workouts\" (\n  \"created_at\" timestamptz DEFAULT (now()) NOT NULL,\n  \"id\" uuid NOT NULL,\n  \"is_active\" bool DEFAULT true NOT NULL,\n  \"name\" text NOT NULL,\n  \"notes\" text,\n  \"user_id\" uuid NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"workouts\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workouts\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.exercise_sessions.exercise_sessions_workout_session_id_workout_exercise_id_key",
+    "label": "Add unique constraint on \"exercise_sessions\" (workout_session_id, workout_exercise_id)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "exercise_sessions_workout_session_id_workout_exercise_id_key",
+        "table": "exercise_sessions"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"exercise_sessions_workout_session_id_workout_exercise_id_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "exercise_sessions_workout_session_id_workout_exercise_id_key",
+          "public",
+          "\"public\".\"exercise_sessions\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"exercise_sessions_workout_session_id_workout_exercise_id_key\"",
+        "sql": "ALTER TABLE \"public\".\"exercise_sessions\" ADD CONSTRAINT \"exercise_sessions_workout_session_id_workout_exercise_id_key\" UNIQUE (\"workout_session_id\", \"workout_exercise_id\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"exercise_sessions_workout_session_id_workout_exercise_id_key\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "exercise_sessions_workout_session_id_workout_exercise_id_key",
+          "public",
+          "\"public\".\"exercise_sessions\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.exercise_sets.exercise_sets_exercise_session_id_set_number_key",
+    "label": "Add unique constraint on \"exercise_sets\" (exercise_session_id, set_number)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "exercise_sets_exercise_session_id_set_number_key",
+        "table": "exercise_sets"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"exercise_sets_exercise_session_id_set_number_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "exercise_sets_exercise_session_id_set_number_key",
+          "public",
+          "\"public\".\"exercise_sets\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"exercise_sets_exercise_session_id_set_number_key\"",
+        "sql": "ALTER TABLE \"public\".\"exercise_sets\" ADD CONSTRAINT \"exercise_sets_exercise_session_id_set_number_key\" UNIQUE (\"exercise_session_id\", \"set_number\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"exercise_sets_exercise_session_id_set_number_key\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "exercise_sets_exercise_session_id_set_number_key",
+          "public",
+          "\"public\".\"exercise_sets\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.workout_exercises.workout_exercises_workout_id_exercise_order_key",
+    "label": "Add unique constraint on \"workout_exercises\" (workout_id, exercise_order)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "workout_exercises_workout_id_exercise_order_key",
+        "table": "workout_exercises"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"workout_exercises_workout_id_exercise_order_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "workout_exercises_workout_id_exercise_order_key",
+          "public",
+          "\"public\".\"workout_exercises\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"workout_exercises_workout_id_exercise_order_key\"",
+        "sql": "ALTER TABLE \"public\".\"workout_exercises\" ADD CONSTRAINT \"workout_exercises_workout_id_exercise_order_key\" UNIQUE (\"workout_id\", \"exercise_order\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"workout_exercises_workout_id_exercise_order_key\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "workout_exercises_workout_id_exercise_order_key",
+          "public",
+          "\"public\".\"workout_exercises\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.exercise_sessions.exercise_sessions_workout_exercise_id_idx_e8bd1b8c",
+    "label": "Create index \"exercise_sessions_workout_exercise_id_idx_e8bd1b8c\" on \"exercise_sessions\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "exercise_sessions_workout_exercise_id_idx_e8bd1b8c",
+        "table": "exercise_sessions"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"exercise_sessions_workout_exercise_id_idx_e8bd1b8c\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"exercise_sessions_workout_exercise_id_idx_e8bd1b8c\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"exercise_sessions_workout_exercise_id_idx_e8bd1b8c\"",
+        "sql": "CREATE INDEX \"exercise_sessions_workout_exercise_id_idx_e8bd1b8c\" ON \"public\".\"exercise_sessions\" (\"workout_exercise_id\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"exercise_sessions_workout_exercise_id_idx_e8bd1b8c\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"exercise_sessions_workout_exercise_id_idx_e8bd1b8c\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.exercise_sessions.exercise_sessions_workout_session_id_idx_4025b05c",
+    "label": "Create index \"exercise_sessions_workout_session_id_idx_4025b05c\" on \"exercise_sessions\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "exercise_sessions_workout_session_id_idx_4025b05c",
+        "table": "exercise_sessions"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"exercise_sessions_workout_session_id_idx_4025b05c\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"exercise_sessions_workout_session_id_idx_4025b05c\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"exercise_sessions_workout_session_id_idx_4025b05c\"",
+        "sql": "CREATE INDEX \"exercise_sessions_workout_session_id_idx_4025b05c\" ON \"public\".\"exercise_sessions\" (\"workout_session_id\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"exercise_sessions_workout_session_id_idx_4025b05c\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"exercise_sessions_workout_session_id_idx_4025b05c\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.exercise_sets.exercise_sets_exercise_session_id_idx_f8a0614a",
+    "label": "Create index \"exercise_sets_exercise_session_id_idx_f8a0614a\" on \"exercise_sets\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "exercise_sets_exercise_session_id_idx_f8a0614a",
+        "table": "exercise_sets"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"exercise_sets_exercise_session_id_idx_f8a0614a\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"exercise_sets_exercise_session_id_idx_f8a0614a\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"exercise_sets_exercise_session_id_idx_f8a0614a\"",
+        "sql": "CREATE INDEX \"exercise_sets_exercise_session_id_idx_f8a0614a\" ON \"public\".\"exercise_sets\" (\"exercise_session_id\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"exercise_sets_exercise_session_id_idx_f8a0614a\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"exercise_sets_exercise_session_id_idx_f8a0614a\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.exercises.exercises_name_idx_ce87e6ba",
+    "label": "Create index \"exercises_name_idx_ce87e6ba\" on \"exercises\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "exercises_name_idx_ce87e6ba",
+        "table": "exercises"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"exercises_name_idx_ce87e6ba\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"exercises_name_idx_ce87e6ba\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"exercises_name_idx_ce87e6ba\"",
+        "sql": "CREATE INDEX \"exercises_name_idx_ce87e6ba\" ON \"public\".\"exercises\" (\"name\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"exercises_name_idx_ce87e6ba\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"exercises_name_idx_ce87e6ba\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.workout_exercises.workout_exercises_exercise_id_idx_b01d81a7",
+    "label": "Create index \"workout_exercises_exercise_id_idx_b01d81a7\" on \"workout_exercises\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "workout_exercises_exercise_id_idx_b01d81a7",
+        "table": "workout_exercises"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"workout_exercises_exercise_id_idx_b01d81a7\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_exercises_exercise_id_idx_b01d81a7\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"workout_exercises_exercise_id_idx_b01d81a7\"",
+        "sql": "CREATE INDEX \"workout_exercises_exercise_id_idx_b01d81a7\" ON \"public\".\"workout_exercises\" (\"exercise_id\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"workout_exercises_exercise_id_idx_b01d81a7\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_exercises_exercise_id_idx_b01d81a7\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.workout_exercises.workout_exercises_workout_id_idx_7b5dce6d",
+    "label": "Create index \"workout_exercises_workout_id_idx_7b5dce6d\" on \"workout_exercises\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "workout_exercises_workout_id_idx_7b5dce6d",
+        "table": "workout_exercises"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"workout_exercises_workout_id_idx_7b5dce6d\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_exercises_workout_id_idx_7b5dce6d\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"workout_exercises_workout_id_idx_7b5dce6d\"",
+        "sql": "CREATE INDEX \"workout_exercises_workout_id_idx_7b5dce6d\" ON \"public\".\"workout_exercises\" (\"workout_id\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"workout_exercises_workout_id_idx_7b5dce6d\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_exercises_workout_id_idx_7b5dce6d\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.workout_exercises.workout_exercises_workout_id_is_active_idx_00f9ff08",
+    "label": "Create index \"workout_exercises_workout_id_is_active_idx_00f9ff08\" on \"workout_exercises\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "workout_exercises_workout_id_is_active_idx_00f9ff08",
+        "table": "workout_exercises"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"workout_exercises_workout_id_is_active_idx_00f9ff08\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_exercises_workout_id_is_active_idx_00f9ff08\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"workout_exercises_workout_id_is_active_idx_00f9ff08\"",
+        "sql": "CREATE INDEX \"workout_exercises_workout_id_is_active_idx_00f9ff08\" ON \"public\".\"workout_exercises\" (\"workout_id\", \"is_active\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"workout_exercises_workout_id_is_active_idx_00f9ff08\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_exercises_workout_id_is_active_idx_00f9ff08\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.workout_sessions.workout_sessions_started_at_idx_bcc4bc60",
+    "label": "Create index \"workout_sessions_started_at_idx_bcc4bc60\" on \"workout_sessions\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "workout_sessions_started_at_idx_bcc4bc60",
+        "table": "workout_sessions"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"workout_sessions_started_at_idx_bcc4bc60\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_sessions_started_at_idx_bcc4bc60\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"workout_sessions_started_at_idx_bcc4bc60\"",
+        "sql": "CREATE INDEX \"workout_sessions_started_at_idx_bcc4bc60\" ON \"public\".\"workout_sessions\" (\"started_at\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"workout_sessions_started_at_idx_bcc4bc60\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_sessions_started_at_idx_bcc4bc60\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.workout_sessions.workout_sessions_user_id_idx_6c952402",
+    "label": "Create index \"workout_sessions_user_id_idx_6c952402\" on \"workout_sessions\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "workout_sessions_user_id_idx_6c952402",
+        "table": "workout_sessions"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"workout_sessions_user_id_idx_6c952402\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_sessions_user_id_idx_6c952402\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"workout_sessions_user_id_idx_6c952402\"",
+        "sql": "CREATE INDEX \"workout_sessions_user_id_idx_6c952402\" ON \"public\".\"workout_sessions\" (\"user_id\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"workout_sessions_user_id_idx_6c952402\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_sessions_user_id_idx_6c952402\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.workout_sessions.workout_sessions_user_id_started_at_idx_beb66913",
+    "label": "Create index \"workout_sessions_user_id_started_at_idx_beb66913\" on \"workout_sessions\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "workout_sessions_user_id_started_at_idx_beb66913",
+        "table": "workout_sessions"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"workout_sessions_user_id_started_at_idx_beb66913\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_sessions_user_id_started_at_idx_beb66913\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"workout_sessions_user_id_started_at_idx_beb66913\"",
+        "sql": "CREATE INDEX \"workout_sessions_user_id_started_at_idx_beb66913\" ON \"public\".\"workout_sessions\" (\"user_id\", \"started_at\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"workout_sessions_user_id_started_at_idx_beb66913\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_sessions_user_id_started_at_idx_beb66913\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.workout_sessions.workout_sessions_workout_id_idx_7b5dce6d",
+    "label": "Create index \"workout_sessions_workout_id_idx_7b5dce6d\" on \"workout_sessions\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "workout_sessions_workout_id_idx_7b5dce6d",
+        "table": "workout_sessions"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"workout_sessions_workout_id_idx_7b5dce6d\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_sessions_workout_id_idx_7b5dce6d\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"workout_sessions_workout_id_idx_7b5dce6d\"",
+        "sql": "CREATE INDEX \"workout_sessions_workout_id_idx_7b5dce6d\" ON \"public\".\"workout_sessions\" (\"workout_id\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"workout_sessions_workout_id_idx_7b5dce6d\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_sessions_workout_id_idx_7b5dce6d\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.workouts.workouts_user_id_idx_6c952402",
+    "label": "Create index \"workouts_user_id_idx_6c952402\" on \"workouts\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "workouts_user_id_idx_6c952402",
+        "table": "workouts"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"workouts_user_id_idx_6c952402\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workouts_user_id_idx_6c952402\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"workouts_user_id_idx_6c952402\"",
+        "sql": "CREATE INDEX \"workouts_user_id_idx_6c952402\" ON \"public\".\"workouts\" (\"user_id\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"workouts_user_id_idx_6c952402\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workouts_user_id_idx_6c952402\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.workouts.workouts_user_id_is_active_idx_cacd3433",
+    "label": "Create index \"workouts_user_id_is_active_idx_cacd3433\" on \"workouts\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "workouts_user_id_is_active_idx_cacd3433",
+        "table": "workouts"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"workouts_user_id_is_active_idx_cacd3433\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workouts_user_id_is_active_idx_cacd3433\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"workouts_user_id_is_active_idx_cacd3433\"",
+        "sql": "CREATE INDEX \"workouts_user_id_is_active_idx_cacd3433\" ON \"public\".\"workouts\" (\"user_id\", \"is_active\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"workouts_user_id_is_active_idx_cacd3433\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workouts_user_id_is_active_idx_cacd3433\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.exercise_sessions.exercise_sessions_workout_session_id_fkey",
+    "label": "Add foreign key \"exercise_sessions_workout_session_id_fkey\" on \"exercise_sessions\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "exercise_sessions_workout_session_id_fkey",
+        "table": "exercise_sessions"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"exercise_sessions_workout_session_id_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "exercise_sessions_workout_session_id_fkey",
+          "public",
+          "\"public\".\"exercise_sessions\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"exercise_sessions_workout_session_id_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"exercise_sessions\"\nADD CONSTRAINT \"exercise_sessions_workout_session_id_fkey\"\nFOREIGN KEY (\"workout_session_id\")\nREFERENCES \"public\".\"workout_sessions\" (\"id\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"exercise_sessions_workout_session_id_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "exercise_sessions_workout_session_id_fkey",
+          "public",
+          "\"public\".\"exercise_sessions\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.exercise_sessions.exercise_sessions_workout_exercise_id_fkey",
+    "label": "Add foreign key \"exercise_sessions_workout_exercise_id_fkey\" on \"exercise_sessions\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "exercise_sessions_workout_exercise_id_fkey",
+        "table": "exercise_sessions"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"exercise_sessions_workout_exercise_id_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "exercise_sessions_workout_exercise_id_fkey",
+          "public",
+          "\"public\".\"exercise_sessions\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"exercise_sessions_workout_exercise_id_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"exercise_sessions\"\nADD CONSTRAINT \"exercise_sessions_workout_exercise_id_fkey\"\nFOREIGN KEY (\"workout_exercise_id\")\nREFERENCES \"public\".\"workout_exercises\" (\"id\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"exercise_sessions_workout_exercise_id_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "exercise_sessions_workout_exercise_id_fkey",
+          "public",
+          "\"public\".\"exercise_sessions\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.exercise_sets.exercise_sets_exercise_session_id_fkey",
+    "label": "Add foreign key \"exercise_sets_exercise_session_id_fkey\" on \"exercise_sets\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "exercise_sets_exercise_session_id_fkey",
+        "table": "exercise_sets"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"exercise_sets_exercise_session_id_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "exercise_sets_exercise_session_id_fkey",
+          "public",
+          "\"public\".\"exercise_sets\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"exercise_sets_exercise_session_id_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"exercise_sets\"\nADD CONSTRAINT \"exercise_sets_exercise_session_id_fkey\"\nFOREIGN KEY (\"exercise_session_id\")\nREFERENCES \"public\".\"exercise_sessions\" (\"id\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"exercise_sets_exercise_session_id_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "exercise_sets_exercise_session_id_fkey",
+          "public",
+          "\"public\".\"exercise_sets\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.workout_exercises.workout_exercises_workout_id_fkey",
+    "label": "Add foreign key \"workout_exercises_workout_id_fkey\" on \"workout_exercises\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "workout_exercises_workout_id_fkey",
+        "table": "workout_exercises"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"workout_exercises_workout_id_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "workout_exercises_workout_id_fkey",
+          "public",
+          "\"public\".\"workout_exercises\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"workout_exercises_workout_id_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"workout_exercises\"\nADD CONSTRAINT \"workout_exercises_workout_id_fkey\"\nFOREIGN KEY (\"workout_id\")\nREFERENCES \"public\".\"workouts\" (\"id\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"workout_exercises_workout_id_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "workout_exercises_workout_id_fkey",
+          "public",
+          "\"public\".\"workout_exercises\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.workout_exercises.workout_exercises_exercise_id_fkey",
+    "label": "Add foreign key \"workout_exercises_exercise_id_fkey\" on \"workout_exercises\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "workout_exercises_exercise_id_fkey",
+        "table": "workout_exercises"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"workout_exercises_exercise_id_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "workout_exercises_exercise_id_fkey",
+          "public",
+          "\"public\".\"workout_exercises\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"workout_exercises_exercise_id_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"workout_exercises\"\nADD CONSTRAINT \"workout_exercises_exercise_id_fkey\"\nFOREIGN KEY (\"exercise_id\")\nREFERENCES \"public\".\"exercises\" (\"id\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"workout_exercises_exercise_id_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "workout_exercises_exercise_id_fkey",
+          "public",
+          "\"public\".\"workout_exercises\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.workout_sessions.workout_sessions_user_id_fkey",
+    "label": "Add foreign key \"workout_sessions_user_id_fkey\" on \"workout_sessions\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "workout_sessions_user_id_fkey",
+        "table": "workout_sessions"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"workout_sessions_user_id_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "workout_sessions_user_id_fkey",
+          "public",
+          "\"public\".\"workout_sessions\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"workout_sessions_user_id_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"workout_sessions\"\nADD CONSTRAINT \"workout_sessions_user_id_fkey\"\nFOREIGN KEY (\"user_id\")\nREFERENCES \"public\".\"users\" (\"id\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"workout_sessions_user_id_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "workout_sessions_user_id_fkey",
+          "public",
+          "\"public\".\"workout_sessions\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.workout_sessions.workout_sessions_workout_id_fkey",
+    "label": "Add foreign key \"workout_sessions_workout_id_fkey\" on \"workout_sessions\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "workout_sessions_workout_id_fkey",
+        "table": "workout_sessions"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"workout_sessions_workout_id_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "workout_sessions_workout_id_fkey",
+          "public",
+          "\"public\".\"workout_sessions\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"workout_sessions_workout_id_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"workout_sessions\"\nADD CONSTRAINT \"workout_sessions_workout_id_fkey\"\nFOREIGN KEY (\"workout_id\")\nREFERENCES \"public\".\"workouts\" (\"id\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"workout_sessions_workout_id_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "workout_sessions_workout_id_fkey",
+          "public",
+          "\"public\".\"workout_sessions\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.workouts.workouts_user_id_fkey",
+    "label": "Add foreign key \"workouts_user_id_fkey\" on \"workouts\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "workouts_user_id_fkey",
+        "table": "workouts"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"workouts_user_id_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "workouts_user_id_fkey",
+          "public",
+          "\"public\".\"workouts\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"workouts_user_id_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"workouts\"\nADD CONSTRAINT \"workouts_user_id_fkey\"\nFOREIGN KEY (\"user_id\")\nREFERENCES \"public\".\"users\" (\"id\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"workouts_user_id_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "workouts_user_id_fkey",
+          "public",
+          "\"public\".\"workouts\""
+        ]
+      }
+    ]
+  }
+]

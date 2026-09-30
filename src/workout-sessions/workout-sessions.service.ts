@@ -1,8 +1,11 @@
 import {
+  BadRequestException,
   ConflictException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { isUUID } from 'class-validator';
+import type { WorkoutShareSummary } from './dto/workout-share-summary.dto.js';
 import { PrismaService } from '../prisma/prisma.service.js';
 import type { Transaction } from '../prisma/db.js';
 import { WorkoutsService } from '../workouts/workouts.service.js';
@@ -166,6 +169,51 @@ export class WorkoutSessionsService {
               1000,
           )
         : null,
+    };
+  }
+
+  async shareSummary(id: string): Promise<WorkoutShareSummary> {
+    // This resource lookup deliberately returns 404 for malformed IDs too.
+    if (!isUUID(id)) throw new NotFoundException('Workout session not found');
+    const session = await this.get(id);
+    if (!session.finishedAt)
+      throw new BadRequestException('Workout session is not finished');
+    if (!session.workout) throw new NotFoundException('Workout not found');
+
+    const exerciseIds = [
+      ...new Set(
+        session.exerciseSessions
+          .filter((execution) => execution.sets.some((set) => set.completed))
+          .flatMap((execution) =>
+            execution.workoutExercise
+              ? [execution.workoutExercise.exerciseId]
+              : [],
+          ),
+      ),
+    ];
+    const mappings = exerciseIds.length
+      ? await this.prisma.db.orm.public.ExerciseMuscle.where((mapping) =>
+          mapping.exerciseId.in(exerciseIds),
+        )
+          .include('muscleGroup')
+          .all()
+      : [];
+
+    return {
+      workoutSessionId: session.id,
+      workoutName: session.workout.name,
+      durationSeconds: Math.floor(
+        (session.finishedAt.epochMilliseconds -
+          session.startedAt.epochMilliseconds) /
+          1000,
+      ),
+      muscles: [
+        ...new Set(
+          mappings.flatMap((mapping) =>
+            mapping.muscleGroup ? [mapping.muscleGroup.slug] : [],
+          ),
+        ),
+      ].sort(),
     };
   }
 

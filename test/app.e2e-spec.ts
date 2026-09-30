@@ -331,6 +331,7 @@ describe('Workout flow with PostgreSQL', () => {
               orm: {
                 ...tx.orm,
                 public: {
+                  ...tx.orm.public,
                   User: tx.orm.public.User,
                   Exercise: tx.orm.public.Exercise,
                   Workout: tx.orm.public.Workout,
