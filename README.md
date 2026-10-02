@@ -262,3 +262,11 @@ A chamada externa tem timeout de 30 segundos e acontece antes da transação. An
 | 504 | Timeout da geração |
 
 Testes unitários simulam a API externa; os testes e2e usam PostgreSQL real e um provedor simulado, sem consumir cota. Execute `yarn test --runInBand` e `yarn test:e2e`.
+
+## Resumo muscular do treino
+
+`GET /workout-sessions/:id/share-summary` retorna os músculos de uma sessão finalizada como slugs únicos e ordenados. Um exercício entra no resumo quando está concluído ou tem pelo menos uma série concluída; exercícios apenas planejados não entram. Definições arquivadas continuam válidas para o histórico.
+
+A resolução ocorre por exercício: vínculos explícitos em `ExerciseMuscle` têm prioridade; na ausência deles, usa os músculos primários e secundários do catálogo pelo UUID; para exercícios personalizados, reconhece slugs e nomes em português em `muscleGroup` (separados por vírgula, ponto e vírgula ou barra, ignorando caixa e acentos). Não deduz músculos pelo nome ou descrição do exercício. Sem execução ou sem informação muscular reconhecida, `muscles` pode ser vazio.
+
+`yarn seed` importa os exercícios e seus vínculos musculares. Para preencher somente os vínculos do catálogo já presente no banco, execute `yarn seed:muscles`. Ambos preservam edições existentes. O fallback do resumo funciona mesmo antes dessa seed e não altera os registros históricos. O contrato Prisma não foi alterado por esta correção.

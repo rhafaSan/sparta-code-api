@@ -1,4 +1,5 @@
 import { IsIn, IsNotEmpty, IsString, IsUUID, Matches } from 'class-validator';
+import { catalogMuscleMappings } from '../exercises/exercise-catalog.js';
 
 export class MuscleGroupInput {
   @Matches(/^[a-z]+(?:-[a-z]+)*$/)
@@ -43,6 +44,4 @@ export const muscleGroups: MuscleGroupInput[] = [
   { slug: 'neck', name: 'Pescoço', view: 'both' },
 ];
 
-// Add reviewed mappings here, using real Exercise IDs (catalog or custom).
-// No mapping is inferred from the legacy muscleGroup string.
-export const exerciseMuscles: ExerciseMuscleInput[] = [];
+export const exerciseMuscles: ExerciseMuscleInput[] = catalogMuscleMappings;

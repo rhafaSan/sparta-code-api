@@ -1,8 +1,10 @@
 import { db } from './db.js';
 import { seedExercises } from './seed-exercises.js';
+import { seedMuscles } from './seed-muscles.js';
 
 try {
   const result = await seedExercises(db);
+  await seedMuscles(db);
   console.log(
     `Seed concluída: ${result.processed} exercícios processados. Registros existentes preservados.`,
   );

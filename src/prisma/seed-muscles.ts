@@ -10,7 +10,7 @@ import {
 
 export async function seedMuscles(
   database: Pick<typeof db, 'transaction'>,
-  mappings: ExerciseMuscleInput[] = exerciseMuscles,
+  mappings?: ExerciseMuscleInput[],
   groups: MuscleGroupInput[] = muscleGroups,
 ) {
   const options = { whitelist: true, forbidNonWhitelisted: true };
@@ -18,7 +18,7 @@ export async function seedMuscles(
     if (validateSync(plainToInstance(MuscleGroupInput, group), options).length)
       throw new Error('Invalid muscle group');
   }
-  for (const mapping of mappings) {
+  for (const mapping of mappings ?? exerciseMuscles) {
     if (
       validateSync(plainToInstance(ExerciseMuscleInput, mapping), options)
         .length
@@ -27,6 +27,15 @@ export async function seedMuscles(
   }
 
   return database.transaction(async (tx) => {
+    // Default seed only maps catalog exercises already present in this database.
+    // Explicit mappings still fail on missing IDs to catch configuration errors.
+    const existingIds = mappings
+      ? null
+      : new Set(
+          (await tx.orm.public.Exercise.select('id').all()).map((e) => e.id),
+        );
+    const selectedMappings =
+      mappings ?? exerciseMuscles.filter((m) => existingIds!.has(m.exerciseId));
     for (const group of groups) {
       await tx.orm.public.MuscleGroup.upsert({
         conflictOn: { slug: group.slug },
@@ -34,7 +43,7 @@ export async function seedMuscles(
         update: { slug: group.slug },
       });
     }
-    for (const mapping of mappings) {
+    for (const mapping of selectedMappings) {
       const exercise = await tx.orm.public.Exercise.first({
         id: mapping.exerciseId,
       });
@@ -54,6 +63,6 @@ export async function seedMuscles(
         update: { exerciseId: exercise.id },
       });
     }
-    return { groups: groups.length, mappings: mappings.length };
+    return { groups: groups.length, mappings: selectedMappings.length };
   });
 }

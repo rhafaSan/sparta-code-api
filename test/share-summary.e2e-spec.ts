@@ -130,7 +130,7 @@ describe('Muscle share summary with PostgreSQL', () => {
       workoutSessionId: sessionId,
       workoutName: 'Costas e bíceps',
       durationSeconds: 4080,
-      muscles: ['biceps', 'forearms', 'lats'],
+      muscles: ['biceps', 'chest', 'forearms', 'lats'],
     });
     expect(
       await db.orm.public.ExerciseSession.where({
@@ -139,18 +139,34 @@ describe('Muscle share summary with PostgreSQL', () => {
     ).toEqual(before);
   });
 
-  it('returns an empty array when performed exercises have no mappings', async () => {
+  it('resolves legacy groups per exercise when only some mappings are missing', async () => {
     for (const exerciseId of exerciseIds.slice(0, 2))
       await db.orm.public.ExerciseMuscle.where({ exerciseId }).deleteAll();
+    await db.orm.public.Exercise.where({ id: exerciseIds[0] }).update({
+      muscleGroup: 'Dorsais, Bíceps',
+    });
+    await db.orm.public.Exercise.where({ id: exerciseIds[1] }).update({
+      muscleGroup: 'Antebraços',
+    });
     const response = await request(app.getHttpServer()).get(url).expect(200);
-    expect(response.body).toMatchObject({ muscles: [] });
+    expect(response.body).toMatchObject({
+      muscles: ['biceps', 'chest', 'forearms', 'lats'],
+    });
   });
 
-  it('ignores completed exercise flags when there are no completed sets', async () => {
+  it('includes an explicitly completed exercise even without sets', async () => {
     for (const id of executionIds)
       await db.orm.public.ExerciseSet.where({
         exerciseSessionId: id,
       }).deleteAll();
+    const response = await request(app.getHttpServer()).get(url).expect(200);
+    expect(response.body).toMatchObject({ muscles: ['chest'] });
+  });
+
+  it('returns no muscles when nothing was performed, even with a populated template', async () => {
+    await db.orm.public.ExerciseSession.where({ id: executionIds[2] }).update({
+      completed: false,
+    });
     const response = await request(app.getHttpServer()).get(url).expect(200);
     expect(response.body).toMatchObject({ muscles: [] });
   });

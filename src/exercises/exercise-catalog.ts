@@ -76,3 +76,24 @@ if (catalogExercises.length !== catalog.metadata.exerciseCount)
   throw new Error('Exercise catalog count does not match its metadata');
 
 export const catalogExerciseIds = catalogExercises.map((entry) => entry.id);
+
+export const catalogMuscleTaxonomy = catalog.metadata.muscleTaxonomy;
+export const catalogMuscleMappings = catalog.exercises.flatMap((entry) => [
+  ...entry.primaryMuscles.map((muscleSlug) => ({
+    exerciseId: entry.id,
+    muscleSlug,
+    role: 'primary' as const,
+  })),
+  ...entry.secondaryMuscles
+    // The source includes labels outside the supported body-map taxonomy
+    // (e.g. hip flexors and back). Preserve them in the source/description,
+    // but never emit an unsupported slug or guess a more specific target.
+    .map((slug) => (slug === 'rear shoulders' ? 'shoulders' : slug))
+    .filter((slug) => muscles.has(slug))
+    .filter((slug) => !entry.primaryMuscles.includes(slug))
+    .map((muscleSlug) => ({
+      exerciseId: entry.id,
+      muscleSlug,
+      role: 'secondary' as const,
+    })),
+]);

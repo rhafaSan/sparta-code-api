@@ -5,6 +5,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { isUUID } from 'class-validator';
+import { resolveExerciseMuscles } from '../exercises/exercise-muscles.js';
 import type { WorkoutShareSummary } from './dto/workout-share-summary.dto.js';
 import { PrismaService } from '../prisma/prisma.service.js';
 import type { Transaction } from '../prisma/db.js';
@@ -180,17 +181,16 @@ export class WorkoutSessionsService {
       throw new BadRequestException('Workout session is not finished');
     if (!session.workout) throw new NotFoundException('Workout not found');
 
-    const exerciseIds = [
-      ...new Set(
-        session.exerciseSessions
-          .filter((execution) => execution.sets.some((set) => set.completed))
-          .flatMap((execution) =>
-            execution.workoutExercise
-              ? [execution.workoutExercise.exerciseId]
-              : [],
-          ),
-      ),
-    ];
+    const performedExercises = session.exerciseSessions
+      .filter(
+        (execution) =>
+          execution.completed || execution.sets.some((set) => set.completed),
+      )
+      .flatMap((execution) => {
+        const exercise = execution.workoutExercise?.exercise;
+        return exercise ? [exercise] : [];
+      });
+    const exerciseIds = [...new Set(performedExercises.map((e) => e.id))];
     const mappings = exerciseIds.length
       ? await this.prisma.db.orm.public.ExerciseMuscle.where((mapping) =>
           mapping.exerciseId.in(exerciseIds),
@@ -198,6 +198,13 @@ export class WorkoutSessionsService {
           .include('muscleGroup')
           .all()
       : [];
+    const mappedMuscles = new Map<string, string[]>();
+    for (const mapping of mappings) {
+      if (!mapping.muscleGroup) continue;
+      const slugs = mappedMuscles.get(mapping.exerciseId) ?? [];
+      slugs.push(mapping.muscleGroup.slug);
+      mappedMuscles.set(mapping.exerciseId, slugs);
+    }
 
     return {
       workoutSessionId: session.id,
@@ -209,8 +216,11 @@ export class WorkoutSessionsService {
       ),
       muscles: [
         ...new Set(
-          mappings.flatMap((mapping) =>
-            mapping.muscleGroup ? [mapping.muscleGroup.slug] : [],
+          performedExercises.flatMap((exercise) =>
+            resolveExerciseMuscles(
+              exercise,
+              mappedMuscles.get(exercise.id) ?? [],
+            ),
           ),
         ),
       ].sort(),

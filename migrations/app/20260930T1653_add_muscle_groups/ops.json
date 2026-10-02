@@ -1,0 +1,326 @@
+[
+  {
+    "id": "table.exercise_muscles",
+    "label": "Create table \"exercise_muscles\"",
+    "summary": "Creates table \"exercise_muscles\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "exercise_muscles"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"exercise_muscles\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"exercise_muscles\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"exercise_muscles\"",
+        "sql": "CREATE TABLE \"public\".\"exercise_muscles\" (\n  \"created_at\" timestamptz DEFAULT (now()) NOT NULL,\n  \"exercise_id\" uuid NOT NULL,\n  \"id\" uuid NOT NULL,\n  \"muscle_group_id\" uuid NOT NULL,\n  \"role\" text NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"exercise_muscles\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"exercise_muscles\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.muscle_groups",
+    "label": "Create table \"muscle_groups\"",
+    "summary": "Creates table \"muscle_groups\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "muscle_groups"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"muscle_groups\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"muscle_groups\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"muscle_groups\"",
+        "sql": "CREATE TABLE \"public\".\"muscle_groups\" (\n  \"created_at\" timestamptz DEFAULT (now()) NOT NULL,\n  \"id\" uuid NOT NULL,\n  \"is_active\" bool DEFAULT true NOT NULL,\n  \"name\" text NOT NULL,\n  \"slug\" text NOT NULL,\n  \"view\" text NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"muscle_groups\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"muscle_groups\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.exercise_muscles.exercise_muscles_exercise_id_muscle_group_id_key",
+    "label": "Add unique constraint on \"exercise_muscles\" (exercise_id, muscle_group_id)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "exercise_muscles_exercise_id_muscle_group_id_key",
+        "table": "exercise_muscles"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"exercise_muscles_exercise_id_muscle_group_id_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "exercise_muscles_exercise_id_muscle_group_id_key",
+          "public",
+          "\"public\".\"exercise_muscles\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"exercise_muscles_exercise_id_muscle_group_id_key\"",
+        "sql": "ALTER TABLE \"public\".\"exercise_muscles\" ADD CONSTRAINT \"exercise_muscles_exercise_id_muscle_group_id_key\" UNIQUE (\"exercise_id\", \"muscle_group_id\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"exercise_muscles_exercise_id_muscle_group_id_key\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "exercise_muscles_exercise_id_muscle_group_id_key",
+          "public",
+          "\"public\".\"exercise_muscles\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.muscle_groups.muscle_groups_slug_key",
+    "label": "Add unique constraint on \"muscle_groups\" (slug)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "muscle_groups_slug_key",
+        "table": "muscle_groups"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"muscle_groups_slug_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "muscle_groups_slug_key",
+          "public",
+          "\"public\".\"muscle_groups\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"muscle_groups_slug_key\"",
+        "sql": "ALTER TABLE \"public\".\"muscle_groups\" ADD CONSTRAINT \"muscle_groups_slug_key\" UNIQUE (\"slug\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"muscle_groups_slug_key\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "muscle_groups_slug_key",
+          "public",
+          "\"public\".\"muscle_groups\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.exercise_muscles.exercise_muscles_exercise_id_idx_b01d81a7",
+    "label": "Create index \"exercise_muscles_exercise_id_idx_b01d81a7\" on \"exercise_muscles\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "exercise_muscles_exercise_id_idx_b01d81a7",
+        "table": "exercise_muscles"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"exercise_muscles_exercise_id_idx_b01d81a7\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"exercise_muscles_exercise_id_idx_b01d81a7\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"exercise_muscles_exercise_id_idx_b01d81a7\"",
+        "sql": "CREATE INDEX \"exercise_muscles_exercise_id_idx_b01d81a7\" ON \"public\".\"exercise_muscles\" (\"exercise_id\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"exercise_muscles_exercise_id_idx_b01d81a7\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"exercise_muscles_exercise_id_idx_b01d81a7\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.exercise_muscles.exercise_muscles_muscle_group_id_idx_317bd837",
+    "label": "Create index \"exercise_muscles_muscle_group_id_idx_317bd837\" on \"exercise_muscles\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "exercise_muscles_muscle_group_id_idx_317bd837",
+        "table": "exercise_muscles"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"exercise_muscles_muscle_group_id_idx_317bd837\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"exercise_muscles_muscle_group_id_idx_317bd837\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"exercise_muscles_muscle_group_id_idx_317bd837\"",
+        "sql": "CREATE INDEX \"exercise_muscles_muscle_group_id_idx_317bd837\" ON \"public\".\"exercise_muscles\" (\"muscle_group_id\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"exercise_muscles_muscle_group_id_idx_317bd837\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"exercise_muscles_muscle_group_id_idx_317bd837\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.exercise_muscles.exercise_muscles_exercise_id_fkey",
+    "label": "Add foreign key \"exercise_muscles_exercise_id_fkey\" on \"exercise_muscles\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "exercise_muscles_exercise_id_fkey",
+        "table": "exercise_muscles"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"exercise_muscles_exercise_id_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "exercise_muscles_exercise_id_fkey",
+          "public",
+          "\"public\".\"exercise_muscles\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"exercise_muscles_exercise_id_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"exercise_muscles\"\nADD CONSTRAINT \"exercise_muscles_exercise_id_fkey\"\nFOREIGN KEY (\"exercise_id\")\nREFERENCES \"public\".\"exercises\" (\"id\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"exercise_muscles_exercise_id_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "exercise_muscles_exercise_id_fkey",
+          "public",
+          "\"public\".\"exercise_muscles\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.exercise_muscles.exercise_muscles_muscle_group_id_fkey",
+    "label": "Add foreign key \"exercise_muscles_muscle_group_id_fkey\" on \"exercise_muscles\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "exercise_muscles_muscle_group_id_fkey",
+        "table": "exercise_muscles"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"exercise_muscles_muscle_group_id_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "exercise_muscles_muscle_group_id_fkey",
+          "public",
+          "\"public\".\"exercise_muscles\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"exercise_muscles_muscle_group_id_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"exercise_muscles\"\nADD CONSTRAINT \"exercise_muscles_muscle_group_id_fkey\"\nFOREIGN KEY (\"muscle_group_id\")\nREFERENCES \"public\".\"muscle_groups\" (\"id\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"exercise_muscles_muscle_group_id_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "exercise_muscles_muscle_group_id_fkey",
+          "public",
+          "\"public\".\"exercise_muscles\""
+        ]
+      }
+    ]
+  }
+]
