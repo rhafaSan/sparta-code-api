@@ -1,4 +1,10 @@
-import { ApiTags, ApiOperation, ApiResponse, ApiParam } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiParam,
+} from '@nestjs/swagger';
 import {
   Body,
   Controller,
@@ -8,9 +14,12 @@ import {
   Patch,
   Post,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service.js';
-import { CreateUserDto } from './dto/user.dto.js';
+import { CreateUserDto, UpdateUserDto } from './dto/user.dto.js';
+import { CurrentUserId, OwnResource, Public } from '../auth/auth.decorators.js';
+import { AuthRateLimitGuard } from '../auth/auth-rate-limit.guard.js';
 import { PageQueryDto } from '../common/dto/list-query.dto.js';
 
 @ApiTags('Usuários')
@@ -27,6 +36,8 @@ export class UsersController {
     description: 'Entrada inválida, UUID inválido ou campo desconhecido.',
   })
   @Post()
+  @Public()
+  @UseGuards(AuthRateLimitGuard)
   create(@Body() dto: CreateUserDto) {
     return this.users.create(dto);
   }
@@ -44,9 +55,10 @@ export class UsersController {
     description:
       'Recurso não encontrado ou vínculo fora do recurso pai informado.',
   })
+  @ApiBearerAuth()
   @Get()
-  list(@Query() query: PageQueryDto) {
-    return this.users.list(query);
+  list(@Query() query: PageQueryDto, @CurrentUserId() userId: string) {
+    return this.users.list(query, userId);
   }
   @ApiOperation({ summary: 'Consultar usuário' })
   @ApiResponse({
@@ -68,7 +80,9 @@ export class UsersController {
     format: 'uuid',
     description: 'UUID do recurso retornado pela API.',
   })
+  @ApiBearerAuth()
   @Get(':id')
+  @OwnResource('user', 'id')
   get(@Param('id', ParseUUIDPipe) id: string) {
     return this.users.get(id);
   }
@@ -92,8 +106,10 @@ export class UsersController {
     format: 'uuid',
     description: 'UUID do recurso retornado pela API.',
   })
+  @ApiBearerAuth()
   @Patch(':id')
-  update(@Param('id', ParseUUIDPipe) id: string, @Body() dto: CreateUserDto) {
+  @OwnResource('user', 'id')
+  update(@Param('id', ParseUUIDPipe) id: string, @Body() dto: UpdateUserDto) {
     return this.users.update(id, dto);
   }
 }

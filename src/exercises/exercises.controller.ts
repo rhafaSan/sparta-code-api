@@ -1,4 +1,10 @@
-import { ApiTags, ApiOperation, ApiResponse, ApiParam } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiParam,
+} from '@nestjs/swagger';
 import {
   Body,
   Controller,
@@ -14,6 +20,7 @@ import { CreateExerciseDto, UpdateExerciseDto } from './dto/exercise.dto.js';
 import { ExerciseQueryDto } from './dto/exercise-query.dto.js';
 
 @ApiTags('Exercícios')
+@ApiBearerAuth()
 @Controller('exercises')
 export class ExercisesController {
   constructor(private readonly exercises: ExercisesService) {}

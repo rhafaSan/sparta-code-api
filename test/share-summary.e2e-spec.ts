@@ -1,3 +1,8 @@
+import {
+  clearFixtureAuth,
+  createFixtureUser,
+  fixtureAccessToken,
+} from './auth-helpers.js';
 import { randomUUID } from 'node:crypto';
 import { Test } from '@nestjs/testing';
 import type { INestApplication } from '@nestjs/common';
@@ -9,6 +14,7 @@ import { seedMuscles } from '../src/prisma/seed-muscles.js';
 
 describe('Muscle share summary with PostgreSQL', () => {
   let app: INestApplication<App>;
+  let accessToken: string;
   const userId = randomUUID();
   const workoutId = randomUUID();
   const sessionId = randomUUID();
@@ -25,7 +31,7 @@ describe('Muscle share summary with PostgreSQL', () => {
     app = module.createNestApplication();
     await app.init();
     await db.transaction(async (tx) => {
-      await tx.orm.public.User.create({ id: userId, name: 'Summary test' });
+      await createFixtureUser(userId, 'Summary test', tx);
       await tx.orm.public.Workout.create({
         id: workoutId,
         userId,
@@ -69,6 +75,7 @@ describe('Muscle share summary with PostgreSQL', () => {
         });
       }
     });
+    accessToken = await fixtureAccessToken(app, userId);
     await seedMuscles(db, [
       { exerciseId: exerciseIds[0], muscleSlug: 'lats', role: 'primary' },
       { exerciseId: exerciseIds[0], muscleSlug: 'biceps', role: 'secondary' },
@@ -91,6 +98,7 @@ describe('Muscle share summary with PostgreSQL', () => {
         await tx.orm.public.WorkoutSession.where({ id: sessionId }).delete();
         await tx.orm.public.WorkoutExercise.where({ workoutId }).deleteAll();
         await tx.orm.public.Workout.where({ id: workoutId }).delete();
+        await clearFixtureAuth(tx, userId);
         await tx.orm.public.User.where({ id: userId }).delete();
         for (const id of exerciseIds) {
           await tx.orm.public.ExerciseMuscle.where({
@@ -108,14 +116,19 @@ describe('Muscle share summary with PostgreSQL', () => {
   it('returns 404 for malformed and missing session IDs', async () => {
     await request(app.getHttpServer())
       .get('/workout-sessions/invalid/share-summary')
+      .set('Authorization', `Bearer ${accessToken}`)
       .expect(404);
     await request(app.getHttpServer())
       .get(`/workout-sessions/${randomUUID()}/share-summary`)
+      .set('Authorization', `Bearer ${accessToken}`)
       .expect(404);
   });
 
   it('returns 400 for an open session', async () => {
-    await request(app.getHttpServer()).get(url).expect(400);
+    await request(app.getHttpServer())
+      .get(url)
+      .expect(400)
+      .set('Authorization', `Bearer ${accessToken}`);
   });
 
   it('returns exact duration and sorted unique primary/secondary muscles only from performed exercises, even archived ones', async () => {
@@ -125,7 +138,10 @@ describe('Muscle share summary with PostgreSQL', () => {
     const before = await db.orm.public.ExerciseSession.where({
       workoutSessionId: sessionId,
     }).all();
-    const response = await request(app.getHttpServer()).get(url).expect(200);
+    const response = await request(app.getHttpServer())
+      .get(url)
+      .expect(200)
+      .set('Authorization', `Bearer ${accessToken}`);
     expect(response.body).toEqual({
       workoutSessionId: sessionId,
       workoutName: 'Costas e bíceps',
@@ -148,7 +164,10 @@ describe('Muscle share summary with PostgreSQL', () => {
     await db.orm.public.Exercise.where({ id: exerciseIds[1] }).update({
       muscleGroup: 'Antebraços',
     });
-    const response = await request(app.getHttpServer()).get(url).expect(200);
+    const response = await request(app.getHttpServer())
+      .get(url)
+      .expect(200)
+      .set('Authorization', `Bearer ${accessToken}`);
     expect(response.body).toMatchObject({
       muscles: ['biceps', 'chest', 'forearms', 'lats'],
     });
@@ -159,7 +178,10 @@ describe('Muscle share summary with PostgreSQL', () => {
       await db.orm.public.ExerciseSet.where({
         exerciseSessionId: id,
       }).deleteAll();
-    const response = await request(app.getHttpServer()).get(url).expect(200);
+    const response = await request(app.getHttpServer())
+      .get(url)
+      .expect(200)
+      .set('Authorization', `Bearer ${accessToken}`);
     expect(response.body).toMatchObject({ muscles: ['chest'] });
   });
 
@@ -167,7 +189,10 @@ describe('Muscle share summary with PostgreSQL', () => {
     await db.orm.public.ExerciseSession.where({ id: executionIds[2] }).update({
       completed: false,
     });
-    const response = await request(app.getHttpServer()).get(url).expect(200);
+    const response = await request(app.getHttpServer())
+      .get(url)
+      .expect(200)
+      .set('Authorization', `Bearer ${accessToken}`);
     expect(response.body).toMatchObject({ muscles: [] });
   });
 

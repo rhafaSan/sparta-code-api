@@ -1,0 +1,146 @@
+[
+  {
+    "id": "alterNullability.setNotNull.users.email",
+    "label": "Set NOT NULL on \"users\".\"email\"",
+    "operationClass": "destructive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "column",
+        "name": "email",
+        "table": "users"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"email\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "users",
+          "email"
+        ]
+      },
+      {
+        "description": "ensure no NULL values in \"email\"",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"public\".\"users\" WHERE \"email\" IS NULL) AS \"result\"",
+        "params": []
+      }
+    ],
+    "execute": [
+      {
+        "description": "set NOT NULL on \"email\"",
+        "sql": "ALTER TABLE \"public\".\"users\" ALTER COLUMN \"email\" SET NOT NULL"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"email\" is NOT NULL",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3 AND \"is_nullable\" = $4)) AS \"result\"",
+        "params": [
+          "public",
+          "users",
+          "email",
+          "NO"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "alterNullability.setNotNull.users.password_hash",
+    "label": "Set NOT NULL on \"users\".\"password_hash\"",
+    "operationClass": "destructive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "column",
+        "name": "password_hash",
+        "table": "users"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"password_hash\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "users",
+          "password_hash"
+        ]
+      },
+      {
+        "description": "ensure no NULL values in \"password_hash\"",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"public\".\"users\" WHERE \"password_hash\" IS NULL) AS \"result\"",
+        "params": []
+      }
+    ],
+    "execute": [
+      {
+        "description": "set NOT NULL on \"password_hash\"",
+        "sql": "ALTER TABLE \"public\".\"users\" ALTER COLUMN \"password_hash\" SET NOT NULL"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"password_hash\" is NOT NULL",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3 AND \"is_nullable\" = $4)) AS \"result\"",
+        "params": [
+          "public",
+          "users",
+          "password_hash",
+          "NO"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "alterNullability.setNotNull.users.username",
+    "label": "Set NOT NULL on \"users\".\"username\"",
+    "operationClass": "destructive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "column",
+        "name": "username",
+        "table": "users"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"username\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "users",
+          "username"
+        ]
+      },
+      {
+        "description": "ensure no NULL values in \"username\"",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"public\".\"users\" WHERE \"username\" IS NULL) AS \"result\"",
+        "params": []
+      }
+    ],
+    "execute": [
+      {
+        "description": "set NOT NULL on \"username\"",
+        "sql": "ALTER TABLE \"public\".\"users\" ALTER COLUMN \"username\" SET NOT NULL"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"username\" is NOT NULL",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3 AND \"is_nullable\" = $4)) AS \"result\"",
+        "params": [
+          "public",
+          "users",
+          "username",
+          "NO"
+        ]
+      }
+    ]
+  }
+]

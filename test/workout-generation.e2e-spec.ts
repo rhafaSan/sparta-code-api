@@ -1,3 +1,8 @@
+import {
+  clearFixtureAuth,
+  createFixtureUser,
+  fixtureAccessToken,
+} from './auth-helpers.js';
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { jest } from '@jest/globals';
 import { randomUUID } from 'node:crypto';
@@ -13,6 +18,7 @@ import { WorkoutGenerationService } from '../src/workouts/generation/workout-gen
 
 describe('Workout generation with PostgreSQL and a stubbed AI', () => {
   let app: INestApplication<App>;
+  let accessToken: string;
   const userId = randomUUID();
   const exerciseId = randomUUID();
   const generate = jest.fn<GeminiWorkoutProvider['generate']>();
@@ -44,7 +50,8 @@ describe('Workout generation with PostgreSQL and a stubbed AI', () => {
       .compile();
     app = module.createNestApplication();
     await app.init();
-    await db.orm.public.User.create({ id: userId, name: 'AI test' });
+    await createFixtureUser(userId, 'AI test');
+    accessToken = await fixtureAccessToken(app, userId);
     await db.orm.public.Exercise.create({
       id: exerciseId,
       name: 'Supino teste',
@@ -71,6 +78,7 @@ describe('Workout generation with PostgreSQL and a stubbed AI', () => {
           }).deleteAll();
         await tx.orm.public.Workout.where({ userId }).deleteAll();
         await tx.orm.public.Exercise.where({ id: exerciseId }).delete();
+        await clearFixtureAuth(tx, userId);
         await tx.orm.public.User.where({ id: userId }).delete();
       });
     } finally {
@@ -91,17 +99,20 @@ describe('Workout generation with PostgreSQL and a stubbed AI', () => {
     ])
       await request(app.getHttpServer())
         .post('/workouts/generate')
+        .set('Authorization', `Bearer ${accessToken}`)
         .send(input)
         .expect(400);
     await request(app.getHttpServer())
       .post('/workouts/generate')
+      .set('Authorization', `Bearer ${accessToken}`)
       .send({ ...dto, userId: randomUUID() })
-      .expect(404);
+      .expect(403);
     expect(generate).not.toHaveBeenCalled();
   });
   it('persists ordered entries, retrieves them and starts a session with snapshots', async () => {
     const response = await request(app.getHttpServer())
       .post('/workouts/generate')
+      .set('Authorization', `Bearer ${accessToken}`)
       .send(dto)
       .expect(201);
     const workout = response.body as {
@@ -113,10 +124,12 @@ describe('Workout generation with PostgreSQL and a stubbed AI', () => {
     ]);
     const read = await request(app.getHttpServer())
       .get('/workouts/' + workout.id)
+      .set('Authorization', `Bearer ${accessToken}`)
       .expect(200);
     expect(read.body).toEqual(response.body);
     const session = await request(app.getHttpServer())
       .post('/workout-sessions/start')
+      .set('Authorization', `Bearer ${accessToken}`)
       .send({ userId, workoutId: workout.id })
       .expect(201);
     expect(session.body.exerciseSessions).toEqual([
@@ -148,6 +161,7 @@ describe('Workout generation with PostgreSQL and a stubbed AI', () => {
       generate.mockResolvedValueOnce(output);
       await request(app.getHttpServer())
         .post('/workouts/generate')
+        .set('Authorization', `Bearer ${accessToken}`)
         .send(dto)
         .expect(status);
     }
@@ -164,6 +178,7 @@ describe('Workout generation with PostgreSQL and a stubbed AI', () => {
     try {
       await request(app.getHttpServer())
         .post('/workouts/generate')
+        .set('Authorization', `Bearer ${accessToken}`)
         .send(dto)
         .expect(409);
       expect(await saved()).toEqual(before);

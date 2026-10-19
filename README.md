@@ -1,6 +1,6 @@
 # Sparta Workout API
 
-Backend para planejamento e execução de treinos, usando NestJS 11, TypeScript, Prisma 8 RC e PostgreSQL. Implementa usuários, exercícios, treinos, sessões, séries, histórico e estatísticas básicas. Não inclui autenticação.
+Backend para planejamento e execução de treinos, usando NestJS 11, TypeScript, Prisma 8 RC e PostgreSQL. Implementa usuários, exercícios, treinos, sessões, séries, histórico e estatísticas básicas. Inclui autenticação por e-mail e senha, sessões persistentes e refresh token rotativo. Veja [autenticação](docs/authentication.md).
 
 ## Executar
 
@@ -33,7 +33,7 @@ IDs são UUIDs. Corpos de requisição usam `Content-Type: application/json`. Li
 
 | Método | Rota | Finalidade |
 | --- | --- | --- |
-| POST / GET | `/users` | Criar / listar usuários |
+| POST / GET | `/users` | Criar / consultar o próprio usuário |
 | GET / PATCH | `/users/:id` | Consultar / alterar nome |
 | POST / GET | `/exercises` | Criar / listar exercícios |
 | GET / PATCH | `/exercises/:id` | Consultar / editar / arquivar |
@@ -53,7 +53,7 @@ IDs são UUIDs. Corpos de requisição usam `Content-Type: application/json`. Li
 
 Histórico, desempenho e estatísticas aceitam filtro opcional `workoutId`. Desempenho retorna apenas exercícios de sessões finalizadas; `limit=1` consulta a execução anterior mais recente. Se o mesmo exercício aparece duas vezes no plano, cada execução é retornada separadamente. Estatísticas consideram somente séries concluídas de sessões finalizadas, abrangendo todo o histórico filtrado, independentemente da paginação.
 
-`userId` identifica o proprietário para criação e consultas por usuário. Não é autenticação nem controle de acesso: as rotas por ID não exigem credenciais, conforme o escopo inicial.
+`userId` deve identificar o usuário autenticado. Envie `Authorization: Bearer <accessToken>` nas rotas de dados. O acesso a usuários, treinos e sessões é restrito ao proprietário; o catálogo de exercícios é compartilhado. Login, renovação, logout e regras de expiração estão em [autenticação](docs/authentication.md).
 
 ## Exemplo do fluxo
 
@@ -62,8 +62,10 @@ Substitua os identificadores entre `<...>` pelos UUIDs retornados em cada etapa.
 1. `POST /users`
 
 ```json
-{ "name": "Rafael" }
+{ "name": "Rafael", "email": "user@example.com", "username": "rafael", "password": "Uma-senha-segura-42" }
 ```
+
+Após o cadastro, faça `POST /auth/login` com e-mail e senha. Salve os tokens retornados e envie o access token como Bearer nas próximas etapas.
 
 2. `POST /exercises`
 

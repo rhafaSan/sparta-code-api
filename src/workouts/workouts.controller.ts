@@ -1,4 +1,10 @@
-import { ApiTags, ApiOperation, ApiResponse, ApiParam } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiParam,
+} from '@nestjs/swagger';
 import {
   Body,
   Controller,
@@ -20,8 +26,10 @@ import {
   UpdateWorkoutExerciseDto,
 } from './dto/workout.dto.js';
 import { WorkoutQueryDto } from '../common/dto/list-query.dto.js';
+import { OwnResource } from '../auth/auth.decorators.js';
 
 @ApiTags('Treinos')
+@ApiBearerAuth()
 @Controller('workouts')
 export class WorkoutsController {
   constructor(private readonly workouts: WorkoutsService) {}
@@ -88,6 +96,7 @@ export class WorkoutsController {
     description: 'UUID do recurso retornado pela API.',
   })
   @Get(':id')
+  @OwnResource('workout', 'id')
   get(@Param('id', ParseUUIDPipe) id: string) {
     return this.workouts.get(id);
   }
@@ -117,6 +126,7 @@ export class WorkoutsController {
     description: 'UUID do recurso retornado pela API.',
   })
   @Patch(':id')
+  @OwnResource('workout', 'id')
   update(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() dto: UpdateWorkoutDto,
@@ -150,6 +160,7 @@ export class WorkoutsController {
     description: 'UUID do recurso retornado pela API.',
   })
   @Post(':workoutId/exercises')
+  @OwnResource('workout', 'workoutId')
   addExercise(
     @Param('workoutId', ParseUUIDPipe) id: string,
     @Body() dto: AddWorkoutExerciseDto,
@@ -183,6 +194,7 @@ export class WorkoutsController {
     description: 'UUID do recurso retornado pela API.',
   })
   @Put(':workoutId/exercises/order')
+  @OwnResource('workout', 'workoutId')
   reorder(
     @Param('workoutId', ParseUUIDPipe) id: string,
     @Body() dto: ReorderWorkoutExercisesDto,
@@ -222,6 +234,7 @@ export class WorkoutsController {
     description: 'UUID do recurso retornado pela API.',
   })
   @Patch(':workoutId/exercises/:workoutExerciseId')
+  @OwnResource('workout', 'workoutId')
   updateExercise(
     @Param('workoutId', ParseUUIDPipe) workoutId: string,
     @Param('workoutExerciseId', ParseUUIDPipe) id: string,
@@ -262,6 +275,7 @@ export class WorkoutsController {
     description: 'UUID do recurso retornado pela API.',
   })
   @Delete(':workoutId/exercises/:workoutExerciseId')
+  @OwnResource('workout', 'workoutId')
   archive(
     @Param('workoutId', ParseUUIDPipe) workoutId: string,
     @Param('workoutExerciseId', ParseUUIDPipe) id: string,

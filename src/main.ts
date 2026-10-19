@@ -16,6 +16,7 @@ async function bootstrap() {
       'API de planejamento e execução de treinos. Crie um usuário, exercícios e um treino; associe os exercícios, inicie uma sessão, registre séries e finalize. Use os UUIDs retornados nas próximas requisições. Pesos são strings decimais. Arquivamento preserva o histórico.',
     )
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document, {

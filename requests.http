@@ -1,4 +1,6 @@
 @baseUrl = http://localhost:3000
+@accessToken = REPLACE_WITH_ACCESS_TOKEN
+@refreshToken = REPLACE_WITH_REFRESH_TOKEN
 @userId = REPLACE_WITH_USER_UUID
 @exerciseId = REPLACE_WITH_EXERCISE_UUID
 @workoutId = REPLACE_WITH_WORKOUT_UUID
@@ -10,85 +12,123 @@
 POST {{baseUrl}}/users
 Content-Type: application/json
 
-{ "name": "Rafael" }
+{ "name": "Rafael", "email": "user@example.com", "username": "rafael", "password": "Uma-senha-segura-42" }
+
+### Login; copy the returned accessToken and refreshToken to the variables above
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{ "email": "user@example.com", "password": "Uma-senha-segura-42" }
+
+### Refresh; replace BOTH stored tokens with the returned values
+POST {{baseUrl}}/auth/refresh
+Content-Type: application/json
+
+{ "refreshToken": "{{refreshToken}}" }
+
+### Current user
+GET {{baseUrl}}/auth/me
+Authorization: Bearer {{accessToken}}
 
 ### 2. Create exercise; copy response id to exerciseId
 POST {{baseUrl}}/exercises
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 { "name": "Supino reto", "muscleGroup": "Peito" }
 
 ### 3. Create template; copy response id to workoutId
 POST {{baseUrl}}/workouts
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 { "userId": "{{userId}}", "name": "Treino de Peito" }
 
 ### 4. Add exercise; copy response id to workoutExerciseId
 POST {{baseUrl}}/workouts/{{workoutId}}/exercises
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 { "exerciseId": "{{exerciseId}}", "exerciseOrder": 1, "plannedSets": 4, "plannedReps": 10, "restSeconds": 90 }
 
 ### 5. Start; copy id to sessionId and exerciseSessions[0].id to exerciseSessionId
 POST {{baseUrl}}/workout-sessions/start
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 { "userId": "{{userId}}", "workoutId": "{{workoutId}}" }
 
 ### 6. Record or update the first set
 PUT {{baseUrl}}/workout-sessions/{{sessionId}}/exercises/{{exerciseSessionId}}/sets
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 { "setNumber": 1, "weight": "80.25", "reps": 10, "completed": true }
 
 ### Adjust rest during the ongoing workout (seconds; null clears it)
 PATCH {{baseUrl}}/workout-sessions/{{sessionId}}/exercises/{{exerciseSessionId}}
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 { "restSeconds": 60 }
 
 ### Configure rest for future workouts
 PATCH {{baseUrl}}/workouts/{{workoutId}}/exercises/{{workoutExerciseId}}
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 { "restSeconds": 120 }
 
 ### 7. Mark exercise complete
 PATCH {{baseUrl}}/workout-sessions/{{sessionId}}/exercises/{{exerciseSessionId}}
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 { "completed": true }
 
 ### 8. Finish workout
 POST {{baseUrl}}/workout-sessions/{{sessionId}}/finish
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 { "notes": "Treino concluído" }
 
 ### 9. Session details, snapshots, sets and calculated duration
 GET {{baseUrl}}/workout-sessions/{{sessionId}}
+Authorization: Bearer {{accessToken}}
 
 ### History
 GET {{baseUrl}}/workout-sessions?userId={{userId}}&limit=20&offset=0
+Authorization: Bearer {{accessToken}}
 
 ### Previous exercise performance
 GET {{baseUrl}}/workout-sessions/exercises/{{exerciseId}}/performance?userId={{userId}}&limit=1
+Authorization: Bearer {{accessToken}}
 
 ### Exercise statistics
 GET {{baseUrl}}/workout-sessions/exercises/{{exerciseId}}/statistics?userId={{userId}}
+Authorization: Bearer {{accessToken}}
 
 ### Archive a template entry, preserving history
 DELETE {{baseUrl}}/workouts/{{workoutId}}/exercises/{{workoutExerciseId}}
+Authorization: Bearer {{accessToken}}
 
 ### List archived and active templates
 GET {{baseUrl}}/workouts?userId={{userId}}&includeArchived=true
+Authorization: Bearer {{accessToken}}
 
 ### Generate and persist a workout with Gemini (configure GEMINI_API_KEY first)
 POST {{baseUrl}}/workouts/generate
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {
   "userId": "{{userId}}",
   "prompt": "Treino de pernas para iniciante, com máquinas, em 45 minutos."
 }
+
+### Logout this session
+POST {{baseUrl}}/auth/logout
+Content-Type: application/json
+
+{ "refreshToken": "{{refreshToken}}" }

@@ -1,9 +1,15 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { GenerateWorkoutDto } from '../dto/generate-workout.dto.js';
 import { WorkoutGenerationService } from './workout-generation.service.js';
 
 @ApiTags('Treinos')
+@ApiBearerAuth()
 @Controller('workouts')
 export class WorkoutGenerationController {
   constructor(private readonly generation: WorkoutGenerationService) {}

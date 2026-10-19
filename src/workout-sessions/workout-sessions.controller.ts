@@ -1,4 +1,10 @@
-import { ApiTags, ApiOperation, ApiResponse, ApiParam } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiParam,
+} from '@nestjs/swagger';
 import {
   Body,
   Controller,
@@ -14,6 +20,7 @@ import {
 import { WorkoutSessionsService } from './workout-sessions.service.js';
 import { WorkoutShareSummary } from './dto/workout-share-summary.dto.js';
 import { HistoryQueryDto } from '../common/dto/list-query.dto.js';
+import { OwnResource } from '../auth/auth.decorators.js';
 import {
   FinishWorkoutSessionDto,
   RecordSetDto,
@@ -22,6 +29,7 @@ import {
 } from './dto/workout-session.dto.js';
 
 @ApiTags('Sessões de treino')
+@ApiBearerAuth()
 @Controller('workout-sessions')
 export class WorkoutSessionsController {
   constructor(private readonly sessions: WorkoutSessionsService) {}
@@ -35,6 +43,7 @@ export class WorkoutSessionsController {
   })
   @ApiParam({ name: 'id', type: String, format: 'uuid' })
   @Get(':id/share-summary')
+  @OwnResource('session', 'id')
   shareSummary(@Param('id') id: string): Promise<WorkoutShareSummary> {
     return this.sessions.shareSummary(id);
   }
@@ -163,6 +172,7 @@ export class WorkoutSessionsController {
     description: 'UUID do recurso retornado pela API.',
   })
   @Get(':id')
+  @OwnResource('session', 'id')
   get(@Param('id', ParseUUIDPipe) id: string) {
     return this.sessions.get(id);
   }
@@ -199,6 +209,7 @@ export class WorkoutSessionsController {
     description: 'UUID do recurso retornado pela API.',
   })
   @Put(':sessionId/exercises/:exerciseSessionId/sets')
+  @OwnResource('session', 'sessionId')
   recordSet(
     @Param('sessionId', ParseUUIDPipe) sessionId: string,
     @Param('exerciseSessionId', ParseUUIDPipe) id: string,
@@ -241,6 +252,7 @@ export class WorkoutSessionsController {
     description: 'UUID do recurso retornado pela API.',
   })
   @Patch(':sessionId/exercises/:exerciseSessionId')
+  @OwnResource('session', 'sessionId')
   updateExercise(
     @Param('sessionId', ParseUUIDPipe) sessionId: string,
     @Param('exerciseSessionId', ParseUUIDPipe) id: string,
@@ -275,6 +287,7 @@ export class WorkoutSessionsController {
     description: 'UUID do recurso retornado pela API.',
   })
   @Post(':id/finish')
+  @OwnResource('session', 'id')
   @HttpCode(200)
   finish(
     @Param('id', ParseUUIDPipe) id: string,
