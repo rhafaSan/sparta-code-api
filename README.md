@@ -265,6 +265,10 @@ A chamada externa tem timeout de 30 segundos e acontece antes da transação. An
 
 Testes unitários simulam a API externa; os testes e2e usam PostgreSQL real e um provedor simulado, sem consumir cota. Execute `yarn test --runInBand` e `yarn test:e2e`.
 
+## Relatório de rendimento
+
+Para analisar evolução de cargas e repetições em várias semanas ou meses, use `GET /workout-sessions/progress-report?startDate=2026-09-07&endDate=2026-10-04&groupBy=week` com o token Bearer. O relatório retorna totais, evolução por exercício e percentuais de variação da maior carga e da média de repetições por série. Consulte os filtros, exemplos e regras em [Relatório de rendimento](docs/progress-report.md).
+
 ## Resumo muscular do treino
 
 `GET /workout-sessions/:id/share-summary` retorna os músculos de uma sessão finalizada como slugs únicos e ordenados. Um exercício entra no resumo quando está concluído ou tem pelo menos uma série concluída; exercícios apenas planejados não entram. Definições arquivadas continuam válidas para o histórico.

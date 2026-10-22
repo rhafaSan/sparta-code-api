@@ -109,6 +109,14 @@ Authorization: Bearer {{accessToken}}
 GET {{baseUrl}}/workout-sessions/exercises/{{exerciseId}}/statistics?userId={{userId}}
 Authorization: Bearer {{accessToken}}
 
+### Progress report: four weeks, grouped by calendar week
+GET {{baseUrl}}/workout-sessions/progress-report?startDate=2026-09-07&endDate=2026-10-04&groupBy=week
+Authorization: Bearer {{accessToken}}
+
+### Progress report: three months, optionally filtered by exercise and workout
+GET {{baseUrl}}/workout-sessions/progress-report?startDate=2026-07-01&endDate=2026-09-30&groupBy=month&timeZone=America/Sao_Paulo&exerciseId={{exerciseId}}&workoutId={{workoutId}}
+Authorization: Bearer {{accessToken}}
+
 ### Archive a template entry, preserving history
 DELETE {{baseUrl}}/workouts/{{workoutId}}/exercises/{{workoutExerciseId}}
 Authorization: Bearer {{accessToken}}

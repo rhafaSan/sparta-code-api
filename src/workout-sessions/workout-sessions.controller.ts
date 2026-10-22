@@ -20,7 +20,12 @@ import {
 import { WorkoutSessionsService } from './workout-sessions.service.js';
 import { WorkoutShareSummary } from './dto/workout-share-summary.dto.js';
 import { HistoryQueryDto } from '../common/dto/list-query.dto.js';
-import { OwnResource } from '../auth/auth.decorators.js';
+import { CurrentUserId, OwnResource } from '../auth/auth.decorators.js';
+import { ProgressReportService } from './progress-report.service.js';
+import {
+  ProgressReport,
+  ProgressReportQueryDto,
+} from './dto/progress-report.dto.js';
 import {
   FinishWorkoutSessionDto,
   RecordSetDto,
@@ -32,7 +37,32 @@ import {
 @ApiBearerAuth()
 @Controller('workout-sessions')
 export class WorkoutSessionsController {
-  constructor(private readonly sessions: WorkoutSessionsService) {}
+  constructor(
+    private readonly sessions: WorkoutSessionsService,
+    private readonly reports: ProgressReportService,
+  ) {}
+
+  @ApiOperation({
+    summary: 'Relatório de progressão por período',
+    description:
+      'Séries concluídas de treinos finalizados do usuário autenticado. Datas inclusivas no fuso informado, por início do treino. Semanas começam na segunda-feira. Compara o primeiro e o último intervalo com séries; percentuais são null com menos de dois intervalos, base zero ou dados ausentes.',
+  })
+  @ApiResponse({ status: 200, type: ProgressReport })
+  @ApiResponse({
+    status: 400,
+    description: 'Datas, intervalo, fuso ou filtros inválidos.',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Treino ou exercício não encontrado.',
+  })
+  @Get('progress-report')
+  progressReport(
+    @CurrentUserId() userId: string,
+    @Query() query: ProgressReportQueryDto,
+  ): Promise<ProgressReport> {
+    return this.reports.generate(userId, query);
+  }
 
   @ApiOperation({ summary: 'Resumo muscular de uma sessão concluída' })
   @ApiResponse({ status: 200, type: WorkoutShareSummary })
