@@ -121,7 +121,7 @@
     {
       "id": "b432144f-419d-519e-8701-638ec63f3387",
       "slug": "ab-wheel-rollout",
-      "namePt": "Ab wheel rollout",
+      "namePt": "Abdominal com roda",
       "nameEn": "Ab Wheel Rollout",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -164,7 +164,7 @@
     {
       "id": "dedbce79-02ed-5daa-bdcb-62f3e4e891d4",
       "slug": "bicycle-crunch",
-      "namePt": "Bicycle crunch",
+      "namePt": "Abdominal bicicleta",
       "nameEn": "Bicycle Crunch",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -183,7 +183,7 @@
     {
       "id": "d3778bdf-026a-559e-b917-78795f15130e",
       "slug": "bird-dog",
-      "namePt": "Bird dog",
+      "namePt": "Extensão alternada de braço e perna",
       "nameEn": "Bird Dog",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -205,7 +205,7 @@
     {
       "id": "e8c07f78-10f8-5b73-b34d-269b7aa4cd50",
       "slug": "crunch",
-      "namePt": "Crunch",
+      "namePt": "Abdominal curto",
       "nameEn": "Crunch",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -224,7 +224,7 @@
     {
       "id": "d16bdeae-ded2-548e-9f57-818529ad4aad",
       "slug": "machine-crunch",
-      "namePt": "Crunch máquina",
+      "namePt": "Abdominal na máquina",
       "nameEn": "Machine Crunch",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -243,7 +243,7 @@
     {
       "id": "77115293-d5a6-5749-ad09-579c27da83c9",
       "slug": "cable-crunch",
-      "namePt": "Crunch na polia",
+      "namePt": "Abdominal na polia",
       "nameEn": "Cable Crunch",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -263,7 +263,7 @@
     {
       "id": "f2a14e0b-1782-5ff2-a06a-c0d83af145fa",
       "slug": "dead-bug",
-      "namePt": "Dead bug",
+      "namePt": "Inseto morto",
       "nameEn": "Dead Bug",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -282,7 +282,7 @@
     {
       "id": "b8e07e73-5cb5-51be-afcf-1f0e3f053735",
       "slug": "dragon-flag",
-      "namePt": "Dragon flag",
+      "namePt": "Bandeira humana",
       "nameEn": "Dragon Flag",
       "type": "reps",
       "difficultyLevel": "expert",
@@ -346,7 +346,7 @@
     {
       "id": "ed9ac84a-9d7e-5603-8dc8-5f0fbca8bf20",
       "slug": "mountain-climber",
-      "namePt": "Mountain climber",
+      "namePt": "Escalador",
       "nameEn": "Mountain Climber",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -368,7 +368,7 @@
     {
       "id": "6a7a7785-5740-5c12-8467-f424fa1c66ff",
       "slug": "pallof-press",
-      "namePt": "Pallof press",
+      "namePt": "Press Pallof",
       "nameEn": "Pallof Press",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -433,7 +433,7 @@
     {
       "id": "e7503afd-642c-5a86-aece-dc3de98093eb",
       "slug": "reverse-crunch",
-      "namePt": "Reverse crunch",
+      "namePt": "Abdominal reverso",
       "nameEn": "Reverse Crunch",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -452,7 +452,7 @@
     {
       "id": "4743da95-3aac-5775-942d-250c7556fb88",
       "slug": "russian-twist",
-      "namePt": "Russian twist",
+      "namePt": "Rotação russa",
       "nameEn": "Russian Twist",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -471,7 +471,7 @@
     {
       "id": "6dc30796-a5a6-5b7b-b68f-e3a123516671",
       "slug": "sit-up",
-      "namePt": "Sit-up",
+      "namePt": "Abdominal completo",
       "nameEn": "Sit-Up",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -490,7 +490,7 @@
     {
       "id": "ffb1c703-e77f-562e-81a3-471560a228fa",
       "slug": "toe-touch-crunch",
-      "namePt": "Toe touch",
+      "namePt": "Abdominal tocando os pés",
       "nameEn": "Toe Touch Crunch",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -509,7 +509,7 @@
     {
       "id": "b2ee788a-0f5f-5310-af6c-5b12afc1223e",
       "slug": "v-up",
-      "namePt": "V-up",
+      "namePt": "Abdominal canivete",
       "nameEn": "V-Up",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -612,7 +612,7 @@
     {
       "id": "bcfadbe7-1a44-5dd6-9390-5486e0dc5e6c",
       "slug": "clamshell",
-      "namePt": "Clamshell",
+      "namePt": "Abdução de quadril deitado",
       "nameEn": "Clamshell",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -671,7 +671,7 @@
     {
       "id": "4570431b-9d20-5466-a117-af85056cef4e",
       "slug": "copenhagen-plank",
-      "namePt": "Copenhagen plank",
+      "namePt": "Prancha Copenhagen",
       "nameEn": "Copenhagen Plank",
       "type": "reps",
       "difficultyLevel": "expert",
@@ -1008,7 +1008,7 @@
     {
       "id": "a975f7d1-282b-551f-937e-a9df5598068c",
       "slug": "donkey-calf-raise",
-      "namePt": "Donkey calf raise",
+      "namePt": "Elevação de panturrilha tipo burro",
       "nameEn": "Donkey Calf Raise",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -1027,7 +1027,7 @@
     {
       "id": "c757f554-fea0-5143-ac61-c9fac534d0ee",
       "slug": "jump-rope",
-      "namePt": "Jump rope",
+      "namePt": "Pular corda",
       "nameEn": "Jump Rope",
       "type": "time",
       "difficultyLevel": "beginner",
@@ -1162,7 +1162,7 @@
     {
       "id": "fb9b0f9b-6d5b-556c-a202-9ee2c70a83e1",
       "slug": "pogo-jumps",
-      "namePt": "Pogo jumps",
+      "namePt": "Saltos pogo",
       "nameEn": "Pogo Jumps",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -1229,7 +1229,7 @@
     {
       "id": "ce962d23-f1c3-5306-8512-b01a41b9cfc5",
       "slug": "incline-machine-chest-press",
-      "namePt": "Chest press inclinado máquina",
+      "namePt": "Supino inclinado na máquina",
       "nameEn": "Incline Machine Chest Press",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -1251,7 +1251,7 @@
     {
       "id": "91955dd4-bf69-5063-ba94-ebd0428d279f",
       "slug": "machine-chest-press",
-      "namePt": "Chest press máquina",
+      "namePt": "Supino na máquina",
       "nameEn": "Machine Chest Press",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -1273,7 +1273,7 @@
     {
       "id": "c58cf447-c24b-53b6-964c-16e54fbc31d0",
       "slug": "high-cable-crossover",
-      "namePt": "Crossover na polia alta",
+      "namePt": "Crucifixo na polia alta",
       "nameEn": "High Cable Crossover",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -1294,7 +1294,7 @@
     {
       "id": "187baa7a-c3ff-596a-a925-5be62726f7a3",
       "slug": "low-cable-crossover",
-      "namePt": "Crossover na polia baixa",
+      "namePt": "Crucifixo na polia baixa",
       "nameEn": "Low Cable Crossover",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -1315,7 +1315,7 @@
     {
       "id": "51e2d276-04fa-5cd2-8ccc-01090e75e869",
       "slug": "cable-chest-fly",
-      "namePt": "Crossover na polia média",
+      "namePt": "Crucifixo na polia média",
       "nameEn": "Cable Chest Fly",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -1512,7 +1512,7 @@
     {
       "id": "0fe2d946-3e3f-5579-a39d-2db31013f625",
       "slug": "dumbbell-squeeze-press",
-      "namePt": "Squeeze press com halteres",
+      "namePt": "Supino de compressão com halteres",
       "nameEn": "Dumbbell Squeeze Press",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -1670,7 +1670,7 @@
     {
       "id": "720e84fb-4399-5ef5-b623-fb3987315c14",
       "slug": "dead-hang",
-      "namePt": "Dead hang",
+      "namePt": "Sustentação na barra",
       "nameEn": "Dead Hang",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -1692,7 +1692,7 @@
     {
       "id": "321e41dd-4998-5e51-a9b2-1e0eec1721b4",
       "slug": "farmer-hold",
-      "namePt": "Farmer hold",
+      "namePt": "Sustentação do fazendeiro",
       "nameEn": "Farmer Hold",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -1810,7 +1810,7 @@
     {
       "id": "0b0e8bca-1988-5fc4-9dfb-3e860028e5a3",
       "slug": "wrist-roller",
-      "namePt": "Wrist roller",
+      "namePt": "Enrolador de punho",
       "nameEn": "Wrist Roller",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -1851,7 +1851,7 @@
     {
       "id": "feb341bc-4a6c-51cd-a6fe-e726db6d6c46",
       "slug": "cable-hip-extension",
-      "namePt": "Cable hip extension",
+      "namePt": "Extensão de quadril na polia",
       "nameEn": "Cable Hip Extension",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -1914,7 +1914,7 @@
     {
       "id": "b4bc1ba3-9279-58b3-8441-46789c37bb25",
       "slug": "frog-pump",
-      "namePt": "Frog pump",
+      "namePt": "Elevação de quadril sapinho",
       "nameEn": "Frog Pump",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -1933,7 +1933,7 @@
     {
       "id": "662cd5ec-8ec8-5374-9860-5591e0c5bc29",
       "slug": "barbell-hip-thrust",
-      "namePt": "Hip thrust com barra",
+      "namePt": "Elevação pélvica com barra",
       "nameEn": "Barbell Hip Thrust",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -1955,7 +1955,7 @@
     {
       "id": "f08135af-3f7f-5f91-819b-6eeede9805b7",
       "slug": "dumbbell-hip-thrust",
-      "namePt": "Hip thrust com halter",
+      "namePt": "Elevação pélvica com halter",
       "nameEn": "Dumbbell Hip Thrust",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -1977,7 +1977,7 @@
     {
       "id": "26d4d4b3-ed7e-56e1-9622-350eadf4df66",
       "slug": "machine-hip-thrust",
-      "namePt": "Hip thrust máquina",
+      "namePt": "Elevação pélvica na máquina",
       "nameEn": "Machine Hip Thrust",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -1998,7 +1998,7 @@
     {
       "id": "429885b6-7278-519c-ad2b-8a11f1674fcd",
       "slug": "kettlebell-swing",
-      "namePt": "Kettlebell swing",
+      "namePt": "Balanço com kettlebell",
       "nameEn": "Kettlebell Swing",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -2111,7 +2111,7 @@
     {
       "id": "5e784187-4000-517f-a4a0-230b65d1a938",
       "slug": "cable-glute-pull-through",
-      "namePt": "Pull-through na polia",
+      "namePt": "Extensão de quadril na polia",
       "nameEn": "Cable Glute Pull-Through",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -2134,7 +2134,7 @@
     {
       "id": "a317dd51-c4ed-50c1-9df1-1d134be04f28",
       "slug": "reverse-hyperextension",
-      "namePt": "Reverse hyperextension",
+      "namePt": "Hiperextensão reversa",
       "nameEn": "Reverse Hyperextension",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -2156,7 +2156,7 @@
     {
       "id": "baf1943d-a741-56de-9c1f-bca3dec96f80",
       "slug": "high-step-up",
-      "namePt": "Step-up alto",
+      "namePt": "Subida alta no banco",
       "nameEn": "High Step-Up",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -2179,7 +2179,7 @@
     {
       "id": "31f3089c-ef5d-5c55-8d33-984018e8edaa",
       "slug": "sumo-squat",
-      "namePt": "Sumo squat",
+      "namePt": "Agachamento sumô",
       "nameEn": "Sumo Squat",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -2201,7 +2201,7 @@
     {
       "id": "ce4154bb-9189-5ef6-9a44-b670e57e8ba7",
       "slug": "cable-pull-through",
-      "namePt": "Cable pull-through",
+      "namePt": "Extensão de quadril na polia",
       "nameEn": "Cable Pull-Through",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -2266,7 +2266,7 @@
     {
       "id": "a73e5aaa-179e-54b3-a5f5-e93bccc08cf5",
       "slug": "glute-ham-raise",
-      "namePt": "Glute-ham raise",
+      "namePt": "Elevação glúteo-posterior",
       "nameEn": "Glute Ham Raise",
       "type": "reps",
       "difficultyLevel": "expert",
@@ -2288,7 +2288,7 @@
     {
       "id": "57391455-8eb2-56d1-8912-e4639b299514",
       "slug": "good-morning",
-      "namePt": "Good morning",
+      "namePt": "Bom dia",
       "nameEn": "Good Morning",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -2353,7 +2353,7 @@
     {
       "id": "18c582bf-482c-547a-8a34-d5316cf534c7",
       "slug": "nordic-hamstring-curl",
-      "namePt": "Nordic curl",
+      "namePt": "Flexão nórdica de joelhos",
       "nameEn": "Nordic Hamstring Curl",
       "type": "reps",
       "difficultyLevel": "expert",
@@ -2375,7 +2375,7 @@
     {
       "id": "c325c701-5d7f-5214-afc5-8e736685fa2c",
       "slug": "single-leg-romanian-deadlift",
-      "namePt": "Single-leg Romanian deadlift",
+      "namePt": "Levantamento terra romeno unilateral",
       "nameEn": "Single-Leg Romanian Deadlift",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -2397,7 +2397,7 @@
     {
       "id": "435cc755-35d3-5bb6-84ab-a26f3932e5e5",
       "slug": "sliding-leg-curl",
-      "namePt": "Sliding leg curl",
+      "namePt": "Flexão de joelhos deslizante",
       "nameEn": "Sliding Leg Curl",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -2419,7 +2419,7 @@
     {
       "id": "ea37e8ba-3c7d-58f8-8a82-5779a964b254",
       "slug": "barbell-stiff-leg-deadlift",
-      "namePt": "Stiff com barra",
+      "namePt": "Levantamento terra com pernas rígidas e barra",
       "nameEn": "Barbell Stiff-Leg Deadlift",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -2507,7 +2507,7 @@
     {
       "id": "8bee24e5-c6bb-588c-917e-f13fd5e68ec4",
       "slug": "straight-arm-pulldown",
-      "namePt": "Pulldown com braços retos",
+      "namePt": "Puxada com braços estendidos",
       "nameEn": "Straight-Arm Pulldown",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -2861,7 +2861,7 @@
     {
       "id": "53b50a0c-c467-5132-982f-2094895ac55e",
       "slug": "bird-dog-back-extension",
-      "namePt": "Bird dog para lombar",
+      "namePt": "Extensão alternada de braço e perna para lombar",
       "nameEn": "Bird Dog Back Extension",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -2905,7 +2905,7 @@
     {
       "id": "4903134d-507c-53bb-a17a-fe3f662d7f83",
       "slug": "seated-good-morning",
-      "namePt": "Good morning sentado",
+      "namePt": "Bom dia sentado",
       "nameEn": "Seated Good Morning",
       "type": "reps",
       "difficultyLevel": "expert",
@@ -2950,7 +2950,7 @@
     {
       "id": "b457767c-ba06-5d00-8e6a-2e7b169d388b",
       "slug": "jefferson-curl",
-      "namePt": "Jefferson curl",
+      "namePt": "Flexão Jefferson",
       "nameEn": "Jefferson Curl",
       "type": "reps",
       "difficultyLevel": "expert",
@@ -2971,7 +2971,7 @@
     {
       "id": "4d75a340-8b75-59a1-8522-43a83cce91d4",
       "slug": "rack-pull",
-      "namePt": "Rack pull",
+      "namePt": "Levantamento terra parcial",
       "nameEn": "Rack Pull",
       "type": "reps",
       "difficultyLevel": "expert",
@@ -2995,7 +2995,7 @@
     {
       "id": "ad47075f-3d8e-5f89-b229-288e2b0cd010",
       "slug": "reverse-hyper",
-      "namePt": "Reverse hyper",
+      "namePt": "Hiperextensão reversa",
       "nameEn": "Reverse Hyper",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -3277,7 +3277,7 @@
     {
       "id": "62290fd9-b531-51e5-ac4e-8e1fa0eecea6",
       "slug": "neck-harness-extension",
-      "namePt": "Neck harness extension",
+      "namePt": "Extensão cervical com arnês",
       "nameEn": "Neck Harness Extension",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -3476,7 +3476,7 @@
     {
       "id": "ffff89e2-be2d-50f1-aeb6-693de03246f0",
       "slug": "air-bike",
-      "namePt": "Air bike",
+      "namePt": "Bicicleta ergométrica de braços",
       "nameEn": "Air Bike",
       "type": "time",
       "difficultyLevel": "intermediate",
@@ -3523,7 +3523,7 @@
     {
       "id": "0e33f166-ca6d-5ac5-becd-ad8d88ba077b",
       "slug": "box-jump",
-      "namePt": "Box jump",
+      "namePt": "Salto no caixote",
       "nameEn": "Box Jump",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -3587,7 +3587,7 @@
     {
       "id": "1d97b8f0-f45d-5478-917a-0951736cd0fd",
       "slug": "clean",
-      "namePt": "Clean",
+      "namePt": "Arranco até os ombros",
       "nameEn": "Clean",
       "type": "reps",
       "difficultyLevel": "expert",
@@ -3611,7 +3611,7 @@
     {
       "id": "2437f46d-2906-52a0-89f1-689a67aee0bf",
       "slug": "clean-and-jerk",
-      "namePt": "Clean and jerk",
+      "namePt": "Arremesso olímpico",
       "nameEn": "Clean and Jerk",
       "type": "reps",
       "difficultyLevel": "expert",
@@ -3658,7 +3658,7 @@
     {
       "id": "7581043f-35ff-5763-ae37-0779ffea4354",
       "slug": "cyclist-squat",
-      "namePt": "Cyclist squat",
+      "namePt": "Agachamento de ciclista",
       "nameEn": "Cyclist Squat",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -3679,7 +3679,7 @@
     {
       "id": "8baa5d4d-b181-554d-a0b9-702f2a167af8",
       "slug": "dumbbell-thruster",
-      "namePt": "Dumbbell thruster",
+      "namePt": "Agachamento com desenvolvimento de halteres",
       "nameEn": "Dumbbell Thruster",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -3747,7 +3747,7 @@
     {
       "id": "36a6eef3-5ca7-50e6-924b-7e17685d3623",
       "slug": "hang-clean",
-      "namePt": "Hang clean",
+      "namePt": "Arranco dos joelhos até os ombros",
       "nameEn": "Hang Clean",
       "type": "reps",
       "difficultyLevel": "expert",
@@ -3771,7 +3771,7 @@
     {
       "id": "2c9d2870-9fa0-5a1d-85d6-a414e963f0d5",
       "slug": "high-knees",
-      "namePt": "High knees",
+      "namePt": "Corrida com joelhos altos",
       "nameEn": "High Knees",
       "type": "time",
       "difficultyLevel": "beginner",
@@ -3793,7 +3793,7 @@
     {
       "id": "5999944c-fa14-5600-a4eb-e34a16be0d14",
       "slug": "jump-squat",
-      "namePt": "Jump squat",
+      "namePt": "Agachamento com salto",
       "nameEn": "Jump Squat",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -3815,7 +3815,7 @@
     {
       "id": "0d6629e6-8285-5198-9eb0-bb743a5b2604",
       "slug": "45-degree-leg-press",
-      "namePt": "Leg press 45°",
+      "namePt": "Prensa de pernas a 45°",
       "nameEn": "45-Degree Leg Press",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -3837,7 +3837,7 @@
     {
       "id": "71f2a572-cacd-53f4-b7ae-acdcab8fe039",
       "slug": "horizontal-leg-press",
-      "namePt": "Leg press horizontal",
+      "namePt": "Prensa de pernas horizontal",
       "nameEn": "Horizontal Leg Press",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -3859,7 +3859,7 @@
     {
       "id": "0eaf4175-6bca-5374-9424-1db0095d1000",
       "slug": "pistol-squat",
-      "namePt": "Pistol squat",
+      "namePt": "Agachamento pistola",
       "nameEn": "Pistol Squat",
       "type": "reps",
       "difficultyLevel": "expert",
@@ -3881,7 +3881,7 @@
     {
       "id": "cfcf9f12-5840-5aaf-9af7-9235f17ccc83",
       "slug": "power-clean",
-      "namePt": "Power clean",
+      "namePt": "Arremesso de força",
       "nameEn": "Power Clean",
       "type": "reps",
       "difficultyLevel": "expert",
@@ -3905,7 +3905,7 @@
     {
       "id": "0d8de5ef-23ff-5e21-b345-053917bcfb6c",
       "slug": "power-snatch",
-      "namePt": "Power snatch",
+      "namePt": "Arranco de força",
       "nameEn": "Power Snatch",
       "type": "reps",
       "difficultyLevel": "expert",
@@ -3929,7 +3929,7 @@
     {
       "id": "11eaca03-28b3-5a44-8828-dc976a7db439",
       "slug": "sissy-squat",
-      "namePt": "Sissy squat",
+      "namePt": "Agachamento sissy",
       "nameEn": "Sissy Squat",
       "type": "reps",
       "difficultyLevel": "expert",
@@ -3948,7 +3948,7 @@
     {
       "id": "11c30b86-a745-5fd2-83bd-3ce62b685b35",
       "slug": "sled-pull",
-      "namePt": "Sled pull",
+      "namePt": "Puxada do trenó",
       "nameEn": "Sled Pull",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -3971,7 +3971,7 @@
     {
       "id": "f95a9396-aca3-524b-bb39-2951eb4bceed",
       "slug": "sled-push",
-      "namePt": "Sled push",
+      "namePt": "Empurrada do trenó",
       "nameEn": "Sled Push",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -3994,7 +3994,7 @@
     {
       "id": "da26eaf9-d2d2-5ce1-bc56-afe4ea195609",
       "slug": "snatch",
-      "namePt": "Snatch",
+      "namePt": "Arranco",
       "nameEn": "Snatch",
       "type": "reps",
       "difficultyLevel": "expert",
@@ -4018,7 +4018,7 @@
     {
       "id": "ba325a85-071a-5d16-8ef4-74361dda6b83",
       "slug": "spanish-squat",
-      "namePt": "Spanish squat",
+      "namePt": "Agachamento espanhol",
       "nameEn": "Spanish Squat",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -4037,7 +4037,7 @@
     {
       "id": "6616d298-6b44-579d-81af-160e7e776c58",
       "slug": "step-up",
-      "namePt": "Step-up",
+      "namePt": "Subida no banco",
       "nameEn": "Step-Up",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -4060,7 +4060,7 @@
     {
       "id": "3ff510fb-2d4e-527a-9d07-e087bb12a317",
       "slug": "barbell-thruster",
-      "namePt": "Thruster",
+      "namePt": "Agachamento com desenvolvimento",
       "nameEn": "Barbell Thruster",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -4083,7 +4083,7 @@
     {
       "id": "bffdeb15-9905-5d03-99be-7f478e8888ff",
       "slug": "trap-bar-deadlift",
-      "namePt": "Trap bar deadlift",
+      "namePt": "Levantamento terra com barra hexagonal",
       "nameEn": "Trap Bar Deadlift",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -4106,7 +4106,7 @@
     {
       "id": "1d598eac-efca-5e48-ac51-d25abfd42833",
       "slug": "walking-lunge",
-      "namePt": "Walking lunge",
+      "namePt": "Afundo caminhando",
       "nameEn": "Walking Lunge",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -4128,7 +4128,7 @@
     {
       "id": "fae371f9-dcd9-536b-89a8-65943921f796",
       "slug": "battle-rope-waves",
-      "namePt": "Battle rope waves",
+      "namePt": "Ondas com corda naval",
       "nameEn": "Battle Rope Waves",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -4150,7 +4150,7 @@
     {
       "id": "b185a0d1-a592-54c2-817a-e5c49680433c",
       "slug": "bear-crawl",
-      "namePt": "Bear crawl",
+      "namePt": "Caminhada do urso",
       "nameEn": "Bear Crawl",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -4453,7 +4453,7 @@
     {
       "id": "3f7a35cb-6654-57f5-9761-b3313a1fde58",
       "slug": "face-pull",
-      "namePt": "Face pull",
+      "namePt": "Puxada para o rosto",
       "nameEn": "Face Pull",
       "type": "reps",
       "difficultyLevel": "beginner",
@@ -4476,7 +4476,7 @@
     {
       "id": "f85128fd-4e11-55f3-9bd7-c1135a968867",
       "slug": "single-arm-landmine-press",
-      "namePt": "Landmine press unilateral",
+      "namePt": "Desenvolvimento unilateral com barra apoiada",
       "nameEn": "Single-Arm Landmine Press",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -4499,7 +4499,7 @@
     {
       "id": "6f8a9794-f679-542e-bbfa-9de6670466bb",
       "slug": "push-press",
-      "namePt": "Push press",
+      "namePt": "Desenvolvimento com impulso",
       "nameEn": "Push Press",
       "type": "reps",
       "difficultyLevel": "expert",
@@ -4563,7 +4563,7 @@
     {
       "id": "4860b83b-f450-5888-a2ea-0825112629ab",
       "slug": "turkish-get-up",
-      "namePt": "Turkish get-up",
+      "namePt": "Levantamento turco",
       "nameEn": "Turkish Get-Up",
       "type": "reps",
       "difficultyLevel": "expert",
@@ -4586,7 +4586,7 @@
     {
       "id": "089d8ace-9251-5a25-84dc-3732505deec0",
       "slug": "incline-y-raise",
-      "namePt": "Y raise inclinado",
+      "namePt": "Elevação em Y inclinada",
       "nameEn": "Incline Y Raise",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -4688,7 +4688,7 @@
     {
       "id": "7bd51608-81d2-5ad2-b6de-eab0ace97f62",
       "slug": "farmer-s-walk",
-      "namePt": "Farmer walk",
+      "namePt": "Caminhada do fazendeiro",
       "nameEn": "Farmer's Walk",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -4711,7 +4711,7 @@
     {
       "id": "dc1bce5c-192a-53fc-9c2b-a275fbb5a8f7",
       "slug": "prone-trap-raise",
-      "namePt": "Prone trap raise",
+      "namePt": "Elevação de trapézio deitado",
       "nameEn": "Prone Trap Raise",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -4733,7 +4733,7 @@
     {
       "id": "10ad8924-475f-5514-97dc-6671f4171b07",
       "slug": "scapular-pull-up",
-      "namePt": "Scapular pull-up",
+      "namePt": "Barra fixa escapular",
       "nameEn": "Scapular Pull-Up",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -4754,7 +4754,7 @@
     {
       "id": "3c56e184-8c8b-5665-862e-8e320596e1e3",
       "slug": "trap-bar-carry",
-      "namePt": "Trap bar carry",
+      "namePt": "Caminhada com barra hexagonal",
       "nameEn": "Trap Bar Carry",
       "type": "reps",
       "difficultyLevel": "intermediate",
@@ -4837,7 +4837,7 @@
     {
       "id": "3afc90f5-df5e-5c8c-baf3-bac2439e77f3",
       "slug": "jm-press",
-      "namePt": "JM press",
+      "namePt": "Supino JM",
       "nameEn": "JM Press",
       "type": "reps",
       "difficultyLevel": "expert",
@@ -5004,7 +5004,7 @@
     {
       "id": "339a8252-308b-5bd5-83a5-61e7e8dd5bea",
       "slug": "cable-triceps-pushdown",
-      "namePt": "Tríceps pulley barra reta",
+      "namePt": "Tríceps na polia com barra reta",
       "nameEn": "Cable Triceps Pushdown",
       "type": "reps",
       "difficultyLevel": "beginner",
