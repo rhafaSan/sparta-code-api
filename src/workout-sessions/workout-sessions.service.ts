@@ -9,6 +9,7 @@ import { resolveExerciseMuscles } from '../exercises/exercise-muscles.js';
 import type { WorkoutShareSummary } from './dto/workout-share-summary.dto.js';
 import { PrismaService } from '../prisma/prisma.service.js';
 import type { Transaction } from '../prisma/db.js';
+import type { FieldOutputTypes } from '../prisma/contract.d.js';
 import { WorkoutsService } from '../workouts/workouts.service.js';
 import { HistoryQueryDto } from '../common/dto/list-query.dto.js';
 import {
@@ -18,6 +19,13 @@ import {
   UpdateExerciseSessionDto,
 } from './dto/workout-session.dto.js';
 
+export type StartedWorkoutSession =
+  FieldOutputTypes['public']['WorkoutSession'] & {
+    exerciseSessions: (FieldOutputTypes['public']['ExerciseSession'] & {
+      sets: FieldOutputTypes['public']['ExerciseSet'][];
+    })[];
+  };
+
 @Injectable()
 export class WorkoutSessionsService {
   constructor(
@@ -25,7 +33,7 @@ export class WorkoutSessionsService {
     private readonly workouts: WorkoutsService,
   ) {}
 
-  start(dto: StartWorkoutSessionDto) {
+  start(dto: StartWorkoutSessionDto): Promise<StartedWorkoutSession> {
     return this.prisma.db.transaction(async (tx) => {
       const workout = await this.workouts.lock(tx, dto.workoutId);
       if (workout.userId !== dto.userId)
@@ -48,22 +56,40 @@ export class WorkoutSessionsService {
       const plan = entries.filter((e) => activeExerciseIds.has(e.exerciseId));
       if (!plan.length)
         throw new ConflictException('Workout has no active exercises');
-      const session = await tx.orm.public.WorkoutSession.create(dto);
-      const exerciseSessions: Awaited<
-        ReturnType<typeof tx.orm.public.ExerciseSession.create>
-      >[] = [];
+      const { additionalSets = [], ...sessionData } = dto;
+      for (const selection of additionalSets) {
+        if (!plan.some((entry) => entry.id === selection.workoutExerciseId))
+          throw new BadRequestException(
+            'Additional sets must reference an active workout exercise in this workout',
+          );
+      }
+      const session = await tx.orm.public.WorkoutSession.create(sessionData);
+      const exerciseSessions: StartedWorkoutSession['exerciseSessions'] = [];
       for (const entry of plan) {
-        exerciseSessions.push(
-          await tx.orm.public.ExerciseSession.create({
-            workoutSessionId: session.id,
-            workoutExerciseId: entry.id,
-            exerciseOrder: entry.exerciseOrder,
-            plannedSets: entry.plannedSets,
-            plannedReps: entry.plannedReps,
-            restSeconds: entry.restSeconds,
-            notes: entry.notes,
-          }),
+        const execution = await tx.orm.public.ExerciseSession.create({
+          workoutSessionId: session.id,
+          workoutExerciseId: entry.id,
+          exerciseOrder: entry.exerciseOrder,
+          plannedSets: entry.plannedSets,
+          plannedReps: entry.plannedReps,
+          restSeconds: entry.restSeconds,
+          notes: entry.notes,
+        });
+        const sets: FieldOutputTypes['public']['ExerciseSet'][] = [];
+        const selection = additionalSets.find(
+          (item) => item.workoutExerciseId === entry.id,
         );
+        for (const set of [...(selection?.sets ?? [])].sort(
+          (a, b) => a.setNumber - b.setNumber,
+        )) {
+          sets.push(
+            await tx.orm.public.ExerciseSet.create({
+              ...set,
+              exerciseSessionId: execution.id,
+            }),
+          );
+        }
+        exerciseSessions.push({ ...execution, sets });
       }
       return { ...session, exerciseSessions };
     });
@@ -136,6 +162,28 @@ export class WorkoutSessionsService {
     });
   }
 
+  removeAdditionalSet(
+    workoutSessionId: string,
+    exerciseSessionId: string,
+    setNumber: number,
+  ) {
+    if (!Number.isInteger(setNumber) || setNumber < 1 || setNumber > 2147483647)
+      throw new BadRequestException('Invalid setNumber');
+    return this.prisma.db.transaction(async (tx) => {
+      await this.editableExercise(tx, workoutSessionId, exerciseSessionId);
+      const set = await tx.orm.public.ExerciseSet.where({
+        exerciseSessionId,
+        setNumber,
+      }).first();
+      if (!set) throw new NotFoundException('Set not found');
+      if (set.setType === 'working' || set.completed)
+        throw new ConflictException(
+          'Only unfinished additional sets can be removed',
+        );
+      return tx.orm.public.ExerciseSet.where({ id: set.id }).delete();
+    });
+  }
+
   finish(id: string, dto: FinishWorkoutSessionDto) {
     return this.prisma.db.transaction(async (tx) => {
       const session = await this.lockSession(tx, id);
@@ -184,7 +232,12 @@ export class WorkoutSessionsService {
     const performedExercises = session.exerciseSessions
       .filter(
         (execution) =>
-          execution.completed || execution.sets.some((set) => set.completed),
+          (execution.completed &&
+            (execution.sets.length === 0 ||
+              execution.sets.some((set) => set.setType === 'working'))) ||
+          execution.sets.some(
+            (set) => set.completed && set.setType === 'working',
+          ),
       )
       .flatMap((execution) => {
         const exercise = execution.workoutExercise?.exercise;
@@ -274,7 +327,10 @@ export class WorkoutSessionsService {
     await this.requireUser(query.userId);
     if (!(await this.prisma.db.orm.public.Exercise.first({ id: exerciseId })))
       throw new NotFoundException('Exercise not found');
-    let sets = this.prisma.db.orm.public.ExerciseSet.where({ completed: true })
+    let sets = this.prisma.db.orm.public.ExerciseSet.where({
+      completed: true,
+      setType: 'working',
+    })
       .where((set) =>
         set.exerciseSession.some((e) => e.workoutExercise.some({ exerciseId })),
       )

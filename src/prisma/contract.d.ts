@@ -33,7 +33,7 @@ import type {
 } from '@prisma/orm-postgres/contract/types';
 
 export type StorageHash =
-  StorageHashBase<'fd2f097cb1531d5bbbeaac10b8a03cb221836674231fb4199e5f18103a7177c3'>;
+  StorageHashBase<'b56cc1d1863a5e67d52e9c4d4723cd98fa898cc36af47df748546df976d9ebb7'>;
 export type ExecutionHash =
   ExecutionHashBase<'0acf610a3f25bedb132f3884d8203bd58ad8861c7ff335194bb861537c410780'>;
 export type ProfileHash =
@@ -282,6 +282,7 @@ export type FieldOutputTypes = {
       readonly id: CodecTypes['pg/uuid@1']['output'];
       readonly exerciseSessionId: CodecTypes['pg/uuid@1']['output'];
       readonly setNumber: CodecTypes['pg/int4@1']['output'];
+      readonly setType: CodecTypes['pg/text@1']['output'];
       readonly weight: CodecTypes['pg/numeric@1']['output'] | null;
       readonly reps: CodecTypes['pg/int4@1']['output'] | null;
       readonly completed: CodecTypes['pg/bool@1']['output'];
@@ -384,6 +385,7 @@ export type FieldInputTypes = {
       readonly id: CodecTypes['pg/uuid@1']['input'];
       readonly exerciseSessionId: CodecTypes['pg/uuid@1']['input'];
       readonly setNumber: CodecTypes['pg/int4@1']['input'];
+      readonly setType: CodecTypes['pg/text@1']['input'];
       readonly weight: CodecTypes['pg/numeric@1']['input'] | null;
       readonly reps: CodecTypes['pg/int4@1']['input'] | null;
       readonly completed: CodecTypes['pg/bool@1']['input'];
@@ -481,6 +483,7 @@ export type StorageColumnTypes = {
       readonly id: CodecTypes['pg/uuid@1']['output'];
       readonly reps: CodecTypes['pg/int4@1']['output'] | null;
       readonly set_number: CodecTypes['pg/int4@1']['output'];
+      readonly set_type: CodecTypes['pg/text@1']['output'];
       readonly weight: CodecTypes['pg/numeric@1']['output'] | null;
     };
     readonly exercises: {
@@ -583,6 +586,7 @@ export type StorageColumnInputTypes = {
       readonly id: CodecTypes['pg/uuid@1']['input'];
       readonly reps: CodecTypes['pg/int4@1']['input'] | null;
       readonly set_number: CodecTypes['pg/int4@1']['input'];
+      readonly set_type: CodecTypes['pg/text@1']['input'];
       readonly weight: CodecTypes['pg/numeric@1']['input'] | null;
     };
     readonly exercises: {
@@ -925,6 +929,15 @@ type ContractBase = Omit<
                   readonly nativeType: 'int4';
                   readonly codecId: 'pg/int4@1';
                   readonly nullable: false;
+                };
+                readonly set_type: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', 'working'>;
+                  };
                 };
                 readonly weight: {
                   readonly nativeType: 'numeric';
@@ -1817,6 +1830,10 @@ type ContractBase = Omit<
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
               };
+              readonly setType: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
               readonly weight: {
                 readonly nullable: true;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/numeric@1' };
@@ -1857,6 +1874,7 @@ type ContractBase = Omit<
                 readonly id: { readonly column: 'id' };
                 readonly exerciseSessionId: { readonly column: 'exercise_session_id' };
                 readonly setNumber: { readonly column: 'set_number' };
+                readonly setType: { readonly column: 'set_type' };
                 readonly weight: { readonly column: 'weight' };
                 readonly reps: { readonly column: 'reps' };
                 readonly completed: { readonly column: 'completed' };

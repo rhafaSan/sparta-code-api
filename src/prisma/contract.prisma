@@ -317,6 +317,8 @@ model ExerciseSet {
   setNumber Int
     @map("set_number")
 
+  setType String @default("working") @map("set_type")
+
   weight Decimal?
   reps   Int?
 

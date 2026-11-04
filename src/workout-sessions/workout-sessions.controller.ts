@@ -8,10 +8,12 @@ import {
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   Param,
   ParseUUIDPipe,
+  ParseIntPipe,
   Patch,
   Post,
   Put,
@@ -246,6 +248,21 @@ export class WorkoutSessionsController {
     @Body() dto: RecordSetDto,
   ) {
     return this.sessions.recordSet(sessionId, id, dto);
+  }
+
+  @ApiOperation({ summary: 'Remover série adicional ainda não concluída' })
+  @Delete(':sessionId/exercises/:exerciseSessionId/sets/:setNumber')
+  @OwnResource('session', 'sessionId')
+  removeAdditionalSet(
+    @Param('sessionId', ParseUUIDPipe) sessionId: string,
+    @Param('exerciseSessionId', ParseUUIDPipe) exerciseSessionId: string,
+    @Param('setNumber', ParseIntPipe) setNumber: number,
+  ) {
+    return this.sessions.removeAdditionalSet(
+      sessionId,
+      exerciseSessionId,
+      setNumber,
+    );
   }
   @ApiOperation({
     summary: 'Atualizar conclusão, descanso ou notas do exercício',

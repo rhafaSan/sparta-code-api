@@ -41,7 +41,9 @@ export class ProgressReportService {
           : executions;
         return filtered
           .include('workoutExercise', (entry) => entry.include('exercise'))
-          .include('sets', (sets) => sets.where({ completed: true }));
+          .include('sets', (sets) =>
+            sets.where({ completed: true, setType: 'working' }),
+          );
       })
       .all();
 

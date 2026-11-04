@@ -1,0 +1,44 @@
+[
+  {
+    "id": "column.public.exercise_sets.set_type",
+    "label": "Add column \"set_type\" to \"exercise_sets\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "column",
+        "name": "set_type",
+        "table": "exercise_sets"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"set_type\" is missing",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "exercise_sets",
+          "set_type"
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add column \"set_type\"",
+        "sql": "ALTER TABLE \"public\".\"exercise_sets\" ADD COLUMN \"set_type\" text DEFAULT 'working' NOT NULL"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"set_type\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "exercise_sets",
+          "set_type"
+        ]
+      }
+    ]
+  }
+]

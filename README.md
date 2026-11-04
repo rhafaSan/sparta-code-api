@@ -217,6 +217,12 @@ GET /exercises?q=supino&muscleGroup=Peitoral&catalogOnly=true&limit=20&offset=0
 
 Use o `id` retornado como `exerciseId` em `POST /workouts/:workoutId/exercises`. Para um exercício novo, continue usando `POST /exercises` e reutilize o ID da resposta da mesma forma. Os filtros também estão documentados no Swagger em `/docs`.
 
+## Séries adicionais na sessão
+
+Séries de aquecimento e preparatórias por exercício da sessão estão descritas
+em [Séries adicionais](docs/additional-sets.md), incluindo criação, edição,
+histórico, exclusão dos resumos e aplicação da migração necessária.
+
 ## Geração de treino por prompt
 
 `POST /workouts/generate` gera **um modelo de treino** com Gemini e persiste o treino e seus vínculos em uma única transação. A resposta 201 tem o mesmo formato de `GET /workouts/:id`, incluindo `workoutExercises[].exercise`. Use o `id` retornado em `POST /workout-sessions/start`; os snapshots e o histórico continuam seguindo o fluxo existente.
@@ -234,6 +240,7 @@ GEMINI_MODEL=gemini-3.1-flash-lite
 
 ```http
 POST /workouts/generate
+Authorization: Bearer <accessToken>
 Content-Type: application/json
 
 {

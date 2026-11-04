@@ -570,6 +570,13 @@
                   "kind": "scalar"
                 }
               },
+              "setType": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
               "weight": {
                 "nullable": true,
                 "type": {
@@ -614,6 +621,9 @@
                 },
                 "setNumber": {
                   "column": "set_number"
+                },
+                "setType": {
+                  "column": "set_type"
                 },
                 "weight": {
                   "column": "weight"
@@ -1667,6 +1677,15 @@
                   "nativeType": "int4",
                   "nullable": false
                 },
+                "set_type": {
+                  "codecId": "pg/text@1",
+                  "default": {
+                    "kind": "literal",
+                    "value": "working"
+                  },
+                  "nativeType": "text",
+                  "nullable": false
+                },
                 "weight": {
                   "codecId": "pg/numeric@1",
                   "nativeType": "numeric",
@@ -2309,7 +2328,7 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "fd2f097cb1531d5bbbeaac10b8a03cb221836674231fb4199e5f18103a7177c3"
+    "storageHash": "b56cc1d1863a5e67d52e9c4d4723cd98fa898cc36af47df748546df976d9ebb7"
   },
   "execution": {
     "executionHash": "0acf610a3f25bedb132f3884d8203bd58ad8861c7ff335194bb861537c410780",

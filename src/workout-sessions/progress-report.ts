@@ -13,7 +13,12 @@ export interface ReportExecution {
   startedAt: Temporal.Instant;
   exerciseId: string;
   exerciseName: string;
-  sets: { weight: string | null; reps: number | null; completed: boolean }[];
+  sets: {
+    weight: string | null;
+    reps: number | null;
+    completed: boolean;
+    setType?: string;
+  }[];
 }
 
 // Weights stay exact: coefficients are integers, scales are decimal places.
@@ -181,7 +186,9 @@ export function buildProgressReport(
       Temporal.Instant.compare(execution.startedAt, end) >= 0
     )
       continue;
-    const sets = execution.sets.filter((set) => set.completed);
+    const sets = execution.sets.filter(
+      (set) => set.completed && (set.setType ?? 'working') === 'working',
+    );
     if (!sets.length) continue;
     const localDate = execution.startedAt
       .toZonedDateTimeISO(query.timeZone)

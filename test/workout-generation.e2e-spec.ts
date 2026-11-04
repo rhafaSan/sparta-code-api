@@ -167,6 +167,68 @@ describe('Workout generation with PostgreSQL and a stubbed AI', () => {
     }
     expect(await saved()).toEqual(before);
   });
+  it('creates a workout through HTTP and the real provider adapter with simulated Gemini transport', async () => {
+    const originalKey = process.env.GEMINI_API_KEY;
+    process.env.GEMINI_API_KEY = 'integration-test-key';
+    const fetchMock = jest.spyOn(globalThis, 'fetch').mockResolvedValue(
+      new Response(
+        JSON.stringify({
+          candidates: [
+            {
+              finishReason: 'STOP',
+              content: { parts: [{ text: JSON.stringify(plan) }] },
+            },
+          ],
+        }),
+        { status: 200 },
+      ),
+    );
+    generate.mockImplementationOnce((prompt, catalog) =>
+      new GeminiWorkoutProvider().generate(prompt, catalog),
+    );
+    try {
+      const response = await request(app.getHttpServer())
+        .post('/workouts/generate')
+        .set('Authorization', `Bearer ${accessToken}`)
+        .send(dto)
+        .expect(201);
+      expect(response.body.workoutExercises).toHaveLength(2);
+      expect(fetchMock).toHaveBeenCalledTimes(1);
+      const payload = JSON.parse(
+        fetchMock.mock.calls[0][1]?.body as string,
+      ) as { contents: { parts: { text: string }[] }[] };
+      expect(
+        JSON.parse(payload.contents[0].parts[0].text) as unknown,
+      ).toMatchObject({
+        prompt: dto.prompt,
+        catalog: expect.arrayContaining([
+          expect.objectContaining({ id: exerciseId }),
+        ]) as unknown,
+      });
+    } finally {
+      fetchMock.mockRestore();
+      if (originalKey === undefined) delete process.env.GEMINI_API_KEY;
+      else process.env.GEMINI_API_KEY = originalKey;
+    }
+  });
+  it('returns 503 and saves nothing when the real provider has no API key', async () => {
+    const originalKey = process.env.GEMINI_API_KEY;
+    delete process.env.GEMINI_API_KEY;
+    generate.mockImplementationOnce((prompt, catalog) =>
+      new GeminiWorkoutProvider().generate(prompt, catalog),
+    );
+    const before = await saved();
+    try {
+      await request(app.getHttpServer())
+        .post('/workouts/generate')
+        .set('Authorization', `Bearer ${accessToken}`)
+        .send(dto)
+        .expect(503);
+      expect(await saved()).toEqual(before);
+    } finally {
+      if (originalKey !== undefined) process.env.GEMINI_API_KEY = originalKey;
+    }
+  });
   it('rejects an exercise archived during generation', async () => {
     const before = await saved();
     generate.mockImplementationOnce(async () => {

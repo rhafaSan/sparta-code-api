@@ -62,6 +62,28 @@ describe('Progress report calculations', () => {
     });
   });
 
+  it('excludes warmup and preparatory sets from totals and progression', () => {
+    const row = execution('2026-09-07T12:00Z', '50.25', 10);
+    row.sets.push(
+      { setType: 'warmup', weight: '200', reps: 100, completed: true },
+      { setType: 'preparatory', weight: '100', reps: 50, completed: true },
+    );
+    expect(buildProgressReport('user', query(), [row]).totals).toMatchObject({
+      completedSets: 1,
+      totalReps: '10',
+      maxWeight: '50.25',
+    });
+    row.sets.shift();
+    const empty = buildProgressReport('user', query(), [row]);
+    expect(empty.totals).toMatchObject({
+      workoutSessions: 0,
+      completedSets: 0,
+      totalReps: '0',
+      maxWeight: null,
+    });
+    expect(empty.exercises).toEqual([]);
+  });
+
   it('handles decreases, very precise weights and rounding without floating point', () => {
     const report = buildProgressReport('user', query(), [
       execution(
