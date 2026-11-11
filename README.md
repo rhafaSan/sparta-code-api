@@ -29,6 +29,8 @@ A configuração ESM gera `dist/main.js`. `src/prisma/db.ts` mantém uma única 
 
 ## Rotas
 
+Para associar um treino a cada dia da semana e consultar o treino de hoje, veja a [agenda semanal](docs/workout-schedule.md). Rotas: `PUT /workouts/schedule/:dayOfWeek`, `DELETE /workouts/schedule/:dayOfWeek`, `GET /workouts/schedule` e `GET /workouts/today`. Dias ordenados de segunda (1) a domingo (7), com um treino por dia. A feature requer aplicar a migration `20261111T0031_add_workout_schedule` com `yarn prisma db migrate`.
+
 IDs são UUIDs. Corpos de requisição usam `Content-Type: application/json`. Listagens retornam arrays com `limit` (padrão 20, máximo 100) e `offset` (padrão 0). Exercícios e treinos arquivados são ocultados por padrão; use `includeArchived=true` para incluí-los.
 
 | Método | Rota | Finalidade |
@@ -283,3 +285,29 @@ Para analisar evolução de cargas e repetições em várias semanas ou meses, u
 A resolução ocorre por exercício: vínculos explícitos em `ExerciseMuscle` têm prioridade; na ausência deles, usa os músculos primários e secundários do catálogo pelo UUID; para exercícios personalizados, reconhece slugs e nomes em português em `muscleGroup` (separados por vírgula, ponto e vírgula ou barra, ignorando caixa e acentos). Não deduz músculos pelo nome ou descrição do exercício. Sem execução ou sem informação muscular reconhecida, `muscles` pode ser vazio.
 
 `yarn seed` importa os exercícios e seus vínculos musculares. Para preencher somente os vínculos do catálogo já presente no banco, execute `yarn seed:muscles`. Ambos preservam edições existentes. O fallback do resumo funciona mesmo antes dessa seed e não altera os registros históricos. O contrato Prisma não foi alterado por esta correção.
+
+## Importação de fichas de treino
+
+`POST /workouts/import` requer Bearer token e usa o usuário autenticado (não envie `userId`). Configure `GEMINI_API_KEY` e, opcionalmente, `GEMINI_MODEL`, como na geração existente. Sem dependências novas ou alterações no contrato Prisma.
+
+Para texto copiado, envie JSON:
+
+```json
+{
+  "text": "Treino A - Peito\nSupino reto 3 x 10\nTreino B - Costas\nPuxada alta 4 x 12"
+}
+```
+
+Para arquivos, envie `multipart/form-data` com um campo `file` contendo PDF (`application/pdf`) ou TXT UTF-8 (`text/plain`). Envie exatamente uma fonte: `text` ou `file`.
+
+```sh
+curl -X POST http://localhost:3000/workouts/import -H "Authorization: Bearer SEU_TOKEN" -F "file=@ficha.pdf;type=application/pdf"
+```
+
+O conteúdo completo é enviado ao Gemini junto com o catálogo ativo. PDFs são enviados diretamente como documento, sem persistir o arquivo no servidor, conforme a [documentação do Gemini](https://ai.google.dev/gemini-api/docs/document-processing). Não inclua dados pessoais desnecessários na ficha.
+
+A resposta 201 tem formato `{ "workouts": [...] }`, com os treinos salvos e seus `workoutExercises`, incluindo as definições dos exercícios. A importação cria novos modelos de treino e não inicia sessões. Cada chamada cria novos registros; repetir uma chamada pode duplicar treinos.
+
+Limites: PDF de até 5 MB; TXT de até 5 MB e 30 mil caracteres; texto de até 30 mil caracteres; até 12 treinos por ficha, cada um com até 20 exercícios. Usa apenas exercícios do catálogo ativo (até 500). Exercícios ausentes não são cadastrados automaticamente. Se o modelo não reconhecer uma ficha completa, retorna 422; saída inválida retorna 502. A correspondência e interpretação dependem do modelo: revise os treinos pelas rotas existentes.
+
+Séries, repetições, ordem, notas e descanso são extraídos. Faixas como 8–12 são representadas como 8 repetições e a faixa original nas notas; descanso ausente assume 60 segundos. Fichas sem séries/repetições devem ser recusadas. Os limites de valores são os mesmos da geração existente. Todos os treinos são validados antes da gravação e salvos em uma única transação; falhas desfazem toda a importação, preservando o histórico existente. Campos inválidos ou fontes conflitantes retornam 400, arquivo acima do limite retorna 413. Os demais erros de catálogo e provedor seguem a geração existente. Exemplos também estão no Swagger `/docs`.

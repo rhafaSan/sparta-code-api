@@ -22,6 +22,7 @@ describe('Workout generation with PostgreSQL and a stubbed AI', () => {
   const userId = randomUUID();
   const exerciseId = randomUUID();
   const generate = jest.fn<GeminiWorkoutProvider['generate']>();
+  const importSheet = jest.fn<GeminiWorkoutProvider['importSheet']>();
   const dto = { userId, prompt: 'Treino de peito para iniciante' };
   const plan = {
     name: 'Treino gerado',
@@ -46,7 +47,7 @@ describe('Workout generation with PostgreSQL and a stubbed AI', () => {
   beforeAll(async () => {
     const module = await Test.createTestingModule({ imports: [AppModule] })
       .overrideProvider(GeminiWorkoutProvider)
-      .useValue({ generate })
+      .useValue({ generate, importSheet })
       .compile();
     app = module.createNestApplication();
     await app.init();
@@ -87,6 +88,75 @@ describe('Workout generation with PostgreSQL and a stubbed AI', () => {
     }
   });
   const saved = () => db.orm.public.Workout.where({ userId }).all();
+
+  it('imports multiple workouts for the authenticated user from JSON, TXT and PDF', async () => {
+    importSheet.mockResolvedValue({
+      workouts: [plan, { ...plan, name: 'Treino B' }],
+    });
+    for (const kind of ['text', 'txt', 'pdf']) {
+      const req = request(app.getHttpServer())
+        .post('/workouts/import')
+        .set('Authorization', `Bearer ${accessToken}`);
+      const result =
+        kind === 'text'
+          ? await req
+              .send({ text: 'Treino A: Supino 3x10\nTreino B: Supino 2x12' })
+              .expect(201)
+          : await req
+              .attach(
+                'file',
+                Buffer.from(kind === 'pdf' ? '%PDF-1.7' : 'Supino 3x10'),
+                {
+                  filename: `ficha.${kind}`,
+                  contentType:
+                    kind === 'pdf' ? 'application/pdf' : 'text/plain',
+                },
+              )
+              .expect(201);
+      expect(result.body.workouts).toHaveLength(2);
+      expect(result.body.workouts[0].userId).toBe(userId);
+      expect(result.body.workouts[0].workoutExercises).toHaveLength(2);
+    }
+  });
+
+  it('rejects invalid imports before writing any workout', async () => {
+    const before = await saved();
+    for (const output of [
+      { workouts: [] },
+      { workouts: [plan, { ...plan, name: '' }] },
+      {
+        workouts: [
+          {
+            ...plan,
+            exercises: [{ ...plan.exercises[0], exerciseId: randomUUID() }],
+          },
+        ],
+      },
+    ]) {
+      importSheet.mockResolvedValueOnce(output);
+      const result = await request(app.getHttpServer())
+        .post('/workouts/import')
+        .set('Authorization', `Bearer ${accessToken}`)
+        .send({ text: 'Ficha' });
+      expect([422, 502]).toContain(result.status);
+      expect(await saved()).toEqual(before);
+    }
+    importSheet.mockClear();
+    await request(app.getHttpServer())
+      .post('/workouts/import')
+      .set('Authorization', `Bearer ${accessToken}`)
+      .send({ text: ' ' })
+      .expect(400);
+    await request(app.getHttpServer())
+      .post('/workouts/import')
+      .set('Authorization', `Bearer ${accessToken}`)
+      .attach('file', Buffer.from('invalid'), {
+        filename: 'ficha.pdf',
+        contentType: 'application/pdf',
+      })
+      .expect(400);
+    expect(importSheet).not.toHaveBeenCalled();
+  });
 
   it('validates HTTP input and user existence before contacting AI', async () => {
     for (const input of [
@@ -250,52 +320,62 @@ describe('Workout generation with PostgreSQL and a stubbed AI', () => {
       });
     }
   });
-  it('rolls back the workout and its first entry if the second write fails', async () => {
-    const before = await saved();
-    let attempts = 0;
-    const failure = new Error('Injected second write failure');
-    const prisma = {
-      db: {
-        orm: db.orm,
-        transaction: <R>(callback: (tx: Transaction) => PromiseLike<R>) =>
-          db.transaction(async (tx) => {
-            const collection = tx.orm.public.WorkoutExercise;
-            const failingCollection = new Proxy(collection, {
-              get(target, key, receiver) {
-                if (key === 'create')
-                  return async (
-                    data: Parameters<typeof collection.create>[0],
-                  ) => {
-                    if (++attempts === 2) throw failure;
-                    return await collection.create(data);
-                  };
-                return Reflect.get(target, key, receiver) as unknown;
-              },
-            });
-            return await callback({
-              ...tx,
-              orm: {
-                ...tx.orm,
-                public: {
-                  ...tx.orm.public,
-                  User: tx.orm.public.User,
-                  Exercise: tx.orm.public.Exercise,
-                  Workout: tx.orm.public.Workout,
-                  WorkoutExercise: failingCollection,
-                  WorkoutSession: tx.orm.public.WorkoutSession,
-                  ExerciseSession: tx.orm.public.ExerciseSession,
-                  ExerciseSet: tx.orm.public.ExerciseSet,
+  it.each(['generation', 'import'])(
+    'rolls back every workout when a write fails during %s',
+    async (mode) => {
+      const before = await saved();
+      let attempts = 0;
+      const failure = new Error('Injected second write failure');
+      const prisma = {
+        db: {
+          orm: db.orm,
+          transaction: <R>(callback: (tx: Transaction) => PromiseLike<R>) =>
+            db.transaction(async (tx) => {
+              const collection = tx.orm.public.WorkoutExercise;
+              const failingCollection = new Proxy(collection, {
+                get(target, key, receiver) {
+                  if (key === 'create')
+                    return async (
+                      data: Parameters<typeof collection.create>[0],
+                    ) => {
+                      if (++attempts === (mode === 'import' ? 3 : 2))
+                        throw failure;
+                      return await collection.create(data);
+                    };
+                  return Reflect.get(target, key, receiver) as unknown;
                 },
-              },
-            });
-          }),
-      },
-    } as unknown as PrismaService;
-    const service = new WorkoutGenerationService(prisma, {
-      generate,
-    });
-    await expect(service.generate(dto)).rejects.toThrow(failure);
-    expect(attempts).toBe(2);
-    expect(await saved()).toEqual(before);
-  });
+              });
+              return await callback({
+                ...tx,
+                orm: {
+                  ...tx.orm,
+                  public: {
+                    ...tx.orm.public,
+                    User: tx.orm.public.User,
+                    Exercise: tx.orm.public.Exercise,
+                    Workout: tx.orm.public.Workout,
+                    WorkoutExercise: failingCollection,
+                    WorkoutSession: tx.orm.public.WorkoutSession,
+                    ExerciseSession: tx.orm.public.ExerciseSession,
+                    ExerciseSet: tx.orm.public.ExerciseSet,
+                  },
+                },
+              });
+            }),
+        },
+      } as unknown as PrismaService;
+      const service = new WorkoutGenerationService(prisma, {
+        generate,
+        importSheet,
+      });
+      importSheet.mockResolvedValueOnce({ workouts: [plan, plan] });
+      await expect(
+        mode === 'import'
+          ? service.importSheet(userId, 'Ficha')
+          : service.generate(dto),
+      ).rejects.toThrow(failure);
+      expect(attempts).toBe(mode === 'import' ? 3 : 2);
+      expect(await saved()).toEqual(before);
+    },
+  );
 });

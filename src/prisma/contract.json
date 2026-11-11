@@ -40,6 +40,10 @@
       "model": "WorkoutExercise",
       "namespace": "public"
     },
+    "workout_schedules": {
+      "model": "WorkoutSchedule",
+      "namespace": "public"
+    },
     "workout_sessions": {
       "model": "WorkoutSession",
       "namespace": "public"
@@ -858,6 +862,21 @@
                   "namespace": "public"
                 }
               },
+              "workoutSchedules": {
+                "cardinality": "1:N",
+                "on": {
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "userId"
+                  ]
+                },
+                "to": {
+                  "model": "WorkoutSchedule",
+                  "namespace": "public"
+                }
+              },
               "workoutSessions": {
                 "cardinality": "1:N",
                 "on": {
@@ -960,6 +979,21 @@
               }
             },
             "relations": {
+              "schedules": {
+                "cardinality": "1:N",
+                "on": {
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "workoutId"
+                  ]
+                },
+                "to": {
+                  "model": "WorkoutSchedule",
+                  "namespace": "public"
+                }
+              },
               "user": {
                 "cardinality": "N:1",
                 "on": {
@@ -1186,6 +1220,88 @@
               },
               "namespaceId": "public",
               "table": "workout_exercises"
+            }
+          },
+          "WorkoutSchedule": {
+            "fields": {
+              "dayOfWeek": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/int4@1",
+                  "kind": "scalar"
+                }
+              },
+              "id": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/uuid@1",
+                  "kind": "scalar"
+                }
+              },
+              "userId": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/uuid@1",
+                  "kind": "scalar"
+                }
+              },
+              "workoutId": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/uuid@1",
+                  "kind": "scalar"
+                }
+              }
+            },
+            "relations": {
+              "user": {
+                "cardinality": "N:1",
+                "on": {
+                  "localFields": [
+                    "userId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
+                },
+                "to": {
+                  "model": "User",
+                  "namespace": "public"
+                }
+              },
+              "workout": {
+                "cardinality": "N:1",
+                "on": {
+                  "localFields": [
+                    "workoutId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
+                },
+                "to": {
+                  "model": "Workout",
+                  "namespace": "public"
+                }
+              }
+            },
+            "storage": {
+              "fields": {
+                "dayOfWeek": {
+                  "column": "day_of_week"
+                },
+                "id": {
+                  "column": "id"
+                },
+                "userId": {
+                  "column": "user_id"
+                },
+                "workoutId": {
+                  "column": "workout_id"
+                }
+              },
+              "namespaceId": "public",
+              "table": "workout_schedules"
             }
           },
           "WorkoutSession": {
@@ -2115,6 +2231,95 @@
                 }
               ]
             },
+            "workout_schedules": {
+              "columns": {
+                "day_of_week": {
+                  "codecId": "pg/int4@1",
+                  "nativeType": "int4",
+                  "nullable": false
+                },
+                "id": {
+                  "codecId": "pg/uuid@1",
+                  "nativeType": "uuid",
+                  "nullable": false
+                },
+                "user_id": {
+                  "codecId": "pg/uuid@1",
+                  "nativeType": "uuid",
+                  "nullable": false
+                },
+                "workout_id": {
+                  "codecId": "pg/uuid@1",
+                  "nativeType": "uuid",
+                  "nullable": false
+                }
+              },
+              "foreignKeys": [
+                {
+                  "source": {
+                    "columns": [
+                      "user_id"
+                    ],
+                    "namespaceId": "public",
+                    "tableName": "workout_schedules"
+                  },
+                  "target": {
+                    "columns": [
+                      "id"
+                    ],
+                    "namespaceId": "public",
+                    "tableName": "users"
+                  }
+                },
+                {
+                  "source": {
+                    "columns": [
+                      "workout_id"
+                    ],
+                    "namespaceId": "public",
+                    "tableName": "workout_schedules"
+                  },
+                  "target": {
+                    "columns": [
+                      "id"
+                    ],
+                    "namespaceId": "public",
+                    "tableName": "workouts"
+                  }
+                }
+              ],
+              "indexes": [
+                {
+                  "columns": [
+                    "user_id"
+                  ],
+                  "name": "workout_schedules_user_id_idx_6c952402",
+                  "prefix": "workout_schedules_user_id_idx",
+                  "unique": false
+                },
+                {
+                  "columns": [
+                    "workout_id"
+                  ],
+                  "name": "workout_schedules_workout_id_idx_7b5dce6d",
+                  "prefix": "workout_schedules_workout_id_idx",
+                  "unique": false
+                }
+              ],
+              "primaryKey": {
+                "columns": [
+                  "id"
+                ]
+              },
+              "uniques": [
+                {
+                  "columns": [
+                    "user_id",
+                    "day_of_week"
+                  ]
+                }
+              ]
+            },
             "workout_sessions": {
               "columns": {
                 "created_at": {
@@ -2328,10 +2533,10 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "b56cc1d1863a5e67d52e9c4d4723cd98fa898cc36af47df748546df976d9ebb7"
+    "storageHash": "4cb1755b5972b5fe5608e8f617752c18765e255ce94b42da5be0cc2bc03a0dce"
   },
   "execution": {
-    "executionHash": "0acf610a3f25bedb132f3884d8203bd58ad8861c7ff335194bb861537c410780",
+    "executionHash": "b67b7bdbc35f5d4eed37091aead601994d24cda35e18dde4368147e3546b1f21",
     "mutations": {
       "defaults": [
         {
@@ -2431,6 +2636,17 @@
             "column": "id",
             "namespace": "public",
             "table": "workout_exercises"
+          }
+        },
+        {
+          "onCreate": {
+            "id": "uuidv4",
+            "kind": "generator"
+          },
+          "ref": {
+            "column": "id",
+            "namespace": "public",
+            "table": "workout_schedules"
           }
         },
         {

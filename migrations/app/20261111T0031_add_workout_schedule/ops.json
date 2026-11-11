@@ -1,0 +1,245 @@
+[
+  {
+    "id": "table.workout_schedules",
+    "label": "Create table \"workout_schedules\"",
+    "summary": "Creates table \"workout_schedules\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "workout_schedules"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"workout_schedules\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_schedules\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"workout_schedules\"",
+        "sql": "CREATE TABLE \"public\".\"workout_schedules\" (\n  \"day_of_week\" int4 NOT NULL,\n  \"id\" uuid NOT NULL,\n  \"user_id\" uuid NOT NULL,\n  \"workout_id\" uuid NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"workout_schedules\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_schedules\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.workout_schedules.workout_schedules_user_id_day_of_week_key",
+    "label": "Add unique constraint on \"workout_schedules\" (user_id, day_of_week)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "unique",
+        "name": "workout_schedules_user_id_day_of_week_key",
+        "table": "workout_schedules"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"workout_schedules_user_id_day_of_week_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "workout_schedules_user_id_day_of_week_key",
+          "public",
+          "\"public\".\"workout_schedules\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"workout_schedules_user_id_day_of_week_key\"",
+        "sql": "ALTER TABLE \"public\".\"workout_schedules\" ADD CONSTRAINT \"workout_schedules_user_id_day_of_week_key\" UNIQUE (\"user_id\", \"day_of_week\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"workout_schedules_user_id_day_of_week_key\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "workout_schedules_user_id_day_of_week_key",
+          "public",
+          "\"public\".\"workout_schedules\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.workout_schedules.workout_schedules_user_id_idx_6c952402",
+    "label": "Create index \"workout_schedules_user_id_idx_6c952402\" on \"workout_schedules\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "workout_schedules_user_id_idx_6c952402",
+        "table": "workout_schedules"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"workout_schedules_user_id_idx_6c952402\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_schedules_user_id_idx_6c952402\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"workout_schedules_user_id_idx_6c952402\"",
+        "sql": "CREATE INDEX \"workout_schedules_user_id_idx_6c952402\" ON \"public\".\"workout_schedules\" (\"user_id\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"workout_schedules_user_id_idx_6c952402\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_schedules_user_id_idx_6c952402\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.workout_schedules.workout_schedules_workout_id_idx_7b5dce6d",
+    "label": "Create index \"workout_schedules_workout_id_idx_7b5dce6d\" on \"workout_schedules\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "workout_schedules_workout_id_idx_7b5dce6d",
+        "table": "workout_schedules"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"workout_schedules_workout_id_idx_7b5dce6d\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_schedules_workout_id_idx_7b5dce6d\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"workout_schedules_workout_id_idx_7b5dce6d\"",
+        "sql": "CREATE INDEX \"workout_schedules_workout_id_idx_7b5dce6d\" ON \"public\".\"workout_schedules\" (\"workout_id\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"workout_schedules_workout_id_idx_7b5dce6d\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"workout_schedules_workout_id_idx_7b5dce6d\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.workout_schedules.workout_schedules_user_id_fkey",
+    "label": "Add foreign key \"workout_schedules_user_id_fkey\" on \"workout_schedules\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "workout_schedules_user_id_fkey",
+        "table": "workout_schedules"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"workout_schedules_user_id_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "workout_schedules_user_id_fkey",
+          "public",
+          "\"public\".\"workout_schedules\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"workout_schedules_user_id_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"workout_schedules\"\nADD CONSTRAINT \"workout_schedules_user_id_fkey\"\nFOREIGN KEY (\"user_id\")\nREFERENCES \"public\".\"users\" (\"id\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"workout_schedules_user_id_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "workout_schedules_user_id_fkey",
+          "public",
+          "\"public\".\"workout_schedules\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.workout_schedules.workout_schedules_workout_id_fkey",
+    "label": "Add foreign key \"workout_schedules_workout_id_fkey\" on \"workout_schedules\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "foreignKey",
+        "name": "workout_schedules_workout_id_fkey",
+        "table": "workout_schedules"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"workout_schedules_workout_id_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "workout_schedules_workout_id_fkey",
+          "public",
+          "\"public\".\"workout_schedules\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"workout_schedules_workout_id_fkey\"",
+        "sql": "ALTER TABLE \"public\".\"workout_schedules\"\nADD CONSTRAINT \"workout_schedules_workout_id_fkey\"\nFOREIGN KEY (\"workout_id\")\nREFERENCES \"public\".\"workouts\" (\"id\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"workout_schedules_workout_id_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "workout_schedules_workout_id_fkey",
+          "public",
+          "\"public\".\"workout_schedules\""
+        ]
+      }
+    ]
+  }
+]

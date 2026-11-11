@@ -73,6 +73,10 @@ export class WorkoutsService {
         ...dto,
         ...(dto.name !== undefined ? { name: dto.name.trim() } : {}),
       });
+      if (dto.isActive === false)
+        await tx.orm.public.WorkoutSchedule.where({
+          workoutId: id,
+        }).deleteAll();
       return updated;
     });
   }

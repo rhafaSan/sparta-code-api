@@ -12,6 +12,7 @@ model User {
   workouts        Workout[]
   workoutSessions WorkoutSession[]
   authSessions AuthSession[]
+  workoutSchedules WorkoutSchedule[]
 
   @@map("users")
 }
@@ -127,11 +128,26 @@ model Workout {
 
   workoutExercises WorkoutExercise[]
   workoutSessions  WorkoutSession[]
+  schedules WorkoutSchedule[]
 
   @@index([userId])
   @@index([userId, isActive])
 
   @@map("workouts")
+}
+
+model WorkoutSchedule {
+  id Uuid @id @default(uuid())
+  userId Uuid @map("user_id")
+  workoutId Uuid @map("workout_id")
+  dayOfWeek Int @map("day_of_week")
+
+  user User @relation(fields: [userId], references: [id])
+  workout Workout @relation(fields: [workoutId], references: [id])
+
+  @@unique([userId, dayOfWeek])
+  @@index([workoutId])
+  @@map("workout_schedules")
 }
 
 model WorkoutExercise {

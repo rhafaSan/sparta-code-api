@@ -4,9 +4,22 @@ import { WorkoutsController } from './workouts.controller.js';
 import { WorkoutGenerationController } from './generation/workout-generation.controller.js';
 import { WorkoutGenerationService } from './generation/workout-generation.service.js';
 import { GeminiWorkoutProvider } from './generation/gemini-workout.provider.js';
+import { WorkoutImportController } from './generation/workout-import.controller.js';
+import { WorkoutScheduleController } from './workout-schedule.controller.js';
+import { WorkoutScheduleService } from './workout-schedule.service.js';
 @Module({
-  providers: [WorkoutsService, WorkoutGenerationService, GeminiWorkoutProvider],
-  controllers: [WorkoutGenerationController, WorkoutsController],
+  providers: [
+    WorkoutsService,
+    WorkoutGenerationService,
+    GeminiWorkoutProvider,
+    WorkoutScheduleService,
+  ],
+  controllers: [
+    WorkoutScheduleController,
+    WorkoutImportController,
+    WorkoutGenerationController,
+    WorkoutsController,
+  ],
   exports: [WorkoutsService],
 })
 export class WorkoutsModule {}

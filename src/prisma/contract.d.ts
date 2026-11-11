@@ -33,9 +33,9 @@ import type {
 } from '@prisma/orm-postgres/contract/types';
 
 export type StorageHash =
-  StorageHashBase<'b56cc1d1863a5e67d52e9c4d4723cd98fa898cc36af47df748546df976d9ebb7'>;
+  StorageHashBase<'4cb1755b5972b5fe5608e8f617752c18765e255ce94b42da5be0cc2bc03a0dce'>;
 export type ExecutionHash =
-  ExecutionHashBase<'0acf610a3f25bedb132f3884d8203bd58ad8861c7ff335194bb861537c410780'>;
+  ExecutionHashBase<'b67b7bdbc35f5d4eed37091aead601994d24cda35e18dde4368147e3546b1f21'>;
 export type ProfileHash =
   ProfileHashBase<'3916f444a8a17ad749191acf9e08dad97d1a327b88c2f1d45d12f240296aa8b2'>;
 
@@ -331,6 +331,12 @@ export type FieldOutputTypes = {
       readonly isActive: CodecTypes['pg/bool@1']['output'];
       readonly createdAt: CodecTypes['pg/timestamptz-temporal@1']['output'];
     };
+    readonly WorkoutSchedule: {
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly userId: CodecTypes['pg/uuid@1']['output'];
+      readonly workoutId: CodecTypes['pg/uuid@1']['output'];
+      readonly dayOfWeek: CodecTypes['pg/int4@1']['output'];
+    };
     readonly WorkoutSession: {
       readonly id: CodecTypes['pg/uuid@1']['output'];
       readonly userId: CodecTypes['pg/uuid@1']['output'];
@@ -434,6 +440,12 @@ export type FieldInputTypes = {
       readonly isActive: CodecTypes['pg/bool@1']['input'];
       readonly createdAt: CodecTypes['pg/timestamptz-temporal@1']['input'];
     };
+    readonly WorkoutSchedule: {
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly userId: CodecTypes['pg/uuid@1']['input'];
+      readonly workoutId: CodecTypes['pg/uuid@1']['input'];
+      readonly dayOfWeek: CodecTypes['pg/int4@1']['input'];
+    };
     readonly WorkoutSession: {
       readonly id: CodecTypes['pg/uuid@1']['input'];
       readonly userId: CodecTypes['pg/uuid@1']['input'];
@@ -527,6 +539,12 @@ export type StorageColumnTypes = {
       readonly planned_reps: CodecTypes['pg/int4@1']['output'];
       readonly planned_sets: CodecTypes['pg/int4@1']['output'];
       readonly rest_seconds: CodecTypes['pg/int4@1']['output'] | null;
+      readonly workout_id: CodecTypes['pg/uuid@1']['output'];
+    };
+    readonly workout_schedules: {
+      readonly day_of_week: CodecTypes['pg/int4@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly user_id: CodecTypes['pg/uuid@1']['output'];
       readonly workout_id: CodecTypes['pg/uuid@1']['output'];
     };
     readonly workout_sessions: {
@@ -630,6 +648,12 @@ export type StorageColumnInputTypes = {
       readonly planned_reps: CodecTypes['pg/int4@1']['input'];
       readonly planned_sets: CodecTypes['pg/int4@1']['input'];
       readonly rest_seconds: CodecTypes['pg/int4@1']['input'] | null;
+      readonly workout_id: CodecTypes['pg/uuid@1']['input'];
+    };
+    readonly workout_schedules: {
+      readonly day_of_week: CodecTypes['pg/int4@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly user_id: CodecTypes['pg/uuid@1']['input'];
       readonly workout_id: CodecTypes['pg/uuid@1']['input'];
     };
     readonly workout_sessions: {
@@ -1288,6 +1312,72 @@ type ContractBase = Omit<
                 },
               ];
             };
+            readonly workout_schedules: {
+              columns: {
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly user_id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly workout_id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly day_of_week: {
+                  readonly nativeType: 'int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [{ readonly columns: readonly ['user_id', 'day_of_week'] }];
+              indexes: readonly [
+                {
+                  readonly name: 'workout_schedules_workout_id_idx_7b5dce6d';
+                  readonly prefix: 'workout_schedules_workout_id_idx';
+                  readonly columns: readonly ['workout_id'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'workout_schedules_user_id_idx_6c952402';
+                  readonly prefix: 'workout_schedules_user_id_idx';
+                  readonly columns: readonly ['user_id'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'public' & NamespaceId;
+                    readonly tableName: 'workout_schedules';
+                    readonly columns: readonly ['user_id'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'public' & NamespaceId;
+                    readonly tableName: 'users';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'public' & NamespaceId;
+                    readonly tableName: 'workout_schedules';
+                    readonly columns: readonly ['workout_id'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'public' & NamespaceId;
+                    readonly tableName: 'workouts';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
+            };
             readonly workout_sessions: {
               columns: {
                 readonly id: {
@@ -1482,6 +1572,10 @@ type ContractBase = Omit<
       readonly model: 'ExerciseMuscle';
     };
     readonly workouts: { readonly namespace: 'public' & NamespaceId; readonly model: 'Workout' };
+    readonly workout_schedules: {
+      readonly namespace: 'public' & NamespaceId;
+      readonly model: 'WorkoutSchedule';
+    };
     readonly workout_exercises: {
       readonly namespace: 'public' & NamespaceId;
       readonly model: 'WorkoutExercise';
@@ -2034,6 +2128,17 @@ type ContractBase = Omit<
                   readonly targetFields: readonly ['userId'];
                 };
               };
+              readonly workoutSchedules: {
+                readonly to: {
+                  readonly namespace: 'public' & NamespaceId;
+                  readonly model: 'WorkoutSchedule';
+                };
+                readonly cardinality: '1:N';
+                readonly on: {
+                  readonly localFields: readonly ['id'];
+                  readonly targetFields: readonly ['userId'];
+                };
+              };
               readonly workoutSessions: {
                 readonly to: {
                   readonly namespace: 'public' & NamespaceId;
@@ -2101,6 +2206,17 @@ type ContractBase = Omit<
               };
             };
             readonly relations: {
+              readonly schedules: {
+                readonly to: {
+                  readonly namespace: 'public' & NamespaceId;
+                  readonly model: 'WorkoutSchedule';
+                };
+                readonly cardinality: '1:N';
+                readonly on: {
+                  readonly localFields: readonly ['id'];
+                  readonly targetFields: readonly ['workoutId'];
+                };
+              };
               readonly user: {
                 readonly to: { readonly namespace: 'public' & NamespaceId; readonly model: 'User' };
                 readonly cardinality: 'N:1';
@@ -2240,6 +2356,57 @@ type ContractBase = Omit<
                 readonly notes: { readonly column: 'notes' };
                 readonly isActive: { readonly column: 'is_active' };
                 readonly createdAt: { readonly column: 'created_at' };
+              };
+            };
+          };
+          readonly WorkoutSchedule: {
+            readonly fields: {
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly userId: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly workoutId: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly dayOfWeek: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+            };
+            readonly relations: {
+              readonly user: {
+                readonly to: { readonly namespace: 'public' & NamespaceId; readonly model: 'User' };
+                readonly cardinality: 'N:1';
+                readonly on: {
+                  readonly localFields: readonly ['userId'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly workout: {
+                readonly to: {
+                  readonly namespace: 'public' & NamespaceId;
+                  readonly model: 'Workout';
+                };
+                readonly cardinality: 'N:1';
+                readonly on: {
+                  readonly localFields: readonly ['workoutId'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'workout_schedules';
+              readonly namespaceId: 'public';
+              readonly fields: {
+                readonly id: { readonly column: 'id' };
+                readonly userId: { readonly column: 'user_id' };
+                readonly workoutId: { readonly column: 'workout_id' };
+                readonly dayOfWeek: { readonly column: 'day_of_week' };
               };
             };
           };
@@ -2424,6 +2591,14 @@ type ContractBase = Omit<
           readonly ref: {
             readonly namespace: 'public';
             readonly table: 'workout_exercises';
+            readonly column: 'id';
+          };
+          readonly onCreate: { readonly kind: 'generator'; readonly id: 'uuidv4' };
+        },
+        {
+          readonly ref: {
+            readonly namespace: 'public';
+            readonly table: 'workout_schedules';
             readonly column: 'id';
           };
           readonly onCreate: { readonly kind: 'generator'; readonly id: 'uuidv4' };
