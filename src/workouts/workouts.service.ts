@@ -90,15 +90,7 @@ export class WorkoutsService {
       if (!exercise) throw new NotFoundException('Exercise not found');
       if (!exercise.isActive)
         throw new ConflictException('Exercise is archived');
-      if (
-        await tx.orm.public.WorkoutExercise.where({
-          workoutId,
-          exerciseOrder: dto.exerciseOrder,
-        }).first()
-      )
-        throw new ConflictException(
-          'Exercise order is already occupied, including archived entries',
-        );
+      await this.reserveExerciseOrder(tx, workoutId, dto.exerciseOrder);
       return tx.orm.public.WorkoutExercise.create({ ...dto, workoutId });
     });
   }
@@ -122,14 +114,7 @@ export class WorkoutsService {
         dto.exerciseOrder !== undefined &&
         dto.exerciseOrder !== entry.exerciseOrder
       ) {
-        const occupied = await tx.orm.public.WorkoutExercise.where({
-          workoutId,
-          exerciseOrder: dto.exerciseOrder,
-        }).first();
-        if (occupied)
-          throw new ConflictException(
-            'Exercise order is already occupied; use the reorder endpoint to swap positions',
-          );
+        await this.reserveExerciseOrder(tx, workoutId, dto.exerciseOrder);
       }
       if (!Object.keys(dto).length) return entry;
       const updated = await tx.orm.public.WorkoutExercise.where({ id }).update(
@@ -141,6 +126,36 @@ export class WorkoutsService {
 
   archiveExercise(workoutId: string, id: string) {
     return this.updateExercise(workoutId, id, { isActive: false });
+  }
+
+  // The parent workout must be locked before reserving an order. Archived
+  // entries keep their identity; historical orders live in ExerciseSession.
+  private async reserveExerciseOrder(
+    tx: Transaction,
+    workoutId: string,
+    exerciseOrder: number,
+  ) {
+    const occupied = await tx.orm.public.WorkoutExercise.where({
+      workoutId,
+      exerciseOrder,
+    }).first();
+    if (!occupied) return;
+    if (occupied.isActive)
+      throw new ConflictException(
+        'Exercise order is already occupied; use the reorder endpoint to swap positions',
+      );
+
+    const entries = await tx.orm.public.WorkoutExercise.where({ workoutId })
+      .orderBy((entry) => entry.exerciseOrder.asc())
+      .all();
+    let availableOrder = 1;
+    for (const entry of entries) {
+      if (entry.exerciseOrder === availableOrder) availableOrder++;
+      else if (entry.exerciseOrder > availableOrder) break;
+    }
+    await tx.orm.public.WorkoutExercise.where({ id: occupied.id }).update({
+      exerciseOrder: availableOrder,
+    });
   }
 
   reorder(workoutId: string, dto: ReorderWorkoutExercisesDto) {

@@ -347,6 +347,64 @@ describe('Workout flow with PostgreSQL', () => {
     ]);
   });
 
+  it('reuses archived orders on create and update, including after reordering', async () => {
+    const service = app.get(WorkoutsService);
+    const template = await service.create({
+      userId: user.id,
+      name: `${prefix}-archived-orders`,
+    });
+    const input = {
+      exerciseId: exercise.id,
+      exerciseOrder: 1,
+      plannedSets: 3,
+      plannedReps: 10,
+    };
+    try {
+      const archived = await service.addExercise(template.id, input);
+      await service.archiveExercise(template.id, archived.id);
+      const replacement = await service.addExercise(template.id, input);
+      expect(replacement.exerciseOrder).toBe(1);
+      expect(
+        await db.orm.public.WorkoutExercise.first({ id: archived.id }),
+      ).toMatchObject({ isActive: false, exerciseOrder: 2 });
+      await expect(service.addExercise(template.id, input)).rejects.toThrow(
+        'Exercise order is already occupied',
+      );
+
+      // Reorder places the archived entry immediately after the active ones.
+      await service.reorder(template.id, {
+        workoutExerciseIds: [replacement.id],
+      });
+      const next = await service.addExercise(template.id, {
+        ...input,
+        exerciseOrder: 2,
+      });
+      expect(next.exerciseOrder).toBe(2);
+      expect(
+        await service.updateExercise(template.id, replacement.id, {
+          exerciseOrder: 3,
+        }),
+      ).toMatchObject({ exerciseOrder: 3 });
+      await expect(
+        service.updateExercise(template.id, replacement.id, {
+          exerciseOrder: 2,
+        }),
+      ).rejects.toThrow('Exercise order is already occupied');
+
+      // The archived identity can still be restored at its relocated position.
+      expect(
+        await service.updateExercise(template.id, archived.id, {
+          isActive: true,
+        }),
+      ).toMatchObject({ id: archived.id, isActive: true, exerciseOrder: 4 });
+    } finally {
+      await db.orm.public.WorkoutExercise.where({
+        workoutId: template.id,
+      }).deleteAll();
+      await db.orm.public.Workout.where({ id: template.id }).delete();
+    }
+  });
+
   it('rolls back the session and first snapshot when the second snapshot fails', async () => {
     const failure = new Error(
       'Injected failure while creating the second snapshot',
